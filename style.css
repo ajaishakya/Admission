@@ -1,0 +1,24 @@
+.xl-gap{
+    padding: 20px;
+}
+
+.reg_container
+{
+    box-shadow: 0 0 10px black;
+}
+
+.reg_header h3
+{
+    line-height: 60px;
+    background-color: #751113;
+    color:white;
+    text-align: center;
+    margin:15px 0px;
+}
+
+.img-logo
+{
+    margin-top: 30px;
+    height:100px;
+    width: 100px;
+}
