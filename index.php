@@ -1,3 +1,13 @@
+<?php
+    include 'class.php';
+    $user = new User();
+
+    if(isset($_POST["submit1"]))
+    {
+        $user->reg_user($_POST);
+    }
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -17,7 +27,6 @@
 </head>
 
 <body>
-   
     <div class="container" >
         <div class="xl-gap"></div>
         <div class="row myrow ">
@@ -28,7 +37,7 @@
                 </div>
                 <div style="min-height:500px;" class="d-flex justify-content-center mt-5" >
                     <div style="width:280px;">
-                        <form method="post" action="">
+                        <form method="post" action="" id="register">
                             <div class="form-group">
                                 <input type="text" class="form-control form-control-sm" name="first_name" autocomplete="on" placeholder="First Name" required>
                             </div>
@@ -54,8 +63,9 @@
                             <div class="form-group">
                                 <input type="date" class="form-control form-control-sm" name="dob" autocomplete="off" placeholder="Born on" required>
                             </div>
+                             <input type="hidden" id="sid" name="session_id" value="1">
                             <div class="form-group text-center">
-                                <input type="submit" value="Register" name="submit1"/>
+                                <input type="submit" value="Register" name="submit1">
                             </div>
                         </form>
                         <div class="text-center">Click <a href="https://mbainterview.apexcollege.edu.np">here</a> to fill MBA Interview Form.</div>
