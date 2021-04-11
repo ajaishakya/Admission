@@ -4,7 +4,20 @@
 
     if(isset($_POST["submit1"]))
     {
-        $user->reg_user($_POST);
+        $register = $user->reg_user($_POST);
+        if($register==1)
+        {
+            echo "<p>Please check your mail for the password and to verify your Account(IF not also check in SPAM mail).</p>";
+        }
+        else
+        {
+            echo"<p>Database Error, Please Contact Administration.</p>";
+        }
+    }
+
+    if(isset($_POST["submit2"]))
+    {
+        $user->check_login($_POST);
     }
 ?>
 
@@ -82,7 +95,7 @@
                 </div>
                 <div class="d-flex justify-content-center mt-5">
                     <div style="width:280px;">
-                        <form>
+                        <form method="POST" action="" >
                             <div class="form-group">
                                 <input type="email" class="form-control form-control-sm" name="email" autocomplete="off" placeholder="Email" required>
                             </div>
