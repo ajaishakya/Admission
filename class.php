@@ -92,8 +92,8 @@ class User
 
     function check_login($post)
     {
-        $email = $_POST["email"];
-        $password = $_POST["password"];
+        $email = $post["email"];
+        $password = $post["password"];
 
         $sql = "SELECT * FROM users";
         $result = $this->conn->query($sql);

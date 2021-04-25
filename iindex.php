@@ -15,10 +15,10 @@
         }
     }
 
-    if(isset($_POST["submit2"]))
-    {
-        $user->check_login($_POST);
-    }
+    // if(isset($_POST["submit2"]))
+    // {
+    //     $user->check_login($_POST);
+    // }
 ?>
 
 <!DOCTYPE html>
@@ -50,7 +50,7 @@
                 </div>
                 <div style="min-height:500px;" class="d-flex justify-content-center mt-5" >
                     <div style="width:280px;">
-                        <form method="post" action="" id="register">
+                        <form action="" method="POST" id="register">
                             <div class="form-group">
                                 <input type="text" class="form-control form-control-sm" name="first_name" autocomplete="on" placeholder="First Name" required>
                             </div>

@@ -9,9 +9,11 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
     <style>
-        a{
+        a
+        {
             color:black;
         }
+        
     </style>
 </head>
 
@@ -35,7 +37,7 @@
         <div class="row bg-light mt-4 mb-4 shadow-lg" style="height:800px; width:1200px;">
             <div class="col-3" style="border-right:1px solid lightgrey" >
                   <!-- Nav tabs -->
-                <ul class="nav nav-bar flex-column">
+                <ul class="nav nav-tabs flex-column">
                     <li class="nav-item"><a data-toggle="tab" class="nav-link active" href="#welcome">Welcome</a></li>
                     <li class="nav-item"><a data-toggle="tab" class="nav-link" href="#choose">Choose Program</a></li>
                     <li class="nav-item"><a data-toggle="tab" class="nav-link" href="#personal">Personal Information</a></li>
@@ -81,15 +83,209 @@
                     </div>
 
                     <div id="choose" class="container tab-pane"><br>
+                        <h3>Program Applied For:</h3>
+                        <hr>
+                        <div class="row">
+                            <div class="col-6 ">
+                                <form action="" method="post">
+                                    <input type="radio" name="program" value="MBA">
+                                    <label for="">MBA</label>
+                                    <br>
+                                    <input type="radio"  name="program" value="MBAE">
+                                    <label for="">MBA-Evening</label>
+                                    <br>
+                                    <input type="submit" value="Save" name="submitmba" class="btn btn-bg text-white" style="background-color:rgb(115, 15, 14);">
+                                </form>
+                            </div>
+                            <div class="col">To veiw the FAQ, click <a target="_blank" href="http://mba.apexcollege.edu.np/pdf/MBA_Admission_FAQ.pdf" style="color:blue;" >here</a></div>
+                        </div>
                     </div>
 
                     <div id="personal" class="container tab-pane"><br>
+                        <h3>Personal Information:</h3>
+                        <hr>
+                        <form action="" method="POST">
+                            <div class="row">
+                                <div class="col offset-2"> 
+                                    <input type="radio" name='initial' value="Mr">
+                                    <label for="">Mr.</label>
+                                    <input type="radio" name='initial' value="Ms">
+                                    <label for="">Ms.</label>
+                                    <input type="radio" name='initial' value="Mrs">
+                                    <label for="">Mrs.</label>
+                                </div>
+                            </div>
+                            <div class="form-row">
+                                <div class="col-2"><label for="">Name:</label></div>
+                                <div class="col"><input type="text" placeholder="Last" class="form-control form-control-sm"></div>
+                                <div class="col"><input type="text" placeholder="First" class="form-control form-control-sm"></div>
+                                <div class="col"><input type="text" placeholder="Middle" class="form-control form-control-sm"></div>
+                            </div>
+
+                            <div class="form-row">
+                                <div class="col-2"><label for="">Date of Birth:</label></div>
+                                <div class="col-4"><input type="date" class="form-control form-control-sm"></div>
+                            </div>
+
+                            <div class="form-row">
+                                <div class="col-2"><label for="">Gender:</label></div>
+                                <div class="col">
+                                    <input type="radio" name="gender" value="male">
+                                    <label for="">Male</label>
+                                    <input type="radio" name="gender" value="female">
+                                    <label for="">Female</label>
+                                </div>
+                            </div>
+
+                            <div class="form-row">
+                                <div class="col-2"><label for="">Marital Status:</label></div>
+                                <div class="col">
+                                    <input type="radio" name="status" value="married">
+                                    <label for="">Married</label>
+                                    <input type="radio" name="status" value="single">
+                                    <label for="">Single</label>
+                                </div>
+                            </div>
+
+                             <div class="form-row">
+                                <div class="col-2"><label for="">Citizenship:</label></div>
+                                <div class="col"><input type="text" placeholder="Citizenship" class="form-control form-control-sm"></div>
+                                <div class="col"><input type="text" placeholder="Issuing District" class="form-control form-control-sm"></div>
+                                <div class="col"><input type="text" placeholder="Citizenship No." class="form-control form-control-sm"></div>
+                            </div>
+
+                            <div class="form-row">
+                                <div class="col-2"><label for="">Telephone No:</label></div>
+                                <div class="col-4"><input type="number" placeholder="Telephone" class="form-control form-control-sm"></div>
+                            </div>
+
+                            <div class="form-row">
+                                <div class="col-2"><label for="">Cell No:</label></div>
+                                <div class="col-4"><input type="number" placeholder="Mobile" class="form-control form-control-sm"></div>
+                            </div>
+
+                            <div class="form-row">
+                                <div class="col-2"><label for="">Email:</label></div>
+                                <div class="col-4"><input type="email" placeholder="Email" class="form-control form-control-sm"></div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col offset-2"><p>Have you ever been suspended, expelled or placed on probation at any School or University for academic or disciplinary reasons?</p></div>
+                            </div>
+
+                            <div class="form-row">
+                                 <div class="col offset-2">
+                                    <input type="radio" name='expel_flag' value="1">
+                                    <label for="">Yes</label>
+                                    <input type="radio" name='expel_flag' value="0">
+                                    <label for="">No</label>
+                                </div>
+                            </div>
+
+                            <div class="form-row">
+                                <div class="col-2">If Yes, Please explain</div>
+                                <div class="col"><textarea name="expel_reason" class="form-control "></textarea></div>
+                            </div>
+
+                            <input type="submit" value="Save" name="submit-personal" class="btn btn-bg text-white mt-3" style="background-color:rgb(115, 15, 14);">
+                        </form>
                     </div>
 
                     <div id="address" class="container tab-pane"><br>
+                        <form action="" method="post">
+                            <h4>Permanent Address:</h4>
+                            <hr>
+                            <div class="row form-group">
+                                <div class="col"><input type="text" name="ward" placeholder="Ward" class="form-control form-control-sm"></div>
+                                <div class="col"><input type="text" name="place" placeholder="Place" class="form-control form-control-sm"></div>
+                                <div class="col"><input type="text" name="city" placeholder="City" class="form-control form-control-sm"></div>
+                                <div class="col"><input type="text" name="vdc" placeholder="VDC/Municipality" class="form-control form-control-sm"></div>
+                            </div>
+                            <div class="row form-group">
+                                <div class="col"><input type="text" name="district" placeholder="District" class="form-control form-control-sm"></div>
+                                <div class="col"><input type="text" name="phone" placeholder="Phone" class="form-control form-control-sm"></div>
+                                <div class="col"><input type="text" name="cell" placeholder="Cell" class="form-control form-control-sm"></div>
+                                <div class="col"><input type="text" name="fax" placeholder="Fax" class="form-control form-control-sm"></div>
+                            </div>
+                            <p><input type="checkbox" name="mycheckaddress" value="mycheckaddress"> Check here, If you want to include Local Address</p>
+
+                            <h4>Temporary Address: (Only if different from your permanent address)</h4>
+                            <hr>
+                            <div class="row form-group">
+                                <div class="col"><input type="text" name="lward" placeholder="Ward" class="form-control form-control-sm"></div>
+                                <div class="col"><input type="text" name="lplace" placeholder="Place" class="form-control form-control-sm"></div>
+                                <div class="col"><input type="text" name="lcity" placeholder="City" class="form-control form-control-sm"></div>
+                                <div class="col"><input type="text" name="lvdc" placeholder="VDC/Municipality" class="form-control form-control-sm"></div>
+                            </div>
+                            <div class="row form-group">
+                                <div class="col"><input type="text" name="ldistrict" placeholder="District" class="form-control form-control-sm"></div>
+                                <div class="col"><input type="text" name="lphone" placeholder="Phone" class="form-control form-control-sm"></div>
+                                <div class="col"><input type="text" name="lcell" placeholder="Cell" class="form-control form-control-sm"></div>
+                                <div class="col"><input type="text" name="lfax" placeholder="Fax" class="form-control form-control-sm"></div>
+                            </div>
+                            <input type="submit" name="submit_address" value="Save" class="btn btn-bg text-white mt-3" style="background-color:rgb(115, 15, 14);">
+                        </form>
                     </div>
 
                     <div id="family" class="container tab-pane"><br>
+                        <form action="" method="post">
+                            <h3>Family Details</h3>
+                            <hr>
+                            <h4>Father's Information</h4><br>
+                            <div class="row form-group">
+                                <div class="col-4"><input class="form-control form-control-sm" type="text" name="fname" placeholder="Father's Name"></div>
+                            </div>
+
+                            <div class="row form-group">
+                                <div class="col"><input class="form-control form-control-sm" type="text" name="fprofession" placeholder="Profession"></div>
+                                <div class="col"><input class="form-control form-control-sm" type="text" name="femployer" placeholder="Employer"></div>
+                                <div class="col"><input class="form-control form-control-sm" type="text" name="femail" placeholder="Email"></div>
+                            </div>
+
+                            <div class="row form-group">
+                                <div class="col"><input class="form-control form-control-sm" type="text" name='fphone' placeholder="Phone"></div>
+                                <div class="col"><input class="form-control form-control-sm" type="text" name='fcell' placeholder="Cell"></div>
+                                <div class="col"><input class="form-control form-control-sm" type="text" name='ffax' placeholder="Fax"></div>
+                            </div>
+
+                            <h4>Mother's Information</h4><br>
+                            <div class="row form-group">
+                                <div class="col-4"><input class="form-control form-control-sm" type="text" name="mname" placeholder="Mother's Name"></div>
+                            </div>
+
+                            <div class="row form-group">
+                                <div class="col"><input class="form-control form-control-sm" type="text" name="mprofession" placeholder="Profession"></div>
+                                <div class="col"><input class="form-control form-control-sm" type="text" name="memployer" placeholder="Employer"></div>
+                                <div class="col"><input class="form-control form-control-sm" type="text" name="memail" placeholder="Email"></div>
+                            </div>
+
+                            <div class="row form-group">
+                                <div class="col"><input class="form-control form-control-sm" type="text" name='mphone' placeholder="Phone"></div>
+                                <div class="col"><input class="form-control form-control-sm" type="text" name='mcell' placeholder="Cell"></div>
+                                <div class="col"><input class="form-control form-control-sm" type="text" name='mfax' placeholder="Fax"></div>
+                            </div>
+                            <p><input type="checkbox" name="checkfamily" value="checkfamily"> Check here if you want to include Local Guardian information</p>
+
+                            <h4>Local Guardian Information</h4><br>
+                            <div class="row form-group">
+                                <div class="col-4"><input class="form-control form-control-sm" type="text" name="lname" placeholder="Name"></div>
+                            </div>
+
+                            <div class="row form-group">
+                                <div class="col"><input class="form-control form-control-sm" type="text" name="lprofession" placeholder="Profession"></div>
+                                <div class="col"><input class="form-control form-control-sm" type="text" name="lemployer" placeholder="Employer"></div>
+                                <div class="col"><input class="form-control form-control-sm" type="text" name="lemail" placeholder="Email"></div>
+                            </div>
+
+                            <div class="row form-group">
+                                <div class="col"><input class="form-control form-control-sm" type="text" name='lphone' placeholder="Phone"></div>
+                                <div class="col"><input class="form-control form-control-sm" type="text" name='lcell' placeholder="Cell"></div>
+                                <div class="col"><input class="form-control form-control-sm" type="text" name='lfax' placeholder="Fax"></div>
+                            </div>
+
+                            <input type="hidden" id="familyupstat" value="">
+                            <input type="submit" value="Save" name="submit_family" class="btn btn-bg text-white mt-3" style="background-color:rgb(115, 15, 14);">
+                        </form>
                     </div>
 
                     <div id="academic" class="container tab-pane"><br>
