@@ -13,7 +13,11 @@
         {
             color:black;
         }
-        
+        a:hover
+        {
+            background-color:lightgrey;
+            color:black;
+        }
     </style>
 </head>
 
@@ -34,9 +38,9 @@
 
 <!-- Body -->
     <div class="container-fluid d-flex justify-content-center">
-        <div class="row bg-light mt-4 mb-4 shadow-lg" style="height:800px; width:1200px;">
+        <div class="row bg-light mt-4 mb-4 shadow-lg" style="min-height:500px; width:1200px;">
             <div class="col-3" style="border-right:1px solid lightgrey" >
-                  <!-- Nav tabs -->
+                  <!-- Nav tabs --> 
                 <ul class="nav nav-tabs flex-column">
                     <li class="nav-item"><a data-toggle="tab" class="nav-link active" href="#welcome">Welcome</a></li>
                     <li class="nav-item"><a data-toggle="tab" class="nav-link" href="#choose">Choose Program</a></li>
@@ -46,7 +50,7 @@
                     <li class="nav-item"><a data-toggle="tab" class="nav-link" href="#academic">Academic Information</a></li>
                     <li class="nav-item"><a data-toggle="tab" class="nav-link" href="#work">Work and other Professional Experiences</a></li>
                     <li class="nav-item"><a data-toggle="tab" class="nav-link" href="#achievements">Achievements</a></li>
-                    <li class="nav-item"><a data-toggle="tab" class="nav-link" href="#career">statement of purpose</a></li>
+                    <li class="nav-item"><a data-toggle="tab" class="nav-link" href="#career">Statement of purpose</a></li>
                     <li class="nav-item"><a data-toggle="tab" class="nav-link" href="#decleration">Declaration</a></li>
                 </ul>
             </div>
@@ -94,7 +98,7 @@
                                     <input type="radio"  name="program" value="MBAE">
                                     <label for="">MBA-Evening</label>
                                     <br>
-                                    <input type="submit" value="Save" name="submitmba" class="btn btn-bg text-white" style="background-color:rgb(115, 15, 14);">
+                                    <input type="submit" value="Save" name="submitmba" class="btn btn-bg text-white mt-4" style="background-color:rgb(115, 15, 14);">
                                 </form>
                             </div>
                             <div class="col">To veiw the FAQ, click <a target="_blank" href="http://mba.apexcollege.edu.np/pdf/MBA_Admission_FAQ.pdf" style="color:blue;" >here</a></div>
@@ -187,7 +191,7 @@
                                 <div class="col"><textarea name="expel_reason" class="form-control "></textarea></div>
                             </div>
 
-                            <input type="submit" value="Save" name="submit-personal" class="btn btn-bg text-white mt-3" style="background-color:rgb(115, 15, 14);">
+                            <input type="submit" value="Save" name="submit-personal" class="btn btn-bg text-white mt-4 mb-4" style="background-color:rgb(115, 15, 14);">
                         </form>
                     </div>
 
@@ -223,7 +227,7 @@
                                 <div class="col"><input type="text" name="lcell" placeholder="Cell" class="form-control form-control-sm"></div>
                                 <div class="col"><input type="text" name="lfax" placeholder="Fax" class="form-control form-control-sm"></div>
                             </div>
-                            <input type="submit" name="submit_address" value="Save" class="btn btn-bg text-white mt-3" style="background-color:rgb(115, 15, 14);">
+                            <input type="submit" name="submit_address" value="Save" class="btn btn-bg text-white mt-4" style="background-color:rgb(115, 15, 14);">
                         </form>
                     </div>
 
@@ -284,28 +288,325 @@
                             </div>
 
                             <input type="hidden" id="familyupstat" value="">
-                            <input type="submit" value="Save" name="submit_family" class="btn btn-bg text-white mt-3" style="background-color:rgb(115, 15, 14);">
+                            <input type="submit" value="Save" name="submit_family" class="btn btn-bg text-white mt-3 mb-4" style="background-color:rgb(115, 15, 14);">
                         </form>
                     </div>
 
                     <div id="academic" class="container tab-pane"><br>
+                        <form action="" method="post">
+                            <h3>Undergraduate Degree</h3>
+                            <hr>
+                            <table>
+                                <tr>
+                                    <td>Degree/Diploma Awarded</td>
+                                    <td><input type="text" name="degree1" class="form-control form-control-sm"></td>
+                                </tr>
+                                <tr>
+                                    <td>Percentage/CGPA Obtained</td>
+                                    <td><input type="text" name="percentage1" class="form-control form-control-sm"></td>
+                                </tr>
+                                <tr>
+                                    <td>Area of Specialization</br>(Concentration)</td>
+                                    <td><input type="text" name="specialization1" class="form-control form-control-sm"></td>
+                                </tr>
+                                <tr>
+                                    <td>Name of College</td>
+                                    <td><input type="text" name="college1" class="form-control form-control-sm"></td>
+                                </tr>
+                                <tr>
+                                    <td>Name of Board/University</td>
+                                    <td><input type="text" name="board1" class="form-control form-control-sm"></td>
+                                </tr>
+                                <tr>
+                                    <td>Year of Enrollment</td>
+                                    <td><input type="text" name="start_year1" class="form-control form-control-sm"></td>
+                                    <td>Year of Completion</td>
+                                    <td><input type="text" name="end_year1" class="form-control form-control-sm"></td>
+                                </tr>
+                            </table>
+
+                            <h3 class="mt-3">10+2 or Equivalent</h3>
+                            <hr>
+                            <table>
+                                <tr>
+                                    <td>Degree/Diploma Awarded</td>
+                                    <td><input type="text" name="degree2" class="form-control form-control-sm"></td>
+                                </tr>
+                                <tr>
+                                    <td>Percentage/CGPA Obtained</td>
+                                    <td><input type="text" name="percentage2" class="form-control form-control-sm"></td>
+                                </tr>
+                                <tr>
+                                    <td>Stream</td>
+                                    <td><input type="text" name="specialization2" class="form-control form-control-sm"></td>
+                                </tr>
+                                <tr>
+                                    <td>Name of School/College</td>
+                                    <td><input type="text" name="college2" class="form-control form-control-sm"></td>
+                                </tr>
+                                <tr>
+                                    <td>Name of Board/University</td>
+                                    <td><input type="text" name="board2" class="form-control form-control-sm"></td>
+                                </tr>
+                                <tr>
+                                    <td>Year of Enrollment</td>
+                                    <td><input type="text" name="start_year2" class="form-control form-control-sm"></td>
+                                    <td>Year of Completion</td>
+                                    <td><input type="text" name="end_year2" class="form-control form-control-sm"></td>
+                                </tr>
+                            </table>
+
+                            <h3 class="mt-3">SLC or Equivalent</h3>
+                            <hr>
+                            <table>
+                                <tr>
+                                    <td>Degree/Diploma Awarded</td>
+                                    <td><input type="text" name="degree3" class="form-control form-control-sm"></td>
+                                </tr>
+                                <tr>
+                                    <td>Percentage/CGPA Obtained</td>
+                                    <td><input type="text" name="percentage3" class="form-control form-control-sm"></td>
+                                </tr>
+                                <tr>
+                                    <td>Name of School</td>
+                                    <td><input type="text" name="college3" class="form-control form-control-sm"></td>
+                                </tr>
+                                <tr>
+                                    <td>Name of Board</td>
+                                    <td><input type="text" name="board3" class="form-control form-control-sm"></td>
+                                </tr>
+                                <tr>
+                                    <td>Year of Enrollment</td>
+                                    <td><input type="text" name="start_year3" class="form-control form-control-sm"></td>
+                                    <td>Year of Completion</td>
+                                    <td><input type="text" name="end_year3" class="form-control form-control-sm"></td>
+                                </tr>
+                            </table>
+                            <br>
+                            <p><input type="checkbox" name="checkacademic" value="checkacademic"> Check here if you want to enter other information.</p>
+
+                            <h3 class="mt-3">Others</h3>
+                            <hr>
+                            <table>
+                                <tr>
+                                    <td>Degree/Diploma Awarded</td>
+                                    <td><input type="text" name="degree2" class="form-control form-control-sm"></td>
+                                </tr>
+                                <tr>
+                                    <td>Percentage/CGPA Obtained</td>
+                                    <td><input type="text" name="percentage2" class="form-control form-control-sm"></td>
+                                </tr>
+                                <tr>
+                                    <td>Stream</td>
+                                    <td><input type="text" name="specialization2" class="form-control form-control-sm"></td>
+                                </tr>
+                                <tr>
+                                    <td>Name of School/College</td>
+                                    <td><input type="text" name="college2" class="form-control form-control-sm"></td>
+                                </tr>
+                                <tr>
+                                    <td>Name of Institution Attended </br>(Board University)</td>
+                                    <td><input type="text" name="board2" class="form-control form-control-sm"></td>
+                                </tr>
+                                <tr>
+                                    <td>Year of Enrollment</td>
+                                    <td><input type="text" name="start_year2" class="form-control form-control-sm"></td>
+                                    <td>Year of Completion</td>
+                                    <td><input type="text" name="end_year2" class="form-control form-control-sm"></td>
+                                </tr>
+                            </table>
+                            <input type="submit" name="submitacademics" value="Save" class="btn btn-bg text-white mt-4 mb-4" style="background-color:rgb(115, 15, 14);">
+                        </form>
                     </div>
 
                     <div id="work" class="container tab-pane"><br>
+                        <form action="" method="POST">
+                            <h4><u>1. Full time work experience</u></h4>
+                            <table class="table table-bordered table-sm text-center mt-4 mb-4">
+                                <tr>
+                                    <th rowspan="2">Organization</th>
+                                    <th colspan="2">Date Attended</th>
+                                    <th rowspan="2">Job title</th>
+                                    <th rowspan="2">Job description</th>
+                                </tr>
+                                <tr>
+                                    <th>From</th>
+                                    <th>To</th>
+                                </tr>
+                                <tr>
+                                    <td><input type="text" name="forg1" class="form-control form-control-sm"></td>
+                                    <td><input type="date" name="ffrom1" class="form-control form-control-sm"></td>
+                                    <td><input type="date" name="fto1" class="form-control form-control-sm"></td>
+                                    <td><input type="text" name="fjob1" class="form-control form-control-sm"></td>
+                                    <td><input type="text" name="fdes1" class="form-control form-control-sm"></td>
+                                </tr>
+                                <tr>
+                                    <td><input type="text" name="forg2" class="form-control form-control-sm"></td>
+                                    <td><input type="date" name="ffrom2" class="form-control form-control-sm"></td>
+                                    <td><input type="date" name="fto2" class="form-control form-control-sm"></td>
+                                    <td><input type="text" name="fjob2" class="form-control form-control-sm"></td>
+                                    <td><input type="text" name="fdes2" class="form-control form-control-sm"></td>
+                                </tr>
+                                <tr>
+                                    <td><input type="text" name="forg3" class="form-control form-control-sm"></td>
+                                    <td><input type="date" name="ffrom3" class="form-control form-control-sm"></td>
+                                    <td><input type="date" name="fto3" class="form-control form-control-sm"></td>
+                                    <td><input type="text" name="fjob3" class="form-control form-control-sm"></td>
+                                    <td><input type="text" name="fdes3" class="form-control form-control-sm"></td>
+                                </tr>
+                                <tr>
+                                    <td><input type="text" name="forg4" class="form-control form-control-sm"></td>
+                                    <td><input type="date" name="ffrom4" class="form-control form-control-sm"></td>
+                                    <td><input type="date" name="fto4" class="form-control form-control-sm"></td>
+                                    <td><input type="text" name="fjob4" class="form-control form-control-sm"></td>
+                                    <td><input type="text" name="fdes4" class="form-control form-control-sm"></td>
+                                </tr>
+                            </table>
+
+                            <h4><u>2. Part time/Internship experience</u></h4>
+                            <table class="table table-bordered table-sm text-center mt-4 mb-4">
+                                <tr>
+                                    <th rowspan="2">Organization</th>
+                                    <th colspan="2">Date Attended</th>
+                                    <th rowspan="2">Job title</th>
+                                    <th rowspan="2">Job description</th>
+                                </tr>
+                                <tr>
+                                    <th>From</th>
+                                    <th>To</th>
+                                </tr>
+                                <tr>
+                                    <td><input type="text" name="porg1" class="form-control form-control-sm"></td>
+                                    <td><input type="date" name="pfrom1" class="form-control form-control-sm"></td>
+                                    <td><input type="date" name="pto1" class="form-control form-control-sm"></td>
+                                    <td><input type="text" name="pjob1" class="form-control form-control-sm"></td>
+                                    <td><input type="text" name="pdes1" class="form-control form-control-sm"></td>
+                                </tr>
+                                <tr>
+                                    <td><input type="text" name="porg2" class="form-control form-control-sm"></td>
+                                    <td><input type="date" name="pfrom2" class="form-control form-control-sm"></td>
+                                    <td><input type="date" name="pto2" class="form-control form-control-sm"></td>
+                                    <td><input type="text" name="pjob2" class="form-control form-control-sm"></td>
+                                    <td><input type="text" name="pdes2" class="form-control form-control-sm"></td>
+                                </tr>
+                                <tr>
+                                    <td><input type="text" name="porg3" class="form-control form-control-sm"></td>
+                                    <td><input type="date" name="pfrom3" class="form-control form-control-sm"></td>
+                                    <td><input type="date" name="pto3" class="form-control form-control-sm"></td>
+                                    <td><input type="text" name="pjob3" class="form-control form-control-sm"></td>
+                                    <td><input type="text" name="pdes3" class="form-control form-control-sm"></td>
+                                </tr>
+                                <tr>
+                                    <td><input type="text" name="porg4" class="form-control form-control-sm"></td>
+                                    <td><input type="date" name="pfrom4" class="form-control form-control-sm"></td>
+                                    <td><input type="date" name="pto4" class="form-control form-control-sm"></td>
+                                    <td><input type="text" name="pjob4" class="form-control form-control-sm"></td>
+                                    <td><input type="text" name="pdes4" class="form-control form-control-sm"></td>
+                                </tr>
+                                 
+                            </table>
+
+                            <p>How do you know about Apex College and its Programs?</p>
+                            <input type="checkbox"> Apex Student &nbsp
+                            <input type="checkbox"> Apex Faculty  &nbsp
+                            <input type="checkbox"> Apex Staff &nbsp
+                            <input type="checkbox"> Apex Alumni &nbsp
+                            <input type="checkbox"> Advertisement <br>
+                            <input type="checkbox"> Apex Website &nbsp
+                            <input type="checkbox" class="mb-4"> Others (Please Specify)
+
+                            <p>Why do you want to pursue MBA/MBA Evening Program?</p>
+                            <textarea id="whyMBA" name="pursue" class="form-control"></textarea>
+
+                            <input type="submit" name="submitwork" value="Save" class="btn btn-bg text-white mt-4 mb-4" style="background-color:rgb(115, 15, 14);"> 
+                        </form>
                     </div>
 
                     <div id="achievements" class="container tab-pane"><br>
+                        <form action="" method="post">
+                            <h6>Describe your major involvements / achievements in extra-curricular activities.</br>Note: Activity is mandatory.</h6>
+                            <p>1</p>
+                            <table class="table table-bordered table-sm text-center">
+                                <tr>
+                                    <th>Activity</th>
+                                    <th>Role</th>
+                                    <th>Date</th>
+                                    <th>Responsibility</th>
+                                </tr>
+                                <tr>
+                                    <td><textarea name="act1" class="form-control"></textarea></td>
+                                    <td><textarea name="role1" class="form-control"></textarea></td>
+                                    <td><input    name="date1" type="date" class="form-control form-control-sm"></td>
+                                    <td><textarea name="respon1" class="form-control"></textarea></td>
+                                </tr>
+                            </table>
+
+                            <p>2</p>
+                            <table class="table table-bordered table-sm text-center">
+                                <tr>
+                                    <th>Activity</th>
+                                    <th>Role</th>
+                                    <th>Date</th>
+                                    <th>Responsibility</th>
+                                </tr>
+                                <tr>
+                                    <td><textarea name="act2" class="form-control"></textarea></td>
+                                    <td><textarea name="role2" class="form-control"></textarea></td>
+                                    <td><input    name="date2" type="date" class="form-control form-control-sm"></td>
+                                    <td><textarea name="respon2" class="form-control"></textarea></td>
+                                </tr>
+                            </table>
+
+                            <p>3</p>
+                            <table class="table table-bordered table-sm text-center">
+                                <tr>
+                                    <th>Activity</th>
+                                    <th>Role</th>
+                                    <th>Date</th>
+                                    <th>Responsibility</th>
+                                </tr>
+                                <tr>
+                                    <td><textarea name="act3" class="form-control"></textarea></td>
+                                    <td><textarea name="role3" class="form-control"></textarea></td>
+                                    <td><input    name="date3" type="date" class="form-control form-control-sm"></td>
+                                    <td><textarea name="respon3" class="form-control"></textarea></td>
+                                </tr>
+                            </table>
+                            <input type="submit" name="" value="Save" class="btn btn-bg text-white mt-3 mb-4" style="background-color:rgb(115, 15, 14);">
+                        </form>
                     </div>
 
                     <div id="career" class="container tab-pane"><br>
+                        <p>Write a brief summary about your statement of purpose in your own words in about 200 words. 
+                        Also mention how your education at APEX would help you achieve your statement of purpose.</p>
+                        <form action="" method="post">
+                            <textarea name="careerobj" class="form-control" rows="13"></textarea>
+                            <input type="submit" name="submitobj" value="Save" class="btn btn-bg text-white mt-4 mb-4" style="background-color:rgb(115, 15, 14);">
+                        </form>
                     </div>
 
                     <div id="decleration" class="container tab-pane"><br>
+                        <h4>Declaration</h4>
+                        <hr>
+                        <ul>
+                            <li type="1">I hereby declare that the information provided by me is true and correct.</li>
+                            <li type="1">I would submit all the necessary documents required by the College and the University within the given deadline.</li>
+                            <li type="1">I have read, understood and agree to be bound by the rules of the College and the University.</li>
+                            <li type="1">I also agree to abide by the payment schedule.</li>
+                            <li type="1">I hereby also give an undertaking that I will not participate in or originate any activities prejudicial to the interests of the College and the University.</li>
+                            <li type="1">Once issued, application form is not refundable or transferable.</li>
+                        </ul>
+
+                        <form action="" method="post">
+                            <input type="radio" name="declaration" value="1"> I agree &nbsp
+                            <input type="radio" name="declaration" value="0"> I disagree
+                            <br>
+                            <input type="submit"  name="declaration1" value="Submit" class="btn btn-bg text-white mt-4 mb-4" style="background-color:rgb(115, 15, 14);">
+                        </form>
                     </div>
                 </div>
             </div>
         </div>
-        
     </div>
 
 <!-- Footer -->
