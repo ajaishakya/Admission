@@ -23,7 +23,7 @@
 
 <body>
 <!-- Header -->
-    <div style="height:100px" class="bg-dark d-flex align-items-center ">
+    <div style="height:100px" class="bg-dark d-flex align-items-center">
         <div class="container-fluid"  style="width:1230px;">
             <div class="row">
                 <div class="col-11">
@@ -91,7 +91,7 @@
                         <hr>
                         <div class="row">
                             <div class="col-6 ">
-                                <form action="" method="post">
+                                <form action="" method="post" id='form_program'>
                                     <input type="radio" name="program" value="MBA">
                                     <label for="">MBA</label>
                                     <br>
@@ -108,7 +108,7 @@
                     <div id="personal" class="container tab-pane"><br>
                         <h3>Personal Information:</h3>
                         <hr>
-                        <form action="" method="POST">
+                        <form action="" method="POST" id="form_personal">
                             <div class="row">
                                 <div class="col offset-2"> 
                                     <input type="radio" name='initial' value="Mr">
@@ -196,7 +196,7 @@
                     </div>
 
                     <div id="address" class="container tab-pane"><br>
-                        <form action="" method="post">
+                        <form action="" method="post" id="form_address">
                             <h4>Permanent Address:</h4>
                             <hr>
                             <div class="row form-group">
@@ -232,7 +232,7 @@
                     </div>
 
                     <div id="family" class="container tab-pane"><br>
-                        <form action="" method="post">
+                        <form action="" method="post" id="form_family">
                             <h3>Family Details</h3>
                             <hr>
                             <h4>Father's Information</h4><br>
@@ -293,7 +293,7 @@
                     </div>
 
                     <div id="academic" class="container tab-pane"><br>
-                        <form action="" method="post">
+                        <form action="" method="post" id="form_academic">
                             <h3>Undergraduate Degree</h3>
                             <hr>
                             <table>
@@ -420,7 +420,7 @@
                     </div>
 
                     <div id="work" class="container tab-pane"><br>
-                        <form action="" method="POST">
+                        <form action="" method="POST" id="form_work">
                             <h4><u>1. Full time work experience</u></h4>
                             <table class="table table-bordered table-sm text-center mt-4 mb-4">
                                 <tr>
@@ -523,7 +523,7 @@
                     </div>
 
                     <div id="achievements" class="container tab-pane"><br>
-                        <form action="" method="post">
+                        <form action="" method="post" id="form_ach">
                             <h6>Describe your major involvements / achievements in extra-curricular activities.</br>Note: Activity is mandatory.</h6>
                             <p>1</p>
                             <table class="table table-bordered table-sm text-center">
@@ -579,7 +579,7 @@
                     <div id="career" class="container tab-pane"><br>
                         <p>Write a brief summary about your statement of purpose in your own words in about 200 words. 
                         Also mention how your education at APEX would help you achieve your statement of purpose.</p>
-                        <form action="" method="post">
+                        <form action="" method="post" id="form_obj">
                             <textarea name="careerobj" class="form-control" rows="13"></textarea>
                             <input type="submit" name="submitobj" value="Save" class="btn btn-bg text-white mt-4 mb-4" style="background-color:rgb(115, 15, 14);">
                         </form>
@@ -597,7 +597,7 @@
                             <li type="1">Once issued, application form is not refundable or transferable.</li>
                         </ul>
 
-                        <form action="" method="post">
+                        <form action="" method="post" id="form_declaration">
                             <input type="radio" name="declaration" value="1"> I agree &nbsp
                             <input type="radio" name="declaration" value="0"> I disagree
                             <br>
@@ -616,5 +616,198 @@
         </div>
     </div>
     
+    <div class="modal" id="myModal">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+
+              <!-- Modal Header -->
+              <div class="modal-header">
+                <h4 class="modal-title">Important</h4>
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+              </div>
+
+              <!-- Modal body -->
+              <div class="modal-body">
+                Please complete the form with all the required information. Please click save button in every form.
+              </div>
+
+              <!-- Modal footer -->
+              <div class="modal-footer">
+                <button type="button" class="btn btn-success" data-dismiss="modal">Ok</button>
+              </div>
+
+            </div>
+        </div>
+    </div>
+
 </body> 
+
+    <script>
+        $(document).ready(function(){
+            $("#myModal").modal('show');
+        });
+    </script>
+
+    <!-- Choose Program -->
+    <script>
+        $(document).ready(function(){
+            $("#form_program").submit(function(e){
+                e.preventDefault();
+
+                $.ajax({
+                    type: 'POST',
+                    url: "program.php",
+                    data: {formdata : $('#form_program').serialize()},
+                    success: function(data){
+                        alert(data);
+                    }
+                });
+            });
+        });
+    </script>
+
+    <!-- Personal Information -->
+    <script>
+        $(document).ready(function(){
+            $("#form_personal").submit(function(e){
+                e.preventDefault();
+
+                $.ajax({
+                    type: 'POST',
+                    url: "personal.php",
+                    data: {formdata : $('#form_personal').serialize()},
+                    success: function(data){
+                        alert(data);
+                    }
+                });
+            });
+        });
+    </script>
+
+    <!-- Address Information -->
+    <script>
+        $(document).ready(function(){
+            $("#form_address").submit(function(e){
+                e.preventDefault();
+
+                $.ajax({
+                    type: 'POST',
+                    url: "address.php",
+                    data: {formdata : $('#form_address').serialize()},
+                    success: function(data){
+                        alert(data);
+                    }
+                });
+            });
+        });
+    </script>
+
+    <!-- Family Details -->
+    <script>
+        $(document).ready(function(){
+            $("#form_family").submit(function(e){
+                e.preventDefault();
+
+                $.ajax({
+                    type: 'POST',
+                    url: "family.php",
+                    data: {formdata : $('#form_family').serialize()},
+                    success: function(data){
+                        alert(data);
+                    }
+                });
+            });
+        });
+    </script>
+
+     <!-- Academic Information -->
+    <script>
+        $(document).ready(function(){
+            $("#form_academic").submit(function(e){
+                e.preventDefault();
+
+                $.ajax({
+                    type: 'POST',
+                    url: "academic.php",
+                    data: {formdata : $('#form_academic').serialize()},
+                    success: function(data){
+                        alert(data);
+                    }
+                });
+            });
+        });
+    </script>
+
+    <!-- Work and Other Professional Experiences -->
+    <script>
+        $(document).ready(function(){
+            $("#form_work").submit(function(e){
+                e.preventDefault();
+
+                $.ajax({
+                    type: 'POST',
+                    url: "work.php",
+                    data: {formdata : $('#form_work').serialize()},
+                    success: function(data){
+                        alert(data);
+                    }
+                });
+            });
+        });
+    </script>
+
+    <!-- Achievements -->
+    <script>
+        $(document).ready(function(){
+            $("#form_ach").submit(function(e){
+                e.preventDefault();
+
+                $.ajax({
+                    type: 'POST',
+                    url: "ach.php",
+                    data: {formdata : $('#form_ach').serialize()},
+                    success: function(data){
+                        alert(data);
+                    }
+                });
+            });
+        });
+    </script>
+
+    <!-- Statement of Purpose -->
+    <script>
+        $(document).ready(function(){
+            $("#form_obj").submit(function(e){
+                e.preventDefault();
+
+                $.ajax({
+                    type: 'POST',
+                    url: "objective.php",
+                    data: {formdata : $('#form_obj').serialize()},
+                    success: function(data){
+                        alert(data);
+                    }
+                });
+            });
+        });
+    </script>
+
+    <!-- Decleration -->
+    <script>
+        $(document).ready(function(){
+            $("#form_declaration").submit(function(e){
+                e.preventDefault();
+
+                $.ajax({
+                    type: 'POST',
+                    url: "declaration.php",
+                    data: {formdata : $('#form_declaration').serialize()},
+                    success: function(data){
+                        alert(data);
+                    }
+                });
+            });
+        });
+    </script>
+
 </html>

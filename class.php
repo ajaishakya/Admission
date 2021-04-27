@@ -103,10 +103,15 @@ class User
             {
                 if($row["email"]==$email && $row["password"]==$password)
                 {
-                    echo "Valid User";
+                    return 1;
                 }
             }
         }
+    }
+
+    function get_program()
+    {
+        
     }
 }
 ?>

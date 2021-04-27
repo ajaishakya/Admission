@@ -15,10 +15,18 @@
         }
     }
 
-    // if(isset($_POST["submit2"]))
-    // {
-    //     $user->check_login($_POST);
-    // }
+    if(isset($_POST["submit2"]))
+    {
+        $login = $user->check_login($_POST);
+        if($login == 1)
+        {
+            header('Location: student.php');
+        }
+        else
+        {
+           echo "<script> alert('Wrong username or password'); </script>";
+        }
+    }
 ?>
 
 <!DOCTYPE html>
