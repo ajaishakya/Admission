@@ -103,15 +103,23 @@ class User
             {
                 if($row["email"]==$email && $row["password"]==$password)
                 {
+                    $_SESSION["user_id"] = $row["email"];
+                    $_SESSION['email'] = $user_data['email'];
                     return 1;
                 }
             }
         }
     }
 
-    function get_program()
+    function get_program($user_id, $program)
     {
-        
+        $sql = "INSERT INTO student_program(student_id,program)
+                VALUES ('$user_id','$program')";
+
+        if(mysqli_query($this->conn,$sql))
+        {
+            return 1;
+        }
     }
 }
 ?>

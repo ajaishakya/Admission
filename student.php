@@ -1,3 +1,9 @@
+<?php
+session_start();
+$user_id = $_SESSION["user_id"];
+$user_mail = $_SESSION['email'];
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -608,6 +614,7 @@
             </div>
         </div>
     </div>
+    
 
 <!-- Footer -->
     <div style="height:100px" class="bg-dark d-flex justify-content-center align-items-center">
@@ -654,10 +661,11 @@
             $("#form_program").submit(function(e){
                 e.preventDefault();
 
+                alert("Please Wait");
                 $.ajax({
                     type: 'POST',
                     url: "program.php",
-                    data: {formdata : $('#form_program').serialize()},
+                    data: {formdata : $('#form_program').serialize(), uid :'<?=$user_id?>'},
                     success: function(data){
                         alert(data);
                     }

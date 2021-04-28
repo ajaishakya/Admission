@@ -1,5 +1,15 @@
 <?php
+    include 'class.php';
+    $user = new User();
+
     parse_str($_POST['formdata'],$formdata);
-    $a = $formdata["program"];
-    echo $a;
+    $program = $formdata["program"];
+    $user_id = $_POST['uid'];
+
+    $result = $user->get_program($user_id,$program);
+
+    if($result==1)
+    {
+        echo "Success";
+    }
 ?>
