@@ -121,5 +121,54 @@ class User
             return 1;
         }
     }
+
+    function get_personal($user_id, $formdata)
+    {
+        $initial = $formdata['initial'];
+        $st_lname =  $formdata['st_lname'];
+        $st_fname =  $formdata['st_fname'];
+        $st_mname =  $formdata['st_mname'];
+        $dob =  $formdata['dob'];
+        $gender =  $formdata['gender'];
+        $status =  $formdata['status'];
+        $citizenship =  $formdata['citizenship'];
+        $issuing_district =  $formdata['issuing_district'];
+        $citizenship_no = $formdata['citizenship_no'];
+        $telephone =  $formdata['telephone'];
+        $mobile =  $formdata['mobile'];
+        $email =  $formdata['email'];
+        $expel_flag =  $formdata['expel_flag'];
+        $expel_reason =  $formdata['expel_reason'];
+
+        $sql = "INSERT INTO personal_info 
+                SET student_id='$user_id',initial='$initial',st_fname='$st_fname',st_mname='$st_mname',st_lname='$st_lname',dob='$dob'
+                ,gender='$gender',status='$status',citizenship='$citizenship',issuing_district='$issuing_district', citizenship_no='$citizenship_no',
+                 telephone='$telephone', mobile='$mobile',email='$email',expel_flag='$expel_flag',expel_reason='$expel_reason'";
+
+        if(mysqli_query($this->conn, $sql))
+        {
+            return 1;
+        }
+    }
+
+    function get_address($user_id, $formdata)
+    {
+        $ward = $formdata['ward'];
+        $place = $formdata['place'];
+        $city = $formdata['city'];
+        $vdc = $formdata['vdc'];
+        $district = $formdata['district'];
+        $phone = $formdata['phone'];
+        $cell = $formdata['cell'];
+        $fax = $formdata['fax'];
+
+        $sql = "INSERT INTO address SET student_id='$user_id', ward='$ward', place='$place', city='$city', 
+                vdc='$vdc', district='$district', phone='$phone', cell='$cell', fax='$fax'";
+                
+        if(mysqli_query($this->conn, $sql))
+        {
+            return 1;
+        }
+    }
 }
 ?>

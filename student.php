@@ -1,6 +1,6 @@
 <?php
 session_start();
-$user_id = $_SESSION["user_id"];
+$user_id = $_SESSION["email"];
 $user_mail = $_SESSION['email'];
 ?>
 
@@ -127,14 +127,14 @@ $user_mail = $_SESSION['email'];
                             </div>
                             <div class="form-row">
                                 <div class="col-2"><label for="">Name:</label></div>
-                                <div class="col"><input type="text" placeholder="Last" class="form-control form-control-sm"></div>
-                                <div class="col"><input type="text" placeholder="First" class="form-control form-control-sm"></div>
-                                <div class="col"><input type="text" placeholder="Middle" class="form-control form-control-sm"></div>
+                                <div class="col"><input type="text" name="st_lname" placeholder="Last" class="form-control form-control-sm"></div>
+                                <div class="col"><input type="text" name="st_fname" placeholder="First" class="form-control form-control-sm"></div>
+                                <div class="col"><input type="text" name="st_mname" placeholder="Middle" class="form-control form-control-sm"></div>
                             </div>
 
                             <div class="form-row">
                                 <div class="col-2"><label for="">Date of Birth:</label></div>
-                                <div class="col-4"><input type="date" class="form-control form-control-sm"></div>
+                                <div class="col-4"><input type="date" name="dob" class="form-control form-control-sm"></div>
                             </div>
 
                             <div class="form-row">
@@ -159,24 +159,24 @@ $user_mail = $_SESSION['email'];
 
                              <div class="form-row">
                                 <div class="col-2"><label for="">Citizenship:</label></div>
-                                <div class="col"><input type="text" placeholder="Citizenship" class="form-control form-control-sm"></div>
-                                <div class="col"><input type="text" placeholder="Issuing District" class="form-control form-control-sm"></div>
-                                <div class="col"><input type="text" placeholder="Citizenship No." class="form-control form-control-sm"></div>
+                                <div class="col"><input type="text" name="citizenship" placeholder="Citizenship" class="form-control form-control-sm"></div>
+                                <div class="col"><input type="text" name="issuing_district" placeholder="Issuing District" class="form-control form-control-sm"></div>
+                                <div class="col"><input type="text" name="citizenship_no" placeholder="Citizenship No." class="form-control form-control-sm"></div>
                             </div>
 
                             <div class="form-row">
                                 <div class="col-2"><label for="">Telephone No:</label></div>
-                                <div class="col-4"><input type="number" placeholder="Telephone" class="form-control form-control-sm"></div>
+                                <div class="col-4"><input type="number" name="telephone" placeholder="Telephone" class="form-control form-control-sm"></div>
                             </div>
 
                             <div class="form-row">
                                 <div class="col-2"><label for="">Cell No:</label></div>
-                                <div class="col-4"><input type="number" placeholder="Mobile" class="form-control form-control-sm"></div>
+                                <div class="col-4"><input type="number" name="mobile" placeholder="Mobile" class="form-control form-control-sm"></div>
                             </div>
 
                             <div class="form-row">
                                 <div class="col-2"><label for="">Email:</label></div>
-                                <div class="col-4"><input type="email" placeholder="Email" class="form-control form-control-sm"></div>
+                                <div class="col-4"><input type="email" name="email" placeholder="Email" class="form-control form-control-sm"></div>
                             </div>
 
                             <div class="row">
@@ -680,10 +680,11 @@ $user_mail = $_SESSION['email'];
             $("#form_personal").submit(function(e){
                 e.preventDefault();
 
+                alert("Please Wait");
                 $.ajax({
                     type: 'POST',
                     url: "personal.php",
-                    data: {formdata : $('#form_personal').serialize()},
+                    data: {formdata : $('#form_personal').serialize(), uid : '<?= $user_id?>'},
                     success: function(data){
                         alert(data);
                     }
@@ -698,10 +699,11 @@ $user_mail = $_SESSION['email'];
             $("#form_address").submit(function(e){
                 e.preventDefault();
 
+                alert("Please Wait");
                 $.ajax({
                     type: 'POST',
                     url: "address.php",
-                    data: {formdata : $('#form_address').serialize()},
+                    data: {formdata : $('#form_address').serialize(), uid : '<?= $user_id?>'},
                     success: function(data){
                         alert(data);
                     }
@@ -716,10 +718,11 @@ $user_mail = $_SESSION['email'];
             $("#form_family").submit(function(e){
                 e.preventDefault();
 
+                alert("Please Wait");
                 $.ajax({
                     type: 'POST',
                     url: "family.php",
-                    data: {formdata : $('#form_family').serialize()},
+                    data: {formdata : $('#form_family').serialize(), uid : '<?= $user_id?>'},
                     success: function(data){
                         alert(data);
                     }
@@ -734,10 +737,11 @@ $user_mail = $_SESSION['email'];
             $("#form_academic").submit(function(e){
                 e.preventDefault();
 
+                alert("Please Wait");
                 $.ajax({
                     type: 'POST',
                     url: "academic.php",
-                    data: {formdata : $('#form_academic').serialize()},
+                    data: {formdata : $('#form_academic').serialize(), uid : '<?= $user_id?>'},
                     success: function(data){
                         alert(data);
                     }
@@ -752,10 +756,11 @@ $user_mail = $_SESSION['email'];
             $("#form_work").submit(function(e){
                 e.preventDefault();
 
+                alert("Please Wait");
                 $.ajax({
                     type: 'POST',
                     url: "work.php",
-                    data: {formdata : $('#form_work').serialize()},
+                    data: {formdata : $('#form_work').serialize(), uid : '<?= $user_id?>'},
                     success: function(data){
                         alert(data);
                     }
@@ -770,10 +775,11 @@ $user_mail = $_SESSION['email'];
             $("#form_ach").submit(function(e){
                 e.preventDefault();
 
+                alert("Please Wait");
                 $.ajax({
                     type: 'POST',
                     url: "ach.php",
-                    data: {formdata : $('#form_ach').serialize()},
+                    data: {formdata : $('#form_ach').serialize(), uid : '<?= $user_id?>'},
                     success: function(data){
                         alert(data);
                     }
@@ -788,10 +794,11 @@ $user_mail = $_SESSION['email'];
             $("#form_obj").submit(function(e){
                 e.preventDefault();
 
+                alert("Please Wait");
                 $.ajax({
                     type: 'POST',
                     url: "objective.php",
-                    data: {formdata : $('#form_obj').serialize()},
+                    data: {formdata : $('#form_obj').serialize(), uid : '<?= $user_id?>'},
                     success: function(data){
                         alert(data);
                     }
@@ -806,10 +813,11 @@ $user_mail = $_SESSION['email'];
             $("#form_declaration").submit(function(e){
                 e.preventDefault();
 
+                alert("Please Wait");
                 $.ajax({
                     type: 'POST',
                     url: "declaration.php",
-                    data: {formdata : $('#form_declaration').serialize()},
+                    data: {formdata : $('#form_declaration').serialize(), uid : '<?= $user_id?>'},
                     success: function(data){
                         alert(data);
                     }
