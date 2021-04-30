@@ -104,7 +104,7 @@ class User
                 if($row["email"]==$email && $row["password"]==$password)
                 {
                     $_SESSION["user_id"] = $row["email"];
-                    $_SESSION['email'] = $user_data['email'];
+                    $_SESSION['email'] = $row['email'];
                     return 1;
                 }
             }
@@ -161,14 +161,142 @@ class User
         $phone = $formdata['phone'];
         $cell = $formdata['cell'];
         $fax = $formdata['fax'];
+        $lward = $formdata['lward'];
+        $lplace = $formdata['lplace'];
+        $lcity = $formdata['lcity'];
+        $lvdc = $formdata['lvdc'];
+        $ldistrict = $formdata['ldistrict'];
+        $lphone = $formdata['lphone'];
+        $lcell = $formdata['lcell'];
+        $lfax = $formdata['lfax'];
 
-        $sql = "INSERT INTO address SET student_id='$user_id', ward='$ward', place='$place', city='$city', 
+        $address_type1 = 'p';
+        $address_type2 = 't';
+
+        $sql1 = "INSERT INTO address SET student_id='$user_id', address_type='$address_type1', ward='$ward', place='$place', city='$city', 
                 vdc='$vdc', district='$district', phone='$phone', cell='$cell', fax='$fax'";
-                
-        if(mysqli_query($this->conn, $sql))
+        
+        if(mysqli_query($this->conn, $sql1))
         {
             return 1;
         }
+
+        $sql2 = "INSERT INTO address SET student_id='$user_id', address_type='$address_type2', ward='$lward', place='$lplace', city='$lcity', 
+                vdc='$lvdc', district='$ldistrict', phone='$lphone', cell='$lcell', fax='$lfax'";
+                
+        if(mysqli_query($this->conn, $sql2))
+        {
+            return 1;
+        }
+    }
+
+    function get_family($user_id,$formdata)
+    {
+        $fname = $formdata['fname'];
+        $fprofession = $formdata['fprofession'];
+        $femployer = $formdata['femployer'];
+        $femail = $formdata['femail'];
+        $fphone = $formdata['fphone'];
+        $fcell = $formdata['fcell'];
+        $ffax = $formdata['ffax'];
+        $mname = $formdata['mname'];
+        $mprofession = $formdata['mprofession'];
+        $memployer = $formdata['memployer'];
+        $memail = $formdata['memail'];
+        $mphone = $formdata['mphone'];
+        $mcell = $formdata['mcell'];
+        $mfax = $formdata['mfax'];
+        $type1 = 'f';
+        $type2 = 'm';
+        $type = 'l';
+
+        $sql1 = "INSERT INTO family SET student_id='$user_id', type='$type1', name='$fname', profession='$fprofession', employer='$femployer', 
+                email='$femail', phone='$fphone', cell='$fcell', fax='$ffax'";
+
+        if(mysqli_query($this->conn, $sql1))
+        {
+            return 1;
+        }
+        
+        $sql2 = "INSERT INTO family SET student_id='$user_id', type='$type2', name='$mname', profession='$mprofession', employer='$memployer', 
+                email='$memail', phone='$mphone', cell='$mcell', fax='$mfax'";
+
+        if(mysqli_query($this->conn, $sql2))
+        {
+            return 1;
+        }
+            
+        $lname = $formdata['lname'];
+        $lprofession = $formdata['lprofession'];
+        $lemployer = $formdata['lemployer'];
+        $lemail = $formdata['lemail'];
+        $lphone = $formdata['lphone'];
+        $lcell = $formdata['lcell'];
+        $lfax = $formdata['lfax'];
+
+        $sql3 = "INSERT INTO family SET student_id='$user_id', type='$type3', name='$lname', profession='$lprofession', employer='$lemployer', 
+                email='$lemail', phone='$lphone', cell='$lcell', fax='$lfax'";
+                
+        if(mysqli_query($this->conn, $sql3))
+        {
+            return 1;
+        }
+    }
+
+    function get_academic($user_id, $formdata)
+    {
+        $degree1 = $formdata['degree1'];
+        $percentage1 = $formdata['percentage1'];
+        $specialization1 = $formdata['specialization1'];
+        $college1 = $formdata['college1'];
+        $board1 = $formdata['board1'];
+        $start_year1 = $formdata['start_year1'];
+        $end_year1 = $formdata['end_year1'];
+        $type1 = "ug";
+        $type2 = "p2";
+        $type3 = "slc";
+        $type4 = "o";
+
+        $ol = "INSERT INTO academic SET student_id='$user_id', type ='$type1', degree ='$degree1', percentage='$percentage1', specialization='$specialization1', college='$college1', board='$board1', start_year='$start_year1', end_year='$end_year1'";
+                
+        if(mysqli_query($this->conn, $ol))
+        {
+            return 1;
+        }
+
+        // $degree2 = $formdata['degree2'];
+        // $percentage2 = $formdata['percentage2'];
+        // $specialization2 = $formdata['specialization2'];
+        // $college2 = $formdata['college2'];
+        // $board2 = $formdata['board2'];
+        // $start_year2 = $formdata['start_year2'];
+        // $end_year2 = $formdata['end_year2'];
+
+        // $degree3 = $formdata['degree3'];
+        // $percentage3 = $formdata['percentage3'];
+        // $college3 = $formdata['college3'];
+        // $board3 = $formdata['board3'];
+        // $start_year3 = $formdata['start_year3'];
+        // $end_year3 = $formdata['end_year3'];
+
+        
+
+        // $sql2 = "INSERT into academic SET student_id='$user_id', type='$type2', degree='$degree2', percentage='$percentage2', 
+        // specialization='$specialization2', college='$college2', board='$board2', start_year='$start_year2', end_year='$end_year2'";
+
+        // if(mysqli_query($this->conn, $sql2))
+        // {
+        //     return 1;
+        // }
+
+        // $sql3 = "INSERT into academic SET student_id='$user_id', type='$type3', degree='$degree3', percentage='$percentage3', 
+        // college='$college3', board='$board3', start_year='$start_year3', end_year='$end_year3'";
+
+        // if(mysqli_query($this->conn, $sql3))
+        // {
+        //     return 1;
+        // }
+
     }
 }
 ?>

@@ -249,12 +249,12 @@ $user_mail = $_SESSION['email'];
                             <div class="row form-group">
                                 <div class="col"><input class="form-control form-control-sm" type="text" name="fprofession" placeholder="Profession"></div>
                                 <div class="col"><input class="form-control form-control-sm" type="text" name="femployer" placeholder="Employer"></div>
-                                <div class="col"><input class="form-control form-control-sm" type="text" name="femail" placeholder="Email"></div>
+                                <div class="col"><input class="form-control form-control-sm" type="email" name="femail" placeholder="Email"></div>
                             </div>
 
                             <div class="row form-group">
-                                <div class="col"><input class="form-control form-control-sm" type="text" name='fphone' placeholder="Phone"></div>
-                                <div class="col"><input class="form-control form-control-sm" type="text" name='fcell' placeholder="Cell"></div>
+                                <div class="col"><input class="form-control form-control-sm" type="number" name='fphone' placeholder="Phone"></div>
+                                <div class="col"><input class="form-control form-control-sm" type="number" name='fcell' placeholder="Cell"></div>
                                 <div class="col"><input class="form-control form-control-sm" type="text" name='ffax' placeholder="Fax"></div>
                             </div>
 
@@ -266,12 +266,12 @@ $user_mail = $_SESSION['email'];
                             <div class="row form-group">
                                 <div class="col"><input class="form-control form-control-sm" type="text" name="mprofession" placeholder="Profession"></div>
                                 <div class="col"><input class="form-control form-control-sm" type="text" name="memployer" placeholder="Employer"></div>
-                                <div class="col"><input class="form-control form-control-sm" type="text" name="memail" placeholder="Email"></div>
+                                <div class="col"><input class="form-control form-control-sm" type="email" name="memail" placeholder="Email"></div>
                             </div>
 
                             <div class="row form-group">
-                                <div class="col"><input class="form-control form-control-sm" type="text" name='mphone' placeholder="Phone"></div>
-                                <div class="col"><input class="form-control form-control-sm" type="text" name='mcell' placeholder="Cell"></div>
+                                <div class="col"><input class="form-control form-control-sm" type="number" name='mphone' placeholder="Phone"></div>
+                                <div class="col"><input class="form-control form-control-sm" type="number" name='mcell' placeholder="Cell"></div>
                                 <div class="col"><input class="form-control form-control-sm" type="text" name='mfax' placeholder="Fax"></div>
                             </div>
                             <p><input type="checkbox" name="checkfamily" value="checkfamily"> Check here if you want to include Local Guardian information</p>
@@ -284,12 +284,12 @@ $user_mail = $_SESSION['email'];
                             <div class="row form-group">
                                 <div class="col"><input class="form-control form-control-sm" type="text" name="lprofession" placeholder="Profession"></div>
                                 <div class="col"><input class="form-control form-control-sm" type="text" name="lemployer" placeholder="Employer"></div>
-                                <div class="col"><input class="form-control form-control-sm" type="text" name="lemail" placeholder="Email"></div>
+                                <div class="col"><input class="form-control form-control-sm" type="email" name="lemail" placeholder="Email"></div>
                             </div>
 
                             <div class="row form-group">
-                                <div class="col"><input class="form-control form-control-sm" type="text" name='lphone' placeholder="Phone"></div>
-                                <div class="col"><input class="form-control form-control-sm" type="text" name='lcell' placeholder="Cell"></div>
+                                <div class="col"><input class="form-control form-control-sm" type="number" name='lphone' placeholder="Phone"></div>
+                                <div class="col"><input class="form-control form-control-sm" type="number" name='lcell' placeholder="Cell"></div>
                                 <div class="col"><input class="form-control form-control-sm" type="text" name='lfax' placeholder="Fax"></div>
                             </div>
 
@@ -396,29 +396,29 @@ $user_mail = $_SESSION['email'];
                             <table>
                                 <tr>
                                     <td>Degree/Diploma Awarded</td>
-                                    <td><input type="text" name="degree2" class="form-control form-control-sm"></td>
+                                    <td><input type="text" name="degree4" class="form-control form-control-sm"></td>
                                 </tr>
                                 <tr>
                                     <td>Percentage/CGPA Obtained</td>
-                                    <td><input type="text" name="percentage2" class="form-control form-control-sm"></td>
+                                    <td><input type="text" name="percentage4" class="form-control form-control-sm"></td>
                                 </tr>
                                 <tr>
                                     <td>Stream</td>
-                                    <td><input type="text" name="specialization2" class="form-control form-control-sm"></td>
+                                    <td><input type="text" name="specialization4" class="form-control form-control-sm"></td>
                                 </tr>
                                 <tr>
                                     <td>Name of School/College</td>
-                                    <td><input type="text" name="college2" class="form-control form-control-sm"></td>
+                                    <td><input type="text" name="college4" class="form-control form-control-sm"></td>
                                 </tr>
                                 <tr>
                                     <td>Name of Institution Attended </br>(Board University)</td>
-                                    <td><input type="text" name="board2" class="form-control form-control-sm"></td>
+                                    <td><input type="text" name="board4" class="form-control form-control-sm"></td>
                                 </tr>
                                 <tr>
                                     <td>Year of Enrollment</td>
-                                    <td><input type="text" name="start_year2" class="form-control form-control-sm"></td>
+                                    <td><input type="text" name="start_year4" class="form-control form-control-sm"></td>
                                     <td>Year of Completion</td>
-                                    <td><input type="text" name="end_year2" class="form-control form-control-sm"></td>
+                                    <td><input type="text" name="end_year4" class="form-control form-control-sm"></td>
                                 </tr>
                             </table>
                             <input type="submit" name="submitacademics" value="Save" class="btn btn-bg text-white mt-4 mb-4" style="background-color:rgb(115, 15, 14);">
