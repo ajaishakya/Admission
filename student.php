@@ -513,13 +513,18 @@ $user_mail = $_SESSION['email'];
                             </table>
 
                             <p>How do you know about Apex College and its Programs?</p>
-                            <input type="checkbox"> Apex Student &nbsp
-                            <input type="checkbox"> Apex Faculty  &nbsp
-                            <input type="checkbox"> Apex Staff &nbsp
-                            <input type="checkbox"> Apex Alumni &nbsp
-                            <input type="checkbox"> Advertisement <br>
-                            <input type="checkbox"> Apex Website &nbsp
-                            <input type="checkbox" class="mb-4"> Others (Please Specify)
+                            <p>
+                                <input type="checkbox" name="check_list[]" value="1"> Apex Student &nbsp
+                                <input type="checkbox" name="check_list[]" value="2"> Apex Faculty  &nbsp
+                                <input type="checkbox" name="check_list[]" value="3"> Apex Staff &nbsp
+                                <input type="checkbox" name="check_list[]" value="4"> Apex Alumni &nbsp
+                                <input type="checkbox" name="check_list[]" value="5"> Advertisement
+                            </p>
+                            <p>
+                                <input type="checkbox" name="check_list[]" value="6"> Apex Website 
+                                <input type="checkbox" name="check_list[]" value="7"  class="mb-4"> Others (Please Specify)
+                                <input type="text" name='specify' disabled>
+                            </p>
 
                             <p>Why do you want to pursue MBA/MBA Evening Program?</p>
                             <textarea id="whyMBA" name="pursue" class="form-control"></textarea>

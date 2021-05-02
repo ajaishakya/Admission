@@ -6,7 +6,6 @@
     $user_id = $_POST['uid'];
 
     $result = $user->get_academic($user_id, $formdata);
-    echo $result;
 
     if($result==1)
     {
