@@ -1,7 +1,9 @@
 <?php
-session_start();
-$user_id = $_SESSION["email"];
-$user_mail = $_SESSION['email'];
+    session_start();
+    $user_id = $_SESSION["email"];
+    $user_mail = $_SESSION['email'];
+    include 'class.php';
+    $user = new User();
 ?>
 
 <!DOCTYPE html>
@@ -26,6 +28,12 @@ $user_mail = $_SESSION['email'];
         }
     </style>
 </head>
+
+<?php
+$dec = $user->check_declaration($user_id,'student_program');
+$per = $user->check_update($user_id,'personal_info');
+
+?>
 
 <body>
 <!-- Header -->
@@ -96,12 +104,12 @@ $user_mail = $_SESSION['email'];
                         <h3>Program Applied For:</h3>
                         <hr>
                         <div class="row">
-                            <div class="col-6 ">
+                            <div class="col">
                                 <form action="" method="post" id='form_program'>
-                                    <input type="radio" name="program" value="MBA">
+                                    <input type="radio" name="program" value="MBA" <?php if($dec["program"]=="MBA"){echo "checked";} ?> >
                                     <label for="">MBA</label>
                                     <br>
-                                    <input type="radio"  name="program" value="MBAE">
+                                    <input type="radio"  name="program" value="MBAE" <?php if($dec["program"]=="MBAE"){echo "checked";} ?> >
                                     <label for="">MBA-Evening</label>
                                     <br>
                                     <input type="submit" value="Save" name="submitmba" class="btn btn-bg text-white mt-4" style="background-color:rgb(115, 15, 14);">
@@ -117,66 +125,65 @@ $user_mail = $_SESSION['email'];
                         <form action="" method="POST" id="form_personal">
                             <div class="row">
                                 <div class="col offset-2"> 
-                                    <input type="radio" name='initial' value="Mr">
+                                    <input type="radio" name='initial' value="Mr" <?php if($per['initial']=='Mr') {echo 'checked';} ?>>
                                     <label for="">Mr.</label>
-                                    <input type="radio" name='initial' value="Ms">
+                                    <input type="radio" name='initial' value="Ms" <?php if($per['initial']=='Ms') {echo 'checked';} ?>>
                                     <label for="">Ms.</label>
-                                    <input type="radio" name='initial' value="Mrs">
+                                    <input type="radio" name='initial' value="Mrs" <?php if($per['initial']=='Mrs') {echo 'checked';} ?>>
                                     <label for="">Mrs.</label>
                                 </div>
                             </div>
                             <div class="form-row">
                                 <div class="col-2"><label for="">Name:</label></div>
-                                <div class="col"><input type="text" name="st_lname" placeholder="Last" class="form-control form-control-sm"></div>
-                                <div class="col"><input type="text" name="st_fname" placeholder="First" class="form-control form-control-sm"></div>
-                                <div class="col"><input type="text" name="st_mname" placeholder="Middle" class="form-control form-control-sm"></div>
+                                <div class="col"><input type="text" name="st_lname" value="<?=$per["st_lname"]?>" placeholder="Last" class="form-control form-control-sm"></div>
+                                <div class="col"><input type="text" name="st_fname" value="<?=$per["st_fname"]?>" placeholder="First" class="form-control form-control-sm"></div>
+                                <div class="col"><input type="text" name="st_mname" value="<?=$per["st_mname"]?>" placeholder="Middle" class="form-control form-control-sm"></div>
                             </div>
 
                             <div class="form-row">
                                 <div class="col-2"><label for="">Date of Birth:</label></div>
-                                <div class="col-4"><input type="date" name="dob" class="form-control form-control-sm"></div>
+                                <div class="col-4"><input type="date" name="dob" value="<?=$per["dob"]?>" class="form-control form-control-sm"></div>
                             </div>
 
                             <div class="form-row">
                                 <div class="col-2"><label for="">Gender:</label></div>
                                 <div class="col">
-                                    <input type="radio" name="gender" value="male">
+                                    <input type="radio" name="gender" value="male" <?php if($per['gender']=='male') {echo 'checked';} ?>>
                                     <label for="">Male</label>
-                                    <input type="radio" name="gender" value="female">
+                                    <input type="radio" name="gender" value="female" <?php if($per['gender']=='female') {echo 'checked';} ?>>
                                     <label for="">Female</label>
                                 </div>
                             </div>
-
                             <div class="form-row">
                                 <div class="col-2"><label for="">Marital Status:</label></div>
                                 <div class="col">
-                                    <input type="radio" name="status" value="married">
+                                    <input type="radio" name="status" <?php if($per['status']=='married') {echo 'checked';} ?> value="married" >
                                     <label for="">Married</label>
-                                    <input type="radio" name="status" value="single">
+                                    <input type="radio" name="status" <?php if($per['status']=='single') {echo 'checked';} ?> value="single" >
                                     <label for="">Single</label>
                                 </div>
                             </div>
 
                              <div class="form-row">
                                 <div class="col-2"><label for="">Citizenship:</label></div>
-                                <div class="col"><input type="text" name="citizenship" placeholder="Citizenship" class="form-control form-control-sm"></div>
-                                <div class="col"><input type="text" name="issuing_district" placeholder="Issuing District" class="form-control form-control-sm"></div>
-                                <div class="col"><input type="text" name="citizenship_no" placeholder="Citizenship No." class="form-control form-control-sm"></div>
+                                <div class="col"><input type="text" value="<?=$per["citizenship"]?>" name="citizenship" placeholder="Citizenship" class="form-control form-control-sm"></div>
+                                <div class="col"><input type="text" value="<?=$per["issuing_district"]?>" name="issuing_district" placeholder="Issuing District" class="form-control form-control-sm"></div>
+                                <div class="col"><input type="text" value="<?=$per["citizenship_no"]?>" name="citizenship_no" placeholder="Citizenship No." class="form-control form-control-sm"></div>
                             </div>
 
                             <div class="form-row">
                                 <div class="col-2"><label for="">Telephone No:</label></div>
-                                <div class="col-4"><input type="number" name="telephone" placeholder="Telephone" class="form-control form-control-sm"></div>
+                                <div class="col-4"><input type="number" value="<?=$per["telephone"]?>" name="telephone" placeholder="Telephone" class="form-control form-control-sm"></div>
                             </div>
 
                             <div class="form-row">
                                 <div class="col-2"><label for="">Cell No:</label></div>
-                                <div class="col-4"><input type="number" name="mobile" placeholder="Mobile" class="form-control form-control-sm"></div>
+                                <div class="col-4"><input type="number" value="<?=$per["mobile"]?>" name="mobile" placeholder="Mobile" class="form-control form-control-sm"></div>
                             </div>
 
                             <div class="form-row">
                                 <div class="col-2"><label for="">Email:</label></div>
-                                <div class="col-4"><input type="email" name="email" placeholder="Email" class="form-control form-control-sm"></div>
+                                <div class="col-4"><input type="email" value="<?=$per["email"]?>" name="email" placeholder="Email" class="form-control form-control-sm"></div>
                             </div>
 
                             <div class="row">
@@ -185,16 +192,16 @@ $user_mail = $_SESSION['email'];
 
                             <div class="form-row">
                                  <div class="col offset-2">
-                                    <input type="radio" name='expel_flag' value="1">
+                                    <input type="radio" name='expel_flag' value="1" <?php if($per['expel_flag']=='1') {echo 'checked';} ?>>
                                     <label for="">Yes</label>
-                                    <input type="radio" name='expel_flag' value="0">
+                                    <input type="radio" name='expel_flag' value="0" <?php if($per['expel_flag']=='0') {echo 'checked';} ?>>
                                     <label for="">No</label>
                                 </div>
                             </div>
 
                             <div class="form-row">
                                 <div class="col-2">If Yes, Please explain</div>
-                                <div class="col"><textarea name="expel_reason" class="form-control "></textarea></div>
+                                <div class="col"><textarea name="expel_reason" class="form-control"><?=$per["expel_reason"]?></textarea></div>
                             </div>
 
                             <input type="submit" value="Save" name="submit-personal" class="btn btn-bg text-white mt-4 mb-4" style="background-color:rgb(115, 15, 14);">

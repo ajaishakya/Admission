@@ -95,6 +95,9 @@ class User
         $email = $post["email"];
         $password = $post["password"];
 
+        // md5()
+        // $password=md5($password);
+
         $sql = "SELECT * FROM users";
         $result = $this->conn->query($sql);
         if($result->num_rows > 0)
@@ -113,8 +116,7 @@ class User
 
     function get_program($user_id, $program)
     {
-        $sql = "INSERT INTO student_program(student_id,program)
-                VALUES ('$user_id','$program')";
+        $sql = "INSERT INTO student_program(student_id,program) VALUES ('$user_id','$program')";
 
         if(mysqli_query($this->conn,$sql))
         {
@@ -398,6 +400,92 @@ class User
         mysqli_query($this->conn, $sql);
 
         return 1;
+    }
+
+    function get_ach($user_id, $formdata)
+    {
+        $type1 = "ach11";
+        $type2 = "ach21";
+        $type3 = "ach31";
+
+        $act1 = $formdata['act1'];
+        $role1 = $formdata['role1'];
+        $date1 = $formdata['date1'];
+        $respon1 = $formdata['respon1'];
+
+        $act2 = $formdata['act2'];
+        $role2 = $formdata['role2'];
+        $date2 = $formdata['date2'];
+        $respon2 = $formdata['respon2'];
+
+        $act3 = $formdata['act3'];
+        $role3 = $formdata['role3'];
+        $date3 = $formdata['date3'];
+        $respon3 = $formdata['respon3'];
+
+        $sql1 = "INSERT INTO ach_data SET student_id='$user_id', activity='$act1', role='$role1', date='$date1', responsibility='$respon1', 
+        type='$type1'";
+        mysqli_query($this->conn, $sql1);
+
+        $sql2 = "INSERT INTO ach_data SET student_id='$user_id', activity='$act2', role='$role2', date='$date2', responsibility='$respon2', 
+        type='$type2'";
+        mysqli_query($this->conn, $sql2);
+
+        $sql3 = "INSERT INTO ach_data SET student_id='$user_id', activity='$act3', role='$role3', date='$date3', responsibility='$respon3', 
+        type='$type3'";
+        mysqli_query($this->conn, $sql3);
+
+        return 1;
+    }
+
+    function get_obj($user_id, $data)
+    {
+        $sql = "INSERT INTO objective set student_id='$user_id', data='$data'";
+        if(mysqli_query($this->conn, $sql))
+        {
+            return 1;
+        }
+    }
+
+    function get_declaration($user_id, $declaration)
+    {
+        $sql = "INSERT INTO student_program SET student_id='$user_id', declaration='$declaration'";
+        if(mysqli_query($this->conn, $sql))
+        {
+            return 1;
+        }
+    }
+
+    // For Displaying values in Student.php
+
+    function check_declaration($user_id, $tablename)
+    {
+        $sql = "SELECT * FROM $tablename WHERE student_id='$user_id'";
+        $run = mysqli_query($this->conn, $sql);
+
+        if(mysqli_num_rows($run)>0)
+        {
+           return mysqli_fetch_assoc($run);
+        }
+        else
+        {
+            return false;
+        }
+    }
+
+    function check_update($user_id, $tablename)
+    {
+        $sql = "SELECT * FROM $tablename WHERE student_id='$user_id'";
+        $run = mysqli_query($this->conn, $sql);
+
+        if(mysqli_num_rows($run)>0)
+        {
+           return mysqli_fetch_assoc($run);
+        }
+        else
+        {
+            return false;
+        }
     }
 }
 ?>

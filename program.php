@@ -12,4 +12,8 @@
     {
         echo "Success";
     }
+    else
+    {
+        echo "Error while connection to database.";
+    }
 ?>
