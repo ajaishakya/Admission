@@ -98,18 +98,15 @@ class User
         // md5()
         // $password=md5($password);
 
-        $sql = "SELECT * FROM users";
+        $sql = "SELECT * FROM users WHERE email='$email' AND password='$password'";
         $result = $this->conn->query($sql);
         if($result->num_rows > 0)
         {
             while($row = $result->fetch_assoc())
             {
-                if($row["email"]==$email && $row["password"]==$password)
-                {
-                    $_SESSION["user_id"] = $row["email"];
-                    $_SESSION['email'] = $row['email'];
-                    return 1;
-                }
+                $_SESSION["user_id"] = $row["email"];
+                $_SESSION['email'] = $row['email'];
+                return 1;
             }
         }
     }
@@ -481,6 +478,345 @@ class User
         if(mysqli_num_rows($run)>0)
         {
            return mysqli_fetch_assoc($run);
+        }
+        else
+        {
+            return false;
+        }
+    }
+
+    function check_add($user_id, $tablename)
+    {
+        $type = 'p';
+        $sql = "SELECT * from $tablename where student_id='$user_id' and address_type='$type'";
+        $run = mysqli_query($this->conn, $sql);
+
+        if(mysqli_num_rows($run) > 0)
+        {
+            return mysqli_fetch_assoc($run);
+        }
+        else
+        {
+            return false;
+        }
+    }
+
+    function check_adds($user_id, $tablename)
+    {
+        $type = 't';
+        $sql = "SELECT * from $tablename where student_id='$user_id' and address_type='$type'";
+        $run = mysqli_query($this->conn, $sql);
+
+        if(mysqli_num_rows($run) > 0)
+        {
+            return mysqli_fetch_assoc($run);
+        }
+        else
+        {
+            return false;
+        }
+    }
+
+    function check_family($user_id, $tablename)
+    {
+        $type = 'f';
+        $sql = "SELECT * from $tablename where student_id='$user_id' and type='$type'";
+        $run = mysqli_query($this->conn, $sql);
+
+        if($run->num_rows > 0)
+        {
+            return mysqli_fetch_array($run);
+        }
+        else
+        {
+            return false;
+        }
+    }
+
+    function check_mfamily($user_id, $tablename)
+    {
+        $type = 'm';
+        $sql = "SELECT * from $tablename where student_id='$user_id' and type='$type'";
+        $run = mysqli_query($this->conn, $sql);
+
+        if($run->num_rows > 0)
+        {
+            return mysqli_fetch_array($run);
+        }
+        else
+        {
+            return false;
+        }
+    }
+
+    function check_lgfamily($user_id, $tablename)
+    {
+        $type = 'l';
+        $sql = "SELECT * from $tablename where student_id='$user_id' and type='$type'";
+        $run = mysqli_query($this->conn, $sql);
+
+        if($run->num_rows > 0)
+        {
+            return mysqli_fetch_array($run);
+        }
+        else
+        {
+            return false;
+        }
+    }
+
+
+    function check_ugacademics($user_id, $tablename)
+    {
+        $sql = "SELECT * from $tablename where student_id='$user_id' and type='ug'";
+        $run = mysqli_query($this->conn, $sql);
+
+        if($run->num_rows > 0)
+        {
+            return mysqli_fetch_assoc($run);
+        }
+        else
+        {
+            return false;
+        }
+    }
+
+    function check_p2academics($user_id, $tablename)
+    {
+        $sql = "SELECT * from $tablename where student_id='$user_id' and type='p2'";
+        $run = mysqli_query($this->conn, $sql);
+
+        if($run->num_rows > 0)
+        {
+            return mysqli_fetch_assoc($run);
+        }
+        else
+        {
+            return false;
+        }
+    }
+
+    function check_slcacademics($user_id, $tablename)
+    {
+        $sql = "SELECT * from $tablename where student_id='$user_id' and type='slc'";
+        $run = mysqli_query($this->conn, $sql);
+
+        if($run->num_rows > 0)
+        {
+            return mysqli_fetch_assoc($run);
+        }
+        else
+        {
+            return false;
+        }
+    }
+
+    function check_optacademics($user_id, $tablename)
+    {
+        $sql = "SELECT * from $tablename where student_id='$user_id' and type='o'";
+        $run = mysqli_query($this->conn, $sql);
+
+        if($run->num_rows > 0)
+        {
+            return mysqli_fetch_assoc($run);
+        }
+        else
+        {
+            return false;
+        }
+    }
+
+    // Full Time Work
+    function check_f1w($user_id, $tablename)
+    {
+        $type = 'f1';
+        $sql = "SELECT * from $tablename where student_id='$user_id' and type='$type'";
+        $run = mysqli_query($this->conn, $sql);
+        if($run->num_rows > 0)
+        {
+            return mysqli_fetch_array($run);
+        }
+        else
+        {
+            return false;
+        }
+    }
+
+    function check_f2w($user_id, $tablename)
+    {
+        $type = 'f2';
+        $sql = "SELECT * from $tablename where student_id='$user_id' and type='$type'";
+        $run = mysqli_query($this->conn, $sql);
+        if($run->num_rows > 0)
+        {
+            return mysqli_fetch_array($run);
+        }
+        else
+        {
+            return false;
+        }
+    }
+
+    function check_f3w($user_id, $tablename)
+    {
+        $type = 'f3';
+        $sql = "SELECT * from $tablename where student_id='$user_id' and type='$type'";
+        $run = mysqli_query($this->conn, $sql);
+        if($run->num_rows > 0)
+        {
+            return mysqli_fetch_array($run);
+        }
+        else
+        {
+            return false;
+        }
+    }
+
+    function check_f4w($user_id, $tablename)
+    {
+        $type = 'f4';
+        $sql = "SELECT * from $tablename where student_id='$user_id' and type='$type'";
+        $run = mysqli_query($this->conn, $sql);
+        if($run->num_rows > 0)
+        {
+            return mysqli_fetch_array($run);
+        }
+        else
+        {
+            return false;
+        }
+    }
+
+    // Part Time Work
+    function check_p1w($user_id, $tablename)
+    {
+        $type = 'p1';
+        $sql = "SELECT * from $tablename where student_id='$user_id' and type='$type'";
+        $run = mysqli_query($this->conn, $sql);
+        if($run->num_rows > 0)
+        {
+            return mysqli_fetch_array($run);
+        }
+        else
+        {
+            return false;
+        }
+    }
+
+    function check_p2w($user_id, $tablename)
+    {
+        $type = 'p2';
+        $sql = "SELECT * from $tablename where student_id='$user_id' and type='$type'";
+        $run = mysqli_query($this->conn, $sql);
+        if($run->num_rows > 0)
+        {
+            return mysqli_fetch_array($run);
+        }
+        else
+        {
+            return false;
+        }
+    }
+
+    function check_p3w($user_id, $tablename)
+    {
+        $type = 'p3';
+        $sql = "SELECT * from $tablename where student_id='$user_id' and type='$type'";
+        $run = mysqli_query($this->conn, $sql);
+        if($run->num_rows > 0)
+        {
+            return mysqli_fetch_array($run);
+        }
+        else
+        {
+            return false;
+        }
+    }
+
+    function check_p4w($user_id, $tablename)
+    {
+        $type = 'p4';
+        $sql = "SELECT * from $tablename where student_id='$user_id' and type='$type'";
+        $run = mysqli_query($this->conn, $sql);
+        if($run->num_rows > 0)
+        {
+            return mysqli_fetch_array($run);
+        }
+        else
+        {
+            return false;
+        }
+    }
+
+    function check_boxes($user_id, $tablename)
+    {
+        $sql = "SELECT * from $tablename where student_id='$user_id'";
+        $run = mysqli_query($this->conn, $sql);
+        if($run->num_rows > 0)
+        {
+            return mysqli_fetch_assoc($run);
+        }
+        else
+        {
+            return false;
+        }
+    }
+
+    function check_ach1($user_id, $tablename)
+    {
+        $type = 'ach11';
+        $sql = "SELECT * from $tablename where student_id='$user_id' and type='$type'";
+        $run = mysqli_query($this->conn, $sql);
+
+        if($run->num_rows > 0)
+        {
+            return mysqli_fetch_array($run);
+        }
+        else
+        {
+            return false;
+        }
+    }
+
+    function check_ach2($user_id, $tablename)
+    {
+        $type = 'ach21';
+        $sql = "SELECT * from $tablename where student_id='$user_id' and type='$type'";
+        $run = mysqli_query($this->conn, $sql);
+
+        if($run->num_rows > 0)
+        {
+            return mysqli_fetch_array($run);
+        }
+        else
+        {
+            return false;
+        }
+    }
+
+    function check_ach3($user_id, $tablename)
+    {
+        $type = 'ach31';
+        $sql = "SELECT * from $tablename where student_id='$user_id' and type='$type'";
+        $run = mysqli_query($this->conn, $sql);
+
+        if($run->num_rows > 0)
+        {
+            return mysqli_fetch_array($run);
+        }
+        else
+        {
+            return false;
+        }
+    }
+
+    function check_objective($user_id, $tablename)
+    {
+        $sql = "SELECT * from $tablename where student_id='$user_id'";
+        $run = mysqli_query($this->conn, $sql);
+        if($run->num_rows > 0)
+        {
+            return mysqli_fetch_assoc($run);
         }
         else
         {

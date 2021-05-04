@@ -2,6 +2,12 @@
     session_start();
     $user_id = $_SESSION["email"];
     $user_mail = $_SESSION['email'];
+
+    if(!isset($user_id))
+    {
+        header("location:iindex.php");
+    }
+
     include 'class.php';
     $user = new User();
 ?>
@@ -32,7 +38,28 @@
 <?php
 $dec = $user->check_declaration($user_id,'student_program');
 $per = $user->check_update($user_id,'personal_info');
-
+$padd = $user->check_add($user_id, 'address');
+$tadd = $user->check_adds($user_id, 'address');
+$f = $user->check_family($user_id, 'family');
+$m = $user->check_mfamily($user_id, 'family');
+$lg = $user->check_lgfamily($user_id, 'family');
+$ug = $user->check_ugacademics($user_id, 'academic');
+$p2 = $user->check_p2academics($user_id, 'academic');
+$slc = $user->check_slcacademics($user_id, 'academic');
+$opt = $user->check_optacademics($user_id, 'academic');
+$f1w = $user->check_f1w($user_id, 'work');
+$f2w = $user->check_f2w($user_id, 'work');
+$f3w = $user->check_f3w($user_id, 'work');
+$f4w = $user->check_f4w($user_id, 'work');
+$p1w = $user->check_p1w($user_id, 'work');
+$p2w = $user->check_p2w($user_id, 'work');
+$p3w = $user->check_p3w($user_id, 'work');
+$p4w = $user->check_p4w($user_id, 'work');
+$arr= $user->check_boxes($user_id, 'work_other');
+$ach1 = $user->check_ach1($user_id, 'ach_data');
+$ach2 = $user->check_ach2($user_id, 'ach_data');
+$ach3 = $user->check_ach3($user_id, 'ach_data');
+$object = $user->check_objective($user_id, 'objective');
 ?>
 
 <body>
@@ -44,7 +71,7 @@ $per = $user->check_update($user_id,'personal_info');
                     <img src="resource/logo.png">
                 </div>
                 <div class="col d-flex align-items-center justify-content-end">
-                    <button type="button" class="btn btn-sm" style="background-color:rgb(115, 15, 14);color:lightgrey;">Logout</button>
+                    <a href="home.php" class="btn btn-sm" style="background-color:rgb(115, 15, 14);color:lightgrey;">Logout</a>
                 </div>
             </div>
         </div>
@@ -213,32 +240,32 @@ $per = $user->check_update($user_id,'personal_info');
                             <h4>Permanent Address:</h4>
                             <hr>
                             <div class="row form-group">
-                                <div class="col"><input type="text" name="ward" placeholder="Ward" class="form-control form-control-sm"></div>
-                                <div class="col"><input type="text" name="place" placeholder="Place" class="form-control form-control-sm"></div>
-                                <div class="col"><input type="text" name="city" placeholder="City" class="form-control form-control-sm"></div>
-                                <div class="col"><input type="text" name="vdc" placeholder="VDC/Municipality" class="form-control form-control-sm"></div>
+                                <div class="col"><input type="text" value="<?=$padd["ward"]?>" name="ward" placeholder="Ward" class="form-control form-control-sm"></div>
+                                <div class="col"><input type="text" value="<?=$padd["place"]?>" name="place" placeholder="Place" class="form-control form-control-sm"></div>
+                                <div class="col"><input type="text" value="<?=$padd["city"]?>" name="city" placeholder="City" class="form-control form-control-sm"></div>
+                                <div class="col"><input type="text" value="<?=$padd["vdc"]?>" name="vdc" placeholder="VDC/Municipality" class="form-control form-control-sm"></div>
                             </div>
                             <div class="row form-group">
-                                <div class="col"><input type="text" name="district" placeholder="District" class="form-control form-control-sm"></div>
-                                <div class="col"><input type="text" name="phone" placeholder="Phone" class="form-control form-control-sm"></div>
-                                <div class="col"><input type="text" name="cell" placeholder="Cell" class="form-control form-control-sm"></div>
-                                <div class="col"><input type="text" name="fax" placeholder="Fax" class="form-control form-control-sm"></div>
+                                <div class="col"><input type="text" value="<?=$padd["district"]?>" name="district" placeholder="District" class="form-control form-control-sm"></div>
+                                <div class="col"><input type="text" value="<?=$padd["phone"]?>" name="phone" placeholder="Phone" class="form-control form-control-sm"></div>
+                                <div class="col"><input type="text" value="<?=$padd["cell"]?>" name="cell" placeholder="Cell" class="form-control form-control-sm"></div>
+                                <div class="col"><input type="text" value="<?=$padd["fax"]?>" name="fax" placeholder="Fax" class="form-control form-control-sm"></div>
                             </div>
                             <p><input type="checkbox" name="mycheckaddress" value="mycheckaddress"> Check here, If you want to include Local Address</p>
 
                             <h4>Temporary Address: (Only if different from your permanent address)</h4>
                             <hr>
                             <div class="row form-group">
-                                <div class="col"><input type="text" name="lward" placeholder="Ward" class="form-control form-control-sm"></div>
-                                <div class="col"><input type="text" name="lplace" placeholder="Place" class="form-control form-control-sm"></div>
-                                <div class="col"><input type="text" name="lcity" placeholder="City" class="form-control form-control-sm"></div>
-                                <div class="col"><input type="text" name="lvdc" placeholder="VDC/Municipality" class="form-control form-control-sm"></div>
+                                <div class="col"><input type="text" value="<?=$tadd["ward"]?>" name="lward" placeholder="Ward" class="form-control form-control-sm"></div>
+                                <div class="col"><input type="text" value="<?=$tadd["place"]?>" name="lplace" placeholder="Place" class="form-control form-control-sm"></div>
+                                <div class="col"><input type="text" value="<?=$tadd["city"]?>" name="lcity" placeholder="City" class="form-control form-control-sm"></div>
+                                <div class="col"><input type="text" value="<?=$tadd["vdc"]?>" name="lvdc" placeholder="VDC/Municipality" class="form-control form-control-sm"></div>
                             </div>
                             <div class="row form-group">
-                                <div class="col"><input type="text" name="ldistrict" placeholder="District" class="form-control form-control-sm"></div>
-                                <div class="col"><input type="text" name="lphone" placeholder="Phone" class="form-control form-control-sm"></div>
-                                <div class="col"><input type="text" name="lcell" placeholder="Cell" class="form-control form-control-sm"></div>
-                                <div class="col"><input type="text" name="lfax" placeholder="Fax" class="form-control form-control-sm"></div>
+                                <div class="col"><input type="text" value="<?=$tadd["district"]?>" name="ldistrict" placeholder="District" class="form-control form-control-sm"></div>
+                                <div class="col"><input type="text" value="<?=$tadd["phone"]?>" name="lphone" placeholder="Phone" class="form-control form-control-sm"></div>
+                                <div class="col"><input type="text" value="<?=$tadd["cell"]?>" name="lcell" placeholder="Cell" class="form-control form-control-sm"></div>
+                                <div class="col"><input type="text" value="<?=$tadd["fax"]?>" name="lfax" placeholder="Fax" class="form-control form-control-sm"></div>
                             </div>
                             <input type="submit" name="submit_address" value="Save" class="btn btn-bg text-white mt-4" style="background-color:rgb(115, 15, 14);">
                         </form>
@@ -250,54 +277,54 @@ $per = $user->check_update($user_id,'personal_info');
                             <hr>
                             <h4>Father's Information</h4><br>
                             <div class="row form-group">
-                                <div class="col-4"><input class="form-control form-control-sm" type="text" name="fname" placeholder="Father's Name"></div>
+                                <div class="col-4"><input class="form-control form-control-sm" value="<?=$f["name"]?>" type="text" name="fname" placeholder="Father's Name"></div>
                             </div>
 
                             <div class="row form-group">
-                                <div class="col"><input class="form-control form-control-sm" type="text" name="fprofession" placeholder="Profession"></div>
-                                <div class="col"><input class="form-control form-control-sm" type="text" name="femployer" placeholder="Employer"></div>
-                                <div class="col"><input class="form-control form-control-sm" type="email" name="femail" placeholder="Email"></div>
+                                <div class="col"><input class="form-control form-control-sm" value="<?=$f["profession"]?>" type="text" name="fprofession" placeholder="Profession"></div>
+                                <div class="col"><input class="form-control form-control-sm" value="<?=$f["employer"]?>" type="text" name="femployer" placeholder="Employer"></div>
+                                <div class="col"><input class="form-control form-control-sm" value="<?=$f["email"]?>" type="email" name="femail" placeholder="Email"></div>
                             </div>
 
                             <div class="row form-group">
-                                <div class="col"><input class="form-control form-control-sm" type="number" name='fphone' placeholder="Phone"></div>
-                                <div class="col"><input class="form-control form-control-sm" type="number" name='fcell' placeholder="Cell"></div>
-                                <div class="col"><input class="form-control form-control-sm" type="text" name='ffax' placeholder="Fax"></div>
+                                <div class="col"><input class="form-control form-control-sm" value="<?=$f["phone"]?>" type="number" name='fphone' placeholder="Phone"></div>
+                                <div class="col"><input class="form-control form-control-sm" value="<?=$f["cell"]?>" type="number" name='fcell' placeholder="Cell"></div>
+                                <div class="col"><input class="form-control form-control-sm" value="<?=$f["fax"]?>" type="text" name='ffax' placeholder="Fax"></div>
                             </div>
 
                             <h4>Mother's Information</h4><br>
                             <div class="row form-group">
-                                <div class="col-4"><input class="form-control form-control-sm" type="text" name="mname" placeholder="Mother's Name"></div>
+                                <div class="col-4"><input class="form-control form-control-sm" value="<?=$m["name"]?>" type="text" name="mname" placeholder="Mother's Name"></div>
                             </div>
 
                             <div class="row form-group">
-                                <div class="col"><input class="form-control form-control-sm" type="text" name="mprofession" placeholder="Profession"></div>
-                                <div class="col"><input class="form-control form-control-sm" type="text" name="memployer" placeholder="Employer"></div>
-                                <div class="col"><input class="form-control form-control-sm" type="email" name="memail" placeholder="Email"></div>
+                                <div class="col"><input class="form-control form-control-sm" value="<?=$m["profession"]?>" type="text" name="mprofession" placeholder="Profession"></div>
+                                <div class="col"><input class="form-control form-control-sm" value="<?=$m["employer"]?>" type="text" name="memployer" placeholder="Employer"></div>
+                                <div class="col"><input class="form-control form-control-sm" value="<?=$m["email"]?>" type="email" name="memail" placeholder="Email"></div>
                             </div>
 
                             <div class="row form-group">
-                                <div class="col"><input class="form-control form-control-sm" type="number" name='mphone' placeholder="Phone"></div>
-                                <div class="col"><input class="form-control form-control-sm" type="number" name='mcell' placeholder="Cell"></div>
-                                <div class="col"><input class="form-control form-control-sm" type="text" name='mfax' placeholder="Fax"></div>
+                                <div class="col"><input class="form-control form-control-sm" value="<?=$m["phone"]?>" type="number" name='mphone' placeholder="Phone"></div>
+                                <div class="col"><input class="form-control form-control-sm" value="<?=$m["cell"]?>" type="number" name='mcell' placeholder="Cell"></div>
+                                <div class="col"><input class="form-control form-control-sm" value="<?=$m["fax"]?>" type="text" name='mfax' placeholder="Fax"></div>
                             </div>
                             <p><input type="checkbox" name="checkfamily" value="checkfamily"> Check here if you want to include Local Guardian information</p>
 
                             <h4>Local Guardian Information</h4><br>
                             <div class="row form-group">
-                                <div class="col-4"><input class="form-control form-control-sm" type="text" name="lname" placeholder="Name"></div>
+                                <div class="col-4"><input class="form-control form-control-sm" value="<?=$lg["name"]?>" type="text" name="lname" placeholder="Name"></div>
                             </div>
 
                             <div class="row form-group">
-                                <div class="col"><input class="form-control form-control-sm" type="text" name="lprofession" placeholder="Profession"></div>
-                                <div class="col"><input class="form-control form-control-sm" type="text" name="lemployer" placeholder="Employer"></div>
-                                <div class="col"><input class="form-control form-control-sm" type="email" name="lemail" placeholder="Email"></div>
+                                <div class="col"><input class="form-control form-control-sm" value="<?=$lg["profession"]?>" type="text" name="lprofession" placeholder="Profession"></div>
+                                <div class="col"><input class="form-control form-control-sm" value="<?=$lg["employer"]?>" type="text" name="lemployer" placeholder="Employer"></div>
+                                <div class="col"><input class="form-control form-control-sm" value="<?=$lg["email"]?>" type="email" name="lemail" placeholder="Email"></div>
                             </div>
 
                             <div class="row form-group">
-                                <div class="col"><input class="form-control form-control-sm" type="number" name='lphone' placeholder="Phone"></div>
-                                <div class="col"><input class="form-control form-control-sm" type="number" name='lcell' placeholder="Cell"></div>
-                                <div class="col"><input class="form-control form-control-sm" type="text" name='lfax' placeholder="Fax"></div>
+                                <div class="col"><input class="form-control form-control-sm" value="<?=$lg["phone"]?>" type="number" name='lphone' placeholder="Phone"></div>
+                                <div class="col"><input class="form-control form-control-sm" value="<?=$lg["cell"]?>" type="number" name='lcell' placeholder="Cell"></div>
+                                <div class="col"><input class="form-control form-control-sm" value="<?=$lg["fax"]?>" type="text" name='lfax' placeholder="Fax"></div>
                             </div>
 
                             <input type="hidden" id="familyupstat" value="">
@@ -312,29 +339,29 @@ $per = $user->check_update($user_id,'personal_info');
                             <table>
                                 <tr>
                                     <td>Degree/Diploma Awarded</td>
-                                    <td><input type="text" name="degree1" class="form-control form-control-sm"></td>
+                                    <td><input type="text" value="<?=$ug["degree"]?>" name="degree1" class="form-control form-control-sm"></td>
                                 </tr>
                                 <tr>
                                     <td>Percentage/CGPA Obtained</td>
-                                    <td><input type="text" name="percentage1" class="form-control form-control-sm"></td>
+                                    <td><input type="text" value="<?=$ug["percentage"]?>" name="percentage1" class="form-control form-control-sm"></td>
                                 </tr>
                                 <tr>
                                     <td>Area of Specialization</br>(Concentration)</td>
-                                    <td><input type="text" name="specialization1" class="form-control form-control-sm"></td>
+                                    <td><input type="text" value="<?=$ug["specialization"]?>" name="specialization1" class="form-control form-control-sm"></td>
                                 </tr>
                                 <tr>
                                     <td>Name of College</td>
-                                    <td><input type="text" name="college1" class="form-control form-control-sm"></td>
+                                    <td><input type="text" value="<?=$ug["college"]?>" name="college1" class="form-control form-control-sm"></td>
                                 </tr>
                                 <tr>
                                     <td>Name of Board/University</td>
-                                    <td><input type="text" name="board1" class="form-control form-control-sm"></td>
+                                    <td><input type="text" value="<?=$ug["board"]?>" name="board1" class="form-control form-control-sm"></td>
                                 </tr>
                                 <tr>
                                     <td>Year of Enrollment</td>
-                                    <td><input type="text" name="start_year1" class="form-control form-control-sm"></td>
+                                    <td><input type="text" value="<?=$ug["start_year"]?>" name="start_year1" class="form-control form-control-sm"></td>
                                     <td>Year of Completion</td>
-                                    <td><input type="text" name="end_year1" class="form-control form-control-sm"></td>
+                                    <td><input type="text" value="<?=$ug["end_year"]?>" name="end_year1" class="form-control form-control-sm"></td>
                                 </tr>
                             </table>
 
@@ -343,29 +370,29 @@ $per = $user->check_update($user_id,'personal_info');
                             <table>
                                 <tr>
                                     <td>Degree/Diploma Awarded</td>
-                                    <td><input type="text" name="degree2" class="form-control form-control-sm"></td>
+                                    <td><input type="text" value="<?=$p2["degree"]?>" name="degree2" class="form-control form-control-sm"></td>
                                 </tr>
                                 <tr>
                                     <td>Percentage/CGPA Obtained</td>
-                                    <td><input type="text" name="percentage2" class="form-control form-control-sm"></td>
+                                    <td><input type="text" value="<?=$p2["percentage"]?>" name="percentage2" class="form-control form-control-sm"></td>
                                 </tr>
                                 <tr>
                                     <td>Stream</td>
-                                    <td><input type="text" name="specialization2" class="form-control form-control-sm"></td>
+                                    <td><input type="text" value="<?=$p2["specialization"]?>" name="specialization2" class="form-control form-control-sm"></td>
                                 </tr>
                                 <tr>
                                     <td>Name of School/College</td>
-                                    <td><input type="text" name="college2" class="form-control form-control-sm"></td>
+                                    <td><input type="text" value="<?=$p2["college"]?>" name="college2" class="form-control form-control-sm"></td>
                                 </tr>
                                 <tr>
                                     <td>Name of Board/University</td>
-                                    <td><input type="text" name="board2" class="form-control form-control-sm"></td>
+                                    <td><input type="text" value="<?=$p2["board"]?>" name="board2" class="form-control form-control-sm"></td>
                                 </tr>
                                 <tr>
                                     <td>Year of Enrollment</td>
-                                    <td><input type="text" name="start_year2" class="form-control form-control-sm"></td>
+                                    <td><input type="text" value="<?=$p2["start_year"]?>" name="start_year2" class="form-control form-control-sm"></td>
                                     <td>Year of Completion</td>
-                                    <td><input type="text" name="end_year2" class="form-control form-control-sm"></td>
+                                    <td><input type="text" value="<?=$p2["end_year"]?>" name="end_year2" class="form-control form-control-sm"></td>
                                 </tr>
                             </table>
 
@@ -374,25 +401,25 @@ $per = $user->check_update($user_id,'personal_info');
                             <table>
                                 <tr>
                                     <td>Degree/Diploma Awarded</td>
-                                    <td><input type="text" name="degree3" class="form-control form-control-sm"></td>
+                                    <td><input type="text" value="<?=$slc["degree"]?>" name="degree3" class="form-control form-control-sm"></td>
                                 </tr>
                                 <tr>
                                     <td>Percentage/CGPA Obtained</td>
-                                    <td><input type="text" name="percentage3" class="form-control form-control-sm"></td>
+                                    <td><input type="text" value="<?=$slc["percentage"]?>" name="percentage3" class="form-control form-control-sm"></td>
                                 </tr>
                                 <tr>
                                     <td>Name of School</td>
-                                    <td><input type="text" name="college3" class="form-control form-control-sm"></td>
+                                    <td><input type="text" value="<?=$slc["college"]?>" name="college3" class="form-control form-control-sm"></td>
                                 </tr>
                                 <tr>
                                     <td>Name of Board</td>
-                                    <td><input type="text" name="board3" class="form-control form-control-sm"></td>
+                                    <td><input type="text" value="<?=$slc["board"]?>" name="board3" class="form-control form-control-sm"></td>
                                 </tr>
                                 <tr>
                                     <td>Year of Enrollment</td>
-                                    <td><input type="text" name="start_year3" class="form-control form-control-sm"></td>
+                                    <td><input type="text" value="<?=$slc["start_year"]?>" name="start_year3" class="form-control form-control-sm"></td>
                                     <td>Year of Completion</td>
-                                    <td><input type="text" name="end_year3" class="form-control form-control-sm"></td>
+                                    <td><input type="text" value="<?=$slc["end_year"]?>" name="end_year3" class="form-control form-control-sm"></td>
                                 </tr>
                             </table>
                             <br>
@@ -403,29 +430,29 @@ $per = $user->check_update($user_id,'personal_info');
                             <table>
                                 <tr>
                                     <td>Degree/Diploma Awarded</td>
-                                    <td><input type="text" name="degree4" class="form-control form-control-sm"></td>
+                                    <td><input type="text" value="<?=$opt["degree"]?>" name="degree4" class="form-control form-control-sm"></td>
                                 </tr>
                                 <tr>
                                     <td>Percentage/CGPA Obtained</td>
-                                    <td><input type="text" name="percentage4" class="form-control form-control-sm"></td>
+                                    <td><input type="text" value="<?=$opt["percentage"]?>" name="percentage4" class="form-control form-control-sm"></td>
                                 </tr>
                                 <tr>
                                     <td>Stream</td>
-                                    <td><input type="text" name="specialization4" class="form-control form-control-sm"></td>
+                                    <td><input type="text" value="<?=$opt["specialization"]?>" name="specialization4" class="form-control form-control-sm"></td>
                                 </tr>
                                 <tr>
                                     <td>Name of School/College</td>
-                                    <td><input type="text" name="college4" class="form-control form-control-sm"></td>
+                                    <td><input type="text" value="<?=$opt["college"]?>" name="college4" class="form-control form-control-sm"></td>
                                 </tr>
                                 <tr>
                                     <td>Name of Institution Attended </br>(Board University)</td>
-                                    <td><input type="text" name="board4" class="form-control form-control-sm"></td>
+                                    <td><input type="text" value="<?=$opt["board"]?>" name="board4" class="form-control form-control-sm"></td>
                                 </tr>
                                 <tr>
                                     <td>Year of Enrollment</td>
-                                    <td><input type="text" name="start_year4" class="form-control form-control-sm"></td>
+                                    <td><input type="text" value="<?=$opt["start_year"]?>" name="start_year4" class="form-control form-control-sm"></td>
                                     <td>Year of Completion</td>
-                                    <td><input type="text" name="end_year4" class="form-control form-control-sm"></td>
+                                    <td><input type="text" value="<?=$opt["end_year"]?>" name="end_year4" class="form-control form-control-sm"></td>
                                 </tr>
                             </table>
                             <input type="submit" name="submitacademics" value="Save" class="btn btn-bg text-white mt-4 mb-4" style="background-color:rgb(115, 15, 14);">
@@ -447,32 +474,32 @@ $per = $user->check_update($user_id,'personal_info');
                                     <th>To</th>
                                 </tr>
                                 <tr>
-                                    <td><input type="text" name="forg1" class="form-control form-control-sm"></td>
-                                    <td><input type="date" name="ffrom1" class="form-control form-control-sm"></td>
-                                    <td><input type="date" name="fto1" class="form-control form-control-sm"></td>
-                                    <td><input type="text" name="fjob1" class="form-control form-control-sm"></td>
-                                    <td><input type="text" name="fdes1" class="form-control form-control-sm"></td>
+                                    <td><input type="text" value="<?=$f1w["organization"]?>" name="forg1" class="form-control form-control-sm"></td>
+                                    <td><input type="date" value="<?=$f1w["start"]?>" name="ffrom1" class="form-control form-control-sm"></td>
+                                    <td><input type="date" value="<?=$f1w["end"]?>" name="fto1" class="form-control form-control-sm"></td>
+                                    <td><input type="text" value="<?=$f1w["title"]?>" name="fjob1" class="form-control form-control-sm"></td>
+                                    <td><input type="text" value="<?=$f1w["description"]?>" name="fdes1" class="form-control form-control-sm"></td>
                                 </tr>
                                 <tr>
-                                    <td><input type="text" name="forg2" class="form-control form-control-sm"></td>
-                                    <td><input type="date" name="ffrom2" class="form-control form-control-sm"></td>
-                                    <td><input type="date" name="fto2" class="form-control form-control-sm"></td>
-                                    <td><input type="text" name="fjob2" class="form-control form-control-sm"></td>
-                                    <td><input type="text" name="fdes2" class="form-control form-control-sm"></td>
+                                    <td><input type="text" value="<?=$f2w["organization"]?>" name="forg2" class="form-control form-control-sm"></td>
+                                    <td><input type="date" value="<?=$f2w["start"]?>" name="ffrom2" class="form-control form-control-sm"></td>
+                                    <td><input type="date" value="<?=$f2w["end"]?>" name="fto2" class="form-control form-control-sm"></td>
+                                    <td><input type="text" value="<?=$f2w["title"]?>" name="fjob2" class="form-control form-control-sm"></td>
+                                    <td><input type="text" value="<?=$f2w["description"]?>" name="fdes2" class="form-control form-control-sm"></td>
                                 </tr>
                                 <tr>
-                                    <td><input type="text" name="forg3" class="form-control form-control-sm"></td>
-                                    <td><input type="date" name="ffrom3" class="form-control form-control-sm"></td>
-                                    <td><input type="date" name="fto3" class="form-control form-control-sm"></td>
-                                    <td><input type="text" name="fjob3" class="form-control form-control-sm"></td>
-                                    <td><input type="text" name="fdes3" class="form-control form-control-sm"></td>
+                                    <td><input type="text" value="<?=$f3w["organization"]?>" name="forg3" class="form-control form-control-sm"></td>
+                                    <td><input type="date" value="<?=$f3w["start"]?>" name="ffrom3" class="form-control form-control-sm"></td>
+                                    <td><input type="date" value="<?=$f3w["end"]?>" name="fto3" class="form-control form-control-sm"></td>
+                                    <td><input type="text" value="<?=$f3w["title"]?>" name="fjob3" class="form-control form-control-sm"></td>
+                                    <td><input type="text" value="<?=$f3w["description"]?>" name="fdes3" class="form-control form-control-sm"></td>
                                 </tr>
                                 <tr>
-                                    <td><input type="text" name="forg4" class="form-control form-control-sm"></td>
-                                    <td><input type="date" name="ffrom4" class="form-control form-control-sm"></td>
-                                    <td><input type="date" name="fto4" class="form-control form-control-sm"></td>
-                                    <td><input type="text" name="fjob4" class="form-control form-control-sm"></td>
-                                    <td><input type="text" name="fdes4" class="form-control form-control-sm"></td>
+                                    <td><input type="text" value="<?=$f4w["organization"]?>" name="forg4" class="form-control form-control-sm"></td>
+                                    <td><input type="date" value="<?=$f4w["start"]?>" name="ffrom4" class="form-control form-control-sm"></td>
+                                    <td><input type="date" value="<?=$f4w["end"]?>" name="fto4" class="form-control form-control-sm"></td>
+                                    <td><input type="text" value="<?=$f4w["title"]?>" name="fjob4" class="form-control form-control-sm"></td>
+                                    <td><input type="text" value="<?=$f4w["description"]?>" name="fdes4" class="form-control form-control-sm"></td>
                                 </tr>
                             </table>
 
@@ -489,32 +516,32 @@ $per = $user->check_update($user_id,'personal_info');
                                     <th>To</th>
                                 </tr>
                                 <tr>
-                                    <td><input type="text" name="porg1" class="form-control form-control-sm"></td>
-                                    <td><input type="date" name="pfrom1" class="form-control form-control-sm"></td>
-                                    <td><input type="date" name="pto1" class="form-control form-control-sm"></td>
-                                    <td><input type="text" name="pjob1" class="form-control form-control-sm"></td>
-                                    <td><input type="text" name="pdes1" class="form-control form-control-sm"></td>
+                                    <td><input type="text" value="<?=$p1w["organization"]?>" name="porg1" class="form-control form-control-sm"></td>
+                                    <td><input type="date" value="<?=$p1w["start"]?>" name="pfrom1" class="form-control form-control-sm"></td>
+                                    <td><input type="date" value="<?=$p1w["end"]?>" name="pto1" class="form-control form-control-sm"></td>
+                                    <td><input type="text" value="<?=$p1w["title"]?>" name="pjob1" class="form-control form-control-sm"></td>
+                                    <td><input type="text" value="<?=$p1w["description"]?>" name="pdes1" class="form-control form-control-sm"></td>
                                 </tr>
                                 <tr>
-                                    <td><input type="text" name="porg2" class="form-control form-control-sm"></td>
-                                    <td><input type="date" name="pfrom2" class="form-control form-control-sm"></td>
-                                    <td><input type="date" name="pto2" class="form-control form-control-sm"></td>
-                                    <td><input type="text" name="pjob2" class="form-control form-control-sm"></td>
-                                    <td><input type="text" name="pdes2" class="form-control form-control-sm"></td>
+                                    <td><input type="text" value="<?=$p2w["organization"]?>" name="porg2" class="form-control form-control-sm"></td>
+                                    <td><input type="date" value="<?=$p2w["start"]?>" name="pfrom2" class="form-control form-control-sm"></td>
+                                    <td><input type="date" value="<?=$p2w["end"]?>" name="pto2" class="form-control form-control-sm"></td>
+                                    <td><input type="text" value="<?=$p2w["title"]?>" name="pjob2" class="form-control form-control-sm"></td>
+                                    <td><input type="text" value="<?=$p2w["description"]?>" name="pdes2" class="form-control form-control-sm"></td>
                                 </tr>
                                 <tr>
-                                    <td><input type="text" name="porg3" class="form-control form-control-sm"></td>
-                                    <td><input type="date" name="pfrom3" class="form-control form-control-sm"></td>
-                                    <td><input type="date" name="pto3" class="form-control form-control-sm"></td>
-                                    <td><input type="text" name="pjob3" class="form-control form-control-sm"></td>
-                                    <td><input type="text" name="pdes3" class="form-control form-control-sm"></td>
+                                    <td><input type="text" value="<?=$p3w["organization"]?>" name="porg3" class="form-control form-control-sm"></td>
+                                    <td><input type="date" value="<?=$p3w["start"]?>" name="pfrom3" class="form-control form-control-sm"></td>
+                                    <td><input type="date" value="<?=$p3w["end"]?>" name="pto3" class="form-control form-control-sm"></td>
+                                    <td><input type="text" value="<?=$p3w["title"]?>" name="pjob3" class="form-control form-control-sm"></td>
+                                    <td><input type="text" value="<?=$p3w["description"]?>" name="pdes3" class="form-control form-control-sm"></td>
                                 </tr>
                                 <tr>
-                                    <td><input type="text" name="porg4" class="form-control form-control-sm"></td>
-                                    <td><input type="date" name="pfrom4" class="form-control form-control-sm"></td>
-                                    <td><input type="date" name="pto4" class="form-control form-control-sm"></td>
-                                    <td><input type="text" name="pjob4" class="form-control form-control-sm"></td>
-                                    <td><input type="text" name="pdes4" class="form-control form-control-sm"></td>
+                                    <td><input type="text" value="<?=$p4w["organization"]?>" name="porg4" class="form-control form-control-sm"></td>
+                                    <td><input type="date" value="<?=$p4w["start"]?>" name="pfrom4" class="form-control form-control-sm"></td>
+                                    <td><input type="date" value="<?=$p4w["end"]?>" name="pto4" class="form-control form-control-sm"></td>
+                                    <td><input type="text" value="<?=$p4w["title"]?>" name="pjob4" class="form-control form-control-sm"></td>
+                                    <td><input type="text" value="<?=$p4w["description"]?>" name="pdes4" class="form-control form-control-sm"></td>
                                 </tr>
                                  
                             </table>
@@ -534,7 +561,7 @@ $per = $user->check_update($user_id,'personal_info');
                             </p>
 
                             <p>Why do you want to pursue MBA/MBA Evening Program?</p>
-                            <textarea id="whyMBA" name="pursue" class="form-control"></textarea>
+                            <textarea id="whyMBA" name="pursue" class="form-control"><?=$arr["pursue"]?></textarea>
 
                             <input type="submit" name="submitwork" value="Save" class="btn btn-bg text-white mt-4 mb-4" style="background-color:rgb(115, 15, 14);"> 
                         </form>
@@ -552,10 +579,10 @@ $per = $user->check_update($user_id,'personal_info');
                                     <th>Responsibility</th>
                                 </tr>
                                 <tr>
-                                    <td><textarea name="act1" class="form-control"></textarea></td>
-                                    <td><textarea name="role1" class="form-control"></textarea></td>
-                                    <td><input    name="date1" type="date" class="form-control form-control-sm"></td>
-                                    <td><textarea name="respon1" class="form-control"></textarea></td>
+                                    <td><textarea  name="act1" class="form-control"> <?=$ach1["activity"]?> </textarea></td>
+                                    <td><textarea name="role1" class="form-control"> <?=$ach1["role"]?> </textarea></td>
+                                    <td><input    value="<?=$ach1["date"]?>" name="date1" type="date" class="form-control form-control-sm"></td>
+                                    <td><textarea  name="respon1" class="form-control"> <?=$ach1["responsibility"]?> </textarea></td>
                                 </tr>
                             </table>
 
@@ -568,10 +595,10 @@ $per = $user->check_update($user_id,'personal_info');
                                     <th>Responsibility</th>
                                 </tr>
                                 <tr>
-                                    <td><textarea name="act2" class="form-control"></textarea></td>
-                                    <td><textarea name="role2" class="form-control"></textarea></td>
-                                    <td><input    name="date2" type="date" class="form-control form-control-sm"></td>
-                                    <td><textarea name="respon2" class="form-control"></textarea></td>
+                                    <td><textarea name="act2" class="form-control"> <?=$ach2["activity"]?> </textarea></td>
+                                    <td><textarea  name="role2" class="form-control"> <?=$ach2["role"]?> </textarea></td>
+                                    <td><input    value="<?=$ach2["date"]?>" name="date2" type="date" class="form-control form-control-sm"></td>
+                                    <td><textarea  name="respon2" class="form-control"> <?=$ach2["responsibility"]?> </textarea></td>
                                 </tr>
                             </table>
 
@@ -584,10 +611,10 @@ $per = $user->check_update($user_id,'personal_info');
                                     <th>Responsibility</th>
                                 </tr>
                                 <tr>
-                                    <td><textarea name="act3" class="form-control"></textarea></td>
-                                    <td><textarea name="role3" class="form-control"></textarea></td>
-                                    <td><input    name="date3" type="date" class="form-control form-control-sm"></td>
-                                    <td><textarea name="respon3" class="form-control"></textarea></td>
+                                    <td><textarea name="act3" class="form-control"> <?=$ach3["activity"]?> </textarea></td>
+                                    <td><textarea name="role3" class="form-control"> <?=$ach3["role"]?> </textarea></td>
+                                    <td><input    value="<?=$ach3["date"]?>" name="date3" type="date" class="form-control form-control-sm"></td>
+                                    <td><textarea  name="respon3" class="form-control"> <?=$ach3["responsibility"]?> </textarea></td>
                                 </tr>
                             </table>
                             <input type="submit" name="" value="Save" class="btn btn-bg text-white mt-3 mb-4" style="background-color:rgb(115, 15, 14);">
@@ -598,7 +625,7 @@ $per = $user->check_update($user_id,'personal_info');
                         <p>Write a brief summary about your statement of purpose in your own words in about 200 words. 
                         Also mention how your education at APEX would help you achieve your statement of purpose.</p>
                         <form action="" method="post" id="form_obj">
-                            <textarea name="careerobj" class="form-control" rows="13"></textarea>
+                            <textarea name="careerobj" class="form-control" rows="13"><?=$object["data"]?></textarea>
                             <input type="submit" name="submitobj" value="Save" class="btn btn-bg text-white mt-4 mb-4" style="background-color:rgb(115, 15, 14);">
                         </form>
                     </div>
@@ -616,8 +643,8 @@ $per = $user->check_update($user_id,'personal_info');
                         </ul>
 
                         <form action="" method="post" id="form_declaration">
-                            <input type="radio" name="declaration" value="1"> I agree &nbsp
-                            <input type="radio" name="declaration" value="0"> I disagree
+                            <input type="radio" name="declaration" value="1" <?php if($dec["declaration"]=="1"){echo "checked";} ?>> I agree &nbsp
+                            <input type="radio" name="declaration" value="0" <?php if($dec["declaration"]=="0"){echo "checked";} ?>> I disagree
                             <br>
                             <input type="submit"  name="declaration1" value="Submit" class="btn btn-bg text-white mt-4 mb-4" style="background-color:rgb(115, 15, 14);">
                         </form>
