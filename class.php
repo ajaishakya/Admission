@@ -113,11 +113,25 @@ class User
 
     function get_program($user_id, $program)
     {
-        $sql = "INSERT INTO student_program(student_id,program) VALUES ('$user_id','$program')";
-
-        if(mysqli_query($this->conn,$sql))
+        $sql = "SELECT * FROM student_program WHERE student_id='$user_id'";
+        $result = mysqli_query($this->conn, $sql);
+        if(mysqli_num_rows($result)>0)
         {
-            return 1;
+            $sql = "UPDATE student_program SET program='$program' WHERE student_id='$user_id'";
+
+            if(mysqli_query($this->conn,$sql))
+            {
+                return 1;
+            }
+        }
+        else
+        {
+            $sql = "INSERT INTO student_program(student_id,program) VALUES ('$user_id','$program')";
+
+            if(mysqli_query($this->conn,$sql))
+            {
+                return 1;
+            }
         }
     }
 
@@ -139,14 +153,32 @@ class User
         $expel_flag =  $formdata['expel_flag'];
         $expel_reason =  $formdata['expel_reason'];
 
-        $sql = "INSERT INTO personal_info 
-                SET student_id='$user_id',initial='$initial',st_fname='$st_fname',st_mname='$st_mname',st_lname='$st_lname',dob='$dob'
-                ,gender='$gender',status='$status',citizenship='$citizenship',issuing_district='$issuing_district', citizenship_no='$citizenship_no',
-                 telephone='$telephone', mobile='$mobile',email='$email',expel_flag='$expel_flag',expel_reason='$expel_reason'";
-
-        if(mysqli_query($this->conn, $sql))
+        $sql = "SELECT * FROM personal_info  WHERE student_id='$user_id'";
+        $result = mysqli_query($this->conn, $sql);
+        if(mysqli_num_rows($result)>0)
         {
-            return 1;
+            $sql = "UPDATE personal_info  
+            SET initial='$initial',st_fname='$st_fname',st_mname='$st_mname',st_lname='$st_lname',dob='$dob'
+            ,gender='$gender',status='$status',citizenship='$citizenship',issuing_district='$issuing_district', citizenship_no='$citizenship_no',
+             telephone='$telephone', mobile='$mobile',email='$email',expel_flag='$expel_flag',expel_reason='$expel_reason'  
+            WHERE student_id='$user_id'";
+
+            if(mysqli_query($this->conn,$sql))
+            {
+                return 1;
+            }
+        }
+        else
+        {
+             $sql = "INSERT INTO personal_info 
+            SET student_id='$user_id',initial='$initial',st_fname='$st_fname',st_mname='$st_mname',st_lname='$st_lname',dob='$dob'
+            ,gender='$gender',status='$status',citizenship='$citizenship',issuing_district='$issuing_district', citizenship_no='$citizenship_no',
+             telephone='$telephone', mobile='$mobile',email='$email',expel_flag='$expel_flag',expel_reason='$expel_reason'";
+
+            if(mysqli_query($this->conn,$sql))
+            {
+                return 1;
+            }
         }
     }
 
@@ -172,17 +204,45 @@ class User
         $address_type1 = 'p';
         $address_type2 = 't';
 
-        $sql1 = "INSERT INTO address SET student_id='$user_id', address_type='$address_type1', ward='$ward', place='$place', city='$city', 
-                vdc='$vdc', district='$district', phone='$phone', cell='$cell', fax='$fax'";
+        // Address type 1
+        $sql = "SELECT * FROM address WHERE student_id='$user_id'AND address_type='$address_type1'";
+        $result = mysqli_query($this->conn, $sql);
+        if(mysqli_num_rows($result)>0)
+        {
+            $sql = "UPDATE address SET ward='$ward', place='$place', city='$city', 
+            vdc='$vdc', district='$district', phone='$phone', cell='$cell', fax='$fax' 
+            WHERE student_id='$user_id' AND address_type='$address_type1'";
+
+            mysqli_query($this->conn, $sql);
+        }
+        else
+        {
+            $sql = "INSERT INTO address SET student_id='$user_id', address_type='$address_type1', ward='$ward', place='$place', city='$city', 
+                    vdc='$vdc', district='$district', phone='$phone', cell='$cell', fax='$fax'";
         
-        mysqli_query($this->conn, $sql1);
+            mysqli_query($this->conn, $sql);
+        }
 
-        $sql2 = "INSERT INTO address SET student_id='$user_id', address_type='$address_type2', ward='$lward', place='$lplace', city='$lcity', 
-                vdc='$lvdc', district='$ldistrict', phone='$lphone', cell='$lcell', fax='$lfax'";
+        // Address type 2
+        $sql = "SELECT * FROM address WHERE student_id='$user_id'AND address_type='$address_type2'";
+        $result = mysqli_query($this->conn, $sql);
+        if(mysqli_num_rows($result)>0)
+        {
+            $sql = "UPDATE address SET ward='$lward', place='$lplace', city='$lcity', 
+            vdc='$lvdc', district='$ldistrict', phone='$lphone', cell='$lcell', fax='$lfax' 
+            WHERE student_id='$user_id' AND address_type='$address_type2'";
+
+            mysqli_query($this->conn, $sql);
+        }
+        else
+        {
+            $sql = "INSERT INTO address SET student_id='$user_id', address_type='$address_type2', ward='$lward', place='$lplace', city='$lcity', 
+                    vdc='$lvdc', district='$ldistrict', phone='$lphone', cell='$lcell', fax='$lfax'";
                 
-        mysqli_query($this->conn, $sql2);
+            mysqli_query($this->conn, $sql);
+        }
 
-            return 1;
+        return 1;
     }
 
     function get_family($user_id,$formdata)
@@ -214,19 +274,59 @@ class User
         $type2 = 'm';
         $type3 = 'l';
 
-        $sql1 = "INSERT INTO family SET student_id='$user_id', type='$type1', name='$fname', profession='$fprofession', employer='$femployer', 
-                email='$femail', phone='$fphone', cell='$fcell', fax='$ffax'";
+        // Father
+        $sql = "SELECT * FROM family WHERE student_id='$user_id' AND type='$type1'";
+        $result = mysqli_query($this->conn, $sql);
+        if(mysqli_num_rows($result)>0)
+        {
+            $sql = "UPDATE family SET name='$fname', profession='$fprofession', employer='$femployer', 
+            email='$femail', phone='$fphone', cell='$fcell', fax='$ffax' WHERE student_id='$user_id' AND type='$type1'";
 
-        mysqli_query($this->conn, $sql1);
-        
-        $sql2 = "INSERT INTO family SET student_id='$user_id', type='$type2', name='$mname', profession='$mprofession', employer='$memployer', email='$memail', phone='$mphone', cell='$mcell', fax='$mfax'";
+            mysqli_query($this->conn, $sql);
+        }
+        else
+        {
+             $sql = "INSERT INTO family SET student_id='$user_id', type='$type1', name='$fname', profession='$fprofession', employer='$femployer', 
+                    email='$femail', phone='$fphone', cell='$fcell', fax='$ffax'";
 
-        mysqli_query($this->conn, $sql2);
-        
-        $sql3 = "INSERT INTO family SET student_id='$user_id', type='$type3', name='$lname', profession='$lprofession', employer='$lemployer', 
-                email='$lemail', phone='$lphone', cell='$lcell', fax='$lfax'";
+            mysqli_query($this->conn, $sql);
+        }
+
+        // Mother
+        $sql = "SELECT * FROM family WHERE student_id='$user_id' AND type='$type2'";
+        $result = mysqli_query($this->conn, $sql);
+        if(mysqli_num_rows($result)>0)
+        {
+            $sql = "UPDATE family SET name='$mname', profession='$mprofession', employer='$memployer', 
+            email='$memail', phone='$mphone', cell='$mcell', fax='$mfax' WHERE student_id='$user_id' AND type='$type2'";
+
+            mysqli_query($this->conn, $sql);
+        }
+        else
+        {
+            $sql = "INSERT INTO family SET student_id='$user_id', type='$type2', name='$mname', profession='$mprofession', employer='$memployer', 
+            email='$memail', phone='$mphone', cell='$mcell', fax='$mfax'";
+
+            mysqli_query($this->conn, $sql);
+        }
+
+        // Local Guardian
+        $sql = "SELECT * FROM family WHERE student_id='$user_id' AND type='$type3'";
+        $result = mysqli_query($this->conn, $sql);
+        if(mysqli_num_rows($result)>0)
+        {
+            $sql = "UPDATE family SET name='$lname', profession='$lprofession', employer='$lemployer', 
+            email='$lemail', phone='$lphone', cell='$lcell', fax='$lfax' WHERE student_id='$user_id' AND type='$type3'";
+
+            mysqli_query($this->conn, $sql);
+        }
+        else
+        {
+            $sql = "INSERT INTO family SET student_id='$user_id', type='$type3', name='$lname', profession='$lprofession', employer='$lemployer', 
+                    email='$lemail', phone='$lphone', cell='$lcell', fax='$lfax'";
                 
-        mysqli_query($this->conn, $sql3);
+            mysqli_query($this->conn, $sql);
+        }
         
             return 1;
     }
@@ -268,25 +368,81 @@ class User
         $type3 = "slc";
         $type4 = "o";
 
-        $sql1 = "INSERT INTO academic SET student_id='$user_id', type ='$type1', degree ='$degree1', percentage='$percentage1', 
-        specialization='$specialization1', college='$college1', board='$board1', start_year='$start_year1', end_year='$end_year1'";
+        // UG
+        $sql = "SELECT * FROM academic WHERE student_id='$user_id' AND type='$type1'";
+        $result = mysqli_query($this->conn, $sql);
+        if(mysqli_num_rows($result)>0)
+        {
+            $sql = "UPDATE academic SET degree ='$degree1', percentage='$percentage1', specialization='$specialization1', college='$college1', 
+            board='$board1', start_year='$start_year1', end_year='$end_year1' 
+            WHERE student_id='$user_id' AND type='$type1'";
+
+            mysqli_query($this->conn, $sql);
+        }
+        else
+        {
+            $sql = "INSERT INTO academic SET student_id='$user_id', type ='$type1', degree ='$degree1', percentage='$percentage1', 
+            specialization='$specialization1', college='$college1', board='$board1', start_year='$start_year1', end_year='$end_year1'";
                 
-        mysqli_query($this->conn, $sql1);
+            mysqli_query($this->conn, $sql);
+        }
 
-        $sql2 = "INSERT into academic SET student_id='$user_id', type='$type2', degree='$degree2', percentage='$percentage2', 
-        specialization='$specialization2', college='$college2', board='$board2', start_year='$start_year2', end_year='$end_year2'";
+        // P2
+        $sql = "SELECT * FROM academic WHERE student_id='$user_id' AND type='$type2'";
+        $result = mysqli_query($this->conn, $sql);
+        if(mysqli_num_rows($result)>0)
+        {
+            $sql = "UPDATE academic SET degree='$degree2', percentage='$percentage2', specialization='$specialization2', college='$college2', 
+            board='$board2', start_year='$start_year2', end_year='$end_year2' 
+            WHERE student_id='$user_id' AND type='$type2'";
 
-        mysqli_query($this->conn, $sql2);
+            mysqli_query($this->conn, $sql);
+        }
+        else
+        {
+            $sql = "INSERT into academic SET student_id='$user_id', type='$type2', degree='$degree2', percentage='$percentage2', 
+            specialization='$specialization2', college='$college2', board='$board2', start_year='$start_year2', end_year='$end_year2'";
 
-        $sql3 = "INSERT into academic SET student_id='$user_id', type='$type3', degree='$degree3', percentage='$percentage3', 
-        specialization='SLC', college='$college3', board='$board3', start_year='$start_year3', end_year='$end_year3'";
+            mysqli_query($this->conn, $sql);
+        }
 
-        mysqli_query($this->conn, $sql3);
+        // SLC
+        $sql = "SELECT * FROM academic WHERE student_id='$user_id' AND type='$type3'";
+        $result = mysqli_query($this->conn, $sql);
+        if(mysqli_num_rows($result)>0)
+        {
+            $sql = "UPDATE academic SET degree='$degree3', percentage='$percentage3', specialization='SLC', college='$college3',
+            board='$board3', start_year='$start_year3', end_year='$end_year3' 
+            WHERE student_id='$user_id' AND type='$type3'";
 
-        $sql4= "INSERT into academic SET student_id='$user_id', type='$type4', degree='$degree4', percentage='$percentage4', 
-        specialization='$specialization4', college='$college4', board='$board4', start_year='$start_year4', end_year='$end_year4'";
+            mysqli_query($this->conn, $sql);
+        }
+        else
+        {
+            $sql = "INSERT into academic SET student_id='$user_id', type='$type3', degree='$degree3', percentage='$percentage3', 
+            specialization='SLC', college='$college3', board='$board3', start_year='$start_year3', end_year='$end_year3'";
 
-        mysqli_query($this->conn, $sql4);
+            mysqli_query($this->conn, $sql);
+        }
+
+        // Other
+        $sql = "SELECT * FROM academic WHERE student_id='$user_id' AND type='$type4'";
+        $result = mysqli_query($this->conn, $sql);
+        if(mysqli_num_rows($result)>0)
+        {
+            $sql = "UPDATE academic SET degree='$degree4', percentage='$percentage4', specialization='$specialization4', college='$college4', 
+            board='$board4', start_year='$start_year4', end_year='$end_year4' 
+            WHERE student_id='$user_id' AND type='$type4'";
+
+            mysqli_query($this->conn, $sql);
+        }
+        else
+        {
+            $sql4= "INSERT into academic SET student_id='$user_id', type='$type4', degree='$degree4', percentage='$percentage4', 
+            specialization='$specialization4', college='$college4', board='$board4', start_year='$start_year4', end_year='$end_year4'";
+
+            mysqli_query($this->conn, $sql4);
+        }
 
         return 1;
     }
@@ -353,48 +509,161 @@ class User
         $pdes4 = $formdata['pdes4'];
 
         // Full Time
-        $sql1 = "INSERT into work set student_id='$user_id', organization='$forg1', start='$ffrom1', end='$fto1', title='$fjob1', 
-        description='$fdes1', type='$type1'";
-        mysqli_query($this->conn, $sql1);
+        // f1
+        $sql = "SELECT * FROM work WHERE student_id='$user_id' AND type='$type1'";
+        $result = mysqli_query($this->conn, $sql);
+        if(mysqli_num_rows($result)>0)
+        {
+            $sql = "UPDATE work SET organization='$forg1', start='$ffrom1', end='$fto1', title='$fjob1', description='$fdes1'
+            WHERE student_id='$user_id' AND type='$type1'";
 
-        $sql2 = "INSERT into work set student_id='$user_id', organization='$forg2', start='$ffrom2', end='$fto2', title='$fjob2', 
-        description='$fdes2', type='$type2'";
-        mysqli_query($this->conn, $sql2);
+            mysqli_query($this->conn, $sql);
+        }
+        else
+        {
+            $sql = "INSERT into work set student_id='$user_id', organization='$forg1', start='$ffrom1', end='$fto1', title='$fjob1', 
+            description='$fdes1', type='$type1'";
+            mysqli_query($this->conn, $sql);
+        }
 
-        $sql3 = "INSERT into work set student_id='$user_id', organization='$forg3', start='$ffrom3', end='$fto3', title='$fjob3', 
-        description='$fdes3', type='$type3'";
-        mysqli_query($this->conn, $sql3);
+        // f2
+        $sql = "SELECT * FROM work WHERE student_id='$user_id' AND type='$type2'";
+        $result = mysqli_query($this->conn, $sql);
+        if(mysqli_num_rows($result)>0)
+        {
+            $sql = "UPDATE work SET organization='$forg2', start='$ffrom2', end='$fto2', title='$fjob2', description='$fdes2'
+            WHERE student_id='$user_id' AND type='$type2'";
 
-        $sql4 = "INSERT into work set student_id='$user_id', organization='$forg4', start='$ffrom4', end='$fto4', title='$fjob4', 
-        description='$fdes4', type='$type4'";
-        mysqli_query($this->conn, $sql4);
+            mysqli_query($this->conn, $sql);
+        }
+        else
+        {
+            $sql = "INSERT into work set student_id='$user_id', organization='$forg2', start='$ffrom2', end='$fto2', title='$fjob2', 
+            description='$fdes2', type='$type2'";
+            mysqli_query($this->conn, $sql);
+        }
+
+        // f3
+        $sql = "SELECT * FROM work WHERE student_id='$user_id' AND type='$type3'";
+        $result = mysqli_query($this->conn, $sql);
+        if(mysqli_num_rows($result)>0)
+        {
+            $sql = "UPDATE work SET organization='$forg3', start='$ffrom3', end='$fto3', title='$fjob3', description='$fdes3'
+            WHERE student_id='$user_id' AND type='$type3'";
+
+            mysqli_query($this->conn, $sql);
+        }
+        else
+        {
+            $sql = "INSERT into work set student_id='$user_id', organization='$forg3', start='$ffrom3', end='$fto3', title='$fjob3', 
+            description='$fdes3', type='$type3'";
+            mysqli_query($this->conn, $sql);
+        }
+
+        // f4
+        $sql = "SELECT * FROM work WHERE student_id='$user_id' AND type='$type4'";
+        $result = mysqli_query($this->conn, $sql);
+        if(mysqli_num_rows($result)>0)
+        {
+            $sql = "UPDATE work SET organization='$forg4', start='$ffrom4', end='$fto4', title='$fjob4', description='$fdes4'
+            WHERE student_id='$user_id' AND type='$type4'";
+
+            mysqli_query($this->conn, $sql);
+        }
+        else
+        {
+            $sql = "INSERT into work set student_id='$user_id', organization='$forg4', start='$ffrom4', end='$fto4', title='$fjob4', 
+            description='$fdes4', type='$type4'";
+            mysqli_query($this->conn, $sql);
+        }
 
         // Part Time
-        $sql5 = "INSERT into work set student_id='$user_id', organization='$porg1', start='$pfrom1', end='$pto1', title='$pjob1', 
-        description='$pdes1', type='$type5'";
-        mysqli_query($this->conn, $sql5);
+        // P1
+        $sql = "SELECT * FROM work WHERE student_id='$user_id' AND type='$type5'";
+        $result = mysqli_query($this->conn, $sql);
+        if(mysqli_num_rows($result)>0)
+        {
+            $sql = "UPDATE work SET organization='$porg1', start='$pfrom1', end='$pto1', title='$pjob1', description='$pdes1'
+            WHERE student_id='$user_id' AND type='$type5'";
 
-        $sql6 = "INSERT into work set student_id='$user_id', organization='$porg2', start='$pfrom2', end='$pto2', title='$pjob2', 
-        description='$pdes2', type='$type6'";
-        mysqli_query($this->conn, $sql6);
+            mysqli_query($this->conn, $sql);
+        }
+        else
+        {
+            $sql = "INSERT into work set student_id='$user_id', organization='$porg1', start='$pfrom1', end='$pto1', title='$pjob1', 
+            description='$pdes1', type='$type5'";
+            mysqli_query($this->conn, $sql);
+        }
 
-        $sql7 = "INSERT into work set student_id='$user_id', organization='$porg3', start='$pfrom3', end='$pto3', title='$pjob3', 
-        description='$pdes3', type='$type7'";
-        mysqli_query($this->conn, $sql7);
+        // P2
+        $sql = "SELECT * FROM work WHERE student_id='$user_id' AND type='$type6'";
+        $result = mysqli_query($this->conn, $sql);
+        if(mysqli_num_rows($result)>0)
+        {
+            $sql = "UPDATE work SET organization='$porg2', start='$pfrom2', end='$pto2', title='$pjob2', description='$pdes2'
+            WHERE student_id='$user_id' AND type='$type6'";
 
-        $sql8 = "INSERT into work set student_id='$user_id', organization='$porg4', start='$pfrom4', end='$pto4', title='$pjob4', 
-        description='$pdes4', type='$type8'";
-        mysqli_query($this->conn, $sql8);
+            mysqli_query($this->conn, $sql);
+        }
+        else
+        {
+            $sql = "INSERT into work set student_id='$user_id', organization='$porg2', start='$pfrom2', end='$pto2', title='$pjob2', 
+            description='$pdes2', type='$type6'";
+            mysqli_query($this->conn, $sql);
+        }
 
-       
+        // P3
+        $sql = "SELECT * FROM work WHERE student_id='$user_id' AND type='$type7'";
+        $result = mysqli_query($this->conn, $sql);
+        if(mysqli_num_rows($result)>0)
+        {
+            $sql = "UPDATE work SET organization='$porg3', start='$pfrom3', end='$pto3', title='$pjob3', description='$pdes3'
+            WHERE student_id='$user_id' AND type='$type7'";
+
+            mysqli_query($this->conn, $sql);
+        }
+        else
+        {
+            $sql = "INSERT into work set student_id='$user_id', organization='$porg3', start='$pfrom3', end='$pto3', title='$pjob3', 
+            description='$pdes3', type='$type7'";
+            mysqli_query($this->conn, $sql);
+        }
+
+        // P4
+        $sql = "SELECT * FROM work WHERE student_id='$user_id' AND type='$type8'";
+        $result = mysqli_query($this->conn, $sql);
+        if(mysqli_num_rows($result)>0)
+        {
+            $sql = "UPDATE work SET organization='$porg4', start='$pfrom4', end='$pto4', title='$pjob4', description='$pdes4'
+            WHERE student_id='$user_id' AND type='$type8'";
+
+            mysqli_query($this->conn, $sql);
+        }
+        else
+        {
+            $sql = "INSERT into work set student_id='$user_id', organization='$porg4', start='$pfrom4', end='$pto4', title='$pjob4', 
+            description='$pdes4', type='$type8'";
+            mysqli_query($this->conn, $sql);
+        }
+
         $check_list = $formdata['check_list'];
         $chckbx = implode('',$check_list);
         $pursue = $formdata['pursue'];
         $specify = $formdata['specify'];
         $concate = $chckbx.",".$specify;
 
-        $sql = "INSERT INTO work_other set student_id='$user_id', options='$concate', pursue='$pursue'";
-        mysqli_query($this->conn, $sql);
+        $sql = "SELECT * FROM work_other WHERE student_id='$user_id'";
+        $result = mysqli_query($this->conn, $sql);
+        if(mysqli_num_rows($result)>0)
+        {
+            $sql = "UPDATE work_other SET options='$concate', pursue='$pursue' WHERE student_id='$user_id'";
+            mysqli_query($this->conn, $sql);
+        }
+        else
+        {
+            $sql = "INSERT INTO work_other set student_id='$user_id', options='$concate', pursue='$pursue'";
+            mysqli_query($this->conn, $sql);
+        }
 
         return 1;
     }
@@ -420,36 +689,101 @@ class User
         $date3 = $formdata['date3'];
         $respon3 = $formdata['respon3'];
 
-        $sql1 = "INSERT INTO ach_data SET student_id='$user_id', activity='$act1', role='$role1', date='$date1', responsibility='$respon1', 
-        type='$type1'";
-        mysqli_query($this->conn, $sql1);
+        // Ach11
+        $sql = "SELECT * FROM ach_data WHERE student_id='$user_id' AND type='$type1'";
+        $result = mysqli_query($this->conn, $sql);
+        if(mysqli_num_rows($result)>0)
+        {
+            $sql = "UPDATE ach_data SET activity='$act1', role='$role1', date='$date1', responsibility='$respon1'
+            WHERE student_id='$user_id' AND type='$type1'";
 
-        $sql2 = "INSERT INTO ach_data SET student_id='$user_id', activity='$act2', role='$role2', date='$date2', responsibility='$respon2', 
-        type='$type2'";
-        mysqli_query($this->conn, $sql2);
+            mysqli_query($this->conn, $sql);
+        }
+        else
+        {
+            $sql = "INSERT INTO ach_data SET student_id='$user_id', activity='$act1', role='$role1', date='$date1', responsibility='$respon1', 
+            type='$type1'";
+            mysqli_query($this->conn, $sql);
+        }
 
-        $sql3 = "INSERT INTO ach_data SET student_id='$user_id', activity='$act3', role='$role3', date='$date3', responsibility='$respon3', 
-        type='$type3'";
-        mysqli_query($this->conn, $sql3);
+        // Ach21
+        $sql = "SELECT * FROM ach_data WHERE student_id='$user_id' AND type='$type2'";
+        $result = mysqli_query($this->conn, $sql);
+        if(mysqli_num_rows($result)>0)
+        {
+            $sql = "UPDATE ach_data SET activity='$act2', role='$role2', date='$date2', responsibility='$respon2'
+            WHERE student_id='$user_id' AND type='$type2'";
 
+            mysqli_query($this->conn, $sql);
+        }
+        else
+        {
+            $sql = "INSERT INTO ach_data SET student_id='$user_id', activity='$act2', role='$role2', date='$date2', responsibility='$respon2', 
+            type='$type2'";
+            mysqli_query($this->conn, $sql);
+        }
+
+        // Ach31
+        $sql = "SELECT * FROM ach_data WHERE student_id='$user_id' AND type='$type3'";
+        $result = mysqli_query($this->conn, $sql);
+        if(mysqli_num_rows($result)>0)
+        {
+            $sql = "UPDATE ach_data SET activity='$act3', role='$role3', date='$date3', responsibility='$respon3'
+            WHERE student_id='$user_id' AND type='$type3'";
+
+            mysqli_query($this->conn, $sql);
+        }
+        else
+        {
+            $sql = "INSERT INTO ach_data SET student_id='$user_id', activity='$act3', role='$role3', date='$date3', responsibility='$respon3', 
+            type='$type3'";
+            mysqli_query($this->conn, $sql);
+        }
+        
         return 1;
     }
 
     function get_obj($user_id, $data)
     {
-        $sql = "INSERT INTO objective set student_id='$user_id', data='$data'";
-        if(mysqli_query($this->conn, $sql))
+        $sql = "SELECT * FROM objective WHERE student_id='$user_id'";
+        $result = mysqli_query($this->conn, $sql);
+        if(mysqli_num_rows($result)>0)
         {
-            return 1;
+            $sql = "UPDATE objective SET data='$data' WHERE student_id='$user_id'";
+            mysqli_query($this->conn, $sql);
+            {
+                return 1;
+            }
+        }
+        else
+        {
+            $sql = "INSERT INTO objective set student_id='$user_id', data='$data'";
+            if(mysqli_query($this->conn, $sql))
+            {
+                return 1;
+            }
         }
     }
 
     function get_declaration($user_id, $declaration)
     {
-        $sql = "INSERT INTO student_program SET student_id='$user_id', declaration='$declaration'";
-        if(mysqli_query($this->conn, $sql))
+        $sql = "SELECT * FROM student_program WHERE student_id='$user_id'";
+        $result = mysqli_query($this->conn, $sql);
+        if(mysqli_num_rows($result)>0)
         {
-            return 1;
+            $sql = "UPDATE student_program SET declaration='$declaration' WHERE student_id='$user_id'";
+            mysqli_query($this->conn, $sql);
+            {
+                return 1;
+            }
+        }
+        else
+        {
+            $sql = "INSERT INTO student_program SET student_id='$user_id', declaration='$declaration'";
+            if(mysqli_query($this->conn, $sql))
+            {
+                return 1;
+            }
         }
     }
 
