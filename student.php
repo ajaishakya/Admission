@@ -22,6 +22,7 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script src="link_color.js"></script>
     <style>
         a
         {
@@ -29,9 +30,9 @@
         }
         a:hover
         {
-            background-color:lightgrey;
             color:black;
         }
+
     </style>
 </head>
 
@@ -67,11 +68,13 @@ $object = $user->check_objective($user_id, 'objective');
     <div style="height:100px" class="bg-dark d-flex align-items-center">
         <div class="container-fluid"  style="width:1230px;">
             <div class="row">
-                <div class="col-11">
+                <div class="col">
                     <img src="resource/logo.png">
                 </div>
                 <div class="col d-flex align-items-center justify-content-end">
-                    <a href="home.php" class="btn btn-sm" style="background-color:rgb(115, 15, 14);color:lightgrey;">Logout</a>
+                    <div class="text-white"> 
+                        Logged in as <?=$user_id?> | <a href="home.php" class="btn btn-sm" style="background-color:rgb(115, 15, 14);color:lightgrey;">Logout</a> 
+                    </div>
                 </div>
             </div>
         </div>
@@ -83,16 +86,16 @@ $object = $user->check_objective($user_id, 'objective');
             <div class="col-3" style="border-right:1px solid lightgrey" >
                   <!-- Nav tabs --> 
                 <ul class="nav nav-tabs flex-column">
-                    <li class="nav-item"><a data-toggle="tab" class="nav-link active" href="#welcome">Welcome</a></li>
-                    <li class="nav-item"><a data-toggle="tab" class="nav-link" href="#choose">Choose Program</a></li>
-                    <li class="nav-item"><a data-toggle="tab" class="nav-link" href="#personal">Personal Information</a></li>
-                    <li class="nav-item"><a data-toggle="tab" class="nav-link" href="#address">Address Information</a></li>
-                    <li class="nav-item"><a data-toggle="tab" class="nav-link" href="#family">Family Details</a></li>
-                    <li class="nav-item"><a data-toggle="tab" class="nav-link" href="#academic">Academic Information</a></li>
-                    <li class="nav-item"><a data-toggle="tab" class="nav-link" href="#work">Work and other Professional Experiences</a></li>
-                    <li class="nav-item"><a data-toggle="tab" class="nav-link" href="#achievements">Achievements</a></li>
-                    <li class="nav-item"><a data-toggle="tab" class="nav-link" href="#career">Statement of purpose</a></li>
-                    <li class="nav-item"><a data-toggle="tab" class="nav-link" href="#decleration">Declaration</a></li>
+                    <li class="nav-item"><a id="cwelcome" data-toggle="tab" class="nav-link active" href="#welcome">Welcome</a></li>
+                    <li class="nav-item"><a id="cchoose" data-toggle="tab" class="nav-link" href="#choose">Choose Program</a></li>
+                    <li class="nav-item"><a id="cpersonal" data-toggle="tab" class="nav-link" href="#personal">Personal Information</a></li>
+                    <li class="nav-item"><a id="caddress" data-toggle="tab" class="nav-link" href="#address">Address Information</a></li>
+                    <li class="nav-item"><a id="cfamily" data-toggle="tab" class="nav-link" href="#family">Family Details</a></li>
+                    <li class="nav-item"><a id="cacademic" data-toggle="tab" class="nav-link" href="#academic">Academic Information</a></li>
+                    <li class="nav-item"><a id="cwork" data-toggle="tab" class="nav-link" href="#work">Work and other Professional Experiences</a></li>
+                    <li class="nav-item"><a id="cachievements" data-toggle="tab" class="nav-link" href="#achievements">Achievements</a></li>
+                    <li class="nav-item"><a id="ccareer" data-toggle="tab" class="nav-link" href="#career">Statement of purpose</a></li>
+                    <li class="nav-item"><a id="cdecleration" data-toggle="tab" class="nav-link" href="#decleration">Declaration</a></li>
                 </ul>
             </div>
 
