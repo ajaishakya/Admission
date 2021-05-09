@@ -62,13 +62,13 @@
                     <div style="width:280px;">
                         <form action="" method="POST" id="register">
                             <div class="form-group">
-                                <input type="text" class="form-control form-control-sm" name="first_name" autocomplete="on" placeholder="First Name" required>
+                                <input type="text" class="form-control form-control-sm" name="first_name" autocomplete="on" placeholder="First Name" required >
                             </div>
                             <div class="form-group">
                                 <input type="text" class="form-control form-control-sm" name="last_name" autocomplete="on" placeholder="Last Name" required>
                             </div>
                             <div class="form-group">
-                                <input type="tel" class="form-control form-control-sm" name="mobile" autocomplete="on" placeholder="Mobile Number" required>
+                                <input type="tel" class="form-control form-control-sm" name="mobile" autocomplete="on" placeholder="Mobile Number" required pattern="[0-9]{10}" title="Mobile Number should be 10 digits">
                             </div>
                             <div class="form-group">
                                 <input type="email" class="form-control form-control-sm" name="email" autocomplete="on" placeholder="Email" required>
@@ -83,9 +83,10 @@
                                     <option value="female">Female</option>
                                 </select>
                             </div>
-                            <div class="form-group">
-                                <input type="date" class="form-control form-control-sm" name="dob" autocomplete="off" placeholder="Born on" required>
+                            <div class="form-group">    
+                            <input type="date" class="form-control form-control-sm" name="dob" autocomplete="off" placeholder="Born on" required title="Date of Birth">
                             </div>
+
                              <input type="hidden" id="sid" name="session_id" value="1">
                             <div class="form-group text-center">
                                 <input type="submit" value="Register" name="submit1">

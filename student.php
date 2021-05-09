@@ -136,10 +136,10 @@ $object = $user->check_objective($user_id, 'objective');
                         <div class="row">
                             <div class="col">
                                 <form action="" method="post" id='form_program'>
-                                    <input type="radio" name="program" value="MBA" <?php if($dec["program"]=="MBA"){echo "checked";} ?> >
+                                    <input type="radio" name="program" value="MBA" <?php if($dec["program"]=="MBA"){echo "checked";} ?> required>
                                     <label for="">MBA</label>
                                     <br>
-                                    <input type="radio"  name="program" value="MBAE" <?php if($dec["program"]=="MBAE"){echo "checked";} ?> >
+                                    <input type="radio"  name="program" value="MBAE" <?php if($dec["program"]=="MBAE"){echo "checked";} ?> required>
                                     <label for="">MBA-Evening</label>
                                     <br>
                                     <input type="submit" value="Save" name="submitmba" class="btn btn-bg text-white mt-4" style="background-color:rgb(115, 15, 14);">
@@ -155,65 +155,65 @@ $object = $user->check_objective($user_id, 'objective');
                         <form action="" method="POST" id="form_personal">
                             <div class="row">
                                 <div class="col offset-2"> 
-                                    <input type="radio" name='initial' value="Mr" <?php if($per['initial']=='Mr') {echo 'checked';} ?>>
+                                    <input type="radio" name='initial' value="Mr" required <?php if($per['initial']=='Mr') {echo 'checked';} ?>>
                                     <label for="">Mr.</label>
-                                    <input type="radio" name='initial' value="Ms" <?php if($per['initial']=='Ms') {echo 'checked';} ?>>
+                                    <input type="radio" name='initial' value="Ms" required <?php if($per['initial']=='Ms') {echo 'checked';} ?>>
                                     <label for="">Ms.</label>
-                                    <input type="radio" name='initial' value="Mrs" <?php if($per['initial']=='Mrs') {echo 'checked';} ?>>
+                                    <input type="radio" name='initial' value="Mrs" required <?php if($per['initial']=='Mrs') {echo 'checked';} ?>>
                                     <label for="">Mrs.</label>
                                 </div>
                             </div>
                             <div class="form-row">
                                 <div class="col-2"><label for="">Name:</label></div>
-                                <div class="col"><input type="text" name="st_lname" value="<?=$per["st_lname"]?>" placeholder="Last" class="form-control form-control-sm"></div>
-                                <div class="col"><input type="text" name="st_fname" value="<?=$per["st_fname"]?>" placeholder="First" class="form-control form-control-sm"></div>
+                                <div class="col"><input type="text" name="st_lname" required value="<?=$per["st_lname"]?>" placeholder="Last" class="form-control form-control-sm"></div>
+                                <div class="col"><input type="text" name="st_fname" required value="<?=$per["st_fname"]?>" placeholder="First" class="form-control form-control-sm"></div>
                                 <div class="col"><input type="text" name="st_mname" value="<?=$per["st_mname"]?>" placeholder="Middle" class="form-control form-control-sm"></div>
                             </div>
 
                             <div class="form-row">
                                 <div class="col-2"><label for="">Date of Birth:</label></div>
-                                <div class="col-4"><input type="date" name="dob" value="<?=$per["dob"]?>" class="form-control form-control-sm"></div>
+                                <div class="col-4"><input type="date" name="dob" required value="<?=$per["dob"]?>" class="form-control form-control-sm"></div>
                             </div>
 
                             <div class="form-row">
                                 <div class="col-2"><label for="">Gender:</label></div>
                                 <div class="col">
-                                    <input type="radio" name="gender" value="male" <?php if($per['gender']=='male') {echo 'checked';} ?>>
+                                    <input type="radio" name="gender" value="male" required <?php if($per['gender']=='male') {echo 'checked';} ?>>
                                     <label for="">Male</label>
-                                    <input type="radio" name="gender" value="female" <?php if($per['gender']=='female') {echo 'checked';} ?>>
+                                    <input type="radio" name="gender" value="female" required <?php if($per['gender']=='female') {echo 'checked';} ?>>
                                     <label for="">Female</label>
                                 </div>
                             </div>
                             <div class="form-row">
                                 <div class="col-2"><label for="">Marital Status:</label></div>
                                 <div class="col">
-                                    <input type="radio" name="status" <?php if($per['status']=='married') {echo 'checked';} ?> value="married" >
+                                    <input type="radio" name="status" required <?php if($per['status']=='married') {echo 'checked';} ?> value="married" >
                                     <label for="">Married</label>
-                                    <input type="radio" name="status" <?php if($per['status']=='single') {echo 'checked';} ?> value="single" >
+                                    <input type="radio" name="status" required <?php if($per['status']=='single') {echo 'checked';} ?> value="single" >
                                     <label for="">Single</label>
                                 </div>
                             </div>
 
                              <div class="form-row">
                                 <div class="col-2"><label for="">Citizenship:</label></div>
-                                <div class="col"><input type="text" value="<?=$per["citizenship"]?>" name="citizenship" placeholder="Citizenship" class="form-control form-control-sm"></div>
-                                <div class="col"><input type="text" value="<?=$per["issuing_district"]?>" name="issuing_district" placeholder="Issuing District" class="form-control form-control-sm"></div>
-                                <div class="col"><input type="text" value="<?=$per["citizenship_no"]?>" name="citizenship_no" placeholder="Citizenship No." class="form-control form-control-sm"></div>
+                                <div class="col"><input type="text" required value="<?=$per["citizenship"]?>" name="citizenship" placeholder="Citizenship" class="form-control form-control-sm"></div>
+                                <div class="col"><input type="text" required value="<?=$per["issuing_district"]?>" name="issuing_district" placeholder="Issuing District" class="form-control form-control-sm"></div>
+                                <div class="col"><input type="text" required value="<?=$per["citizenship_no"]?>" name="citizenship_no" placeholder="Citizenship No." class="form-control form-control-sm"></div>
                             </div>
 
                             <div class="form-row">
                                 <div class="col-2"><label for="">Telephone No:</label></div>
-                                <div class="col-4"><input type="number" value="<?=$per["telephone"]?>" name="telephone" placeholder="Telephone" class="form-control form-control-sm"></div>
+                                <div class="col-4"><input type="number" required value="<?=$per["telephone"]?>" name="telephone" placeholder="Telephone" class="form-control form-control-sm"></div>
                             </div>
 
                             <div class="form-row">
                                 <div class="col-2"><label for="">Cell No:</label></div>
-                                <div class="col-4"><input type="number" value="<?=$per["mobile"]?>" name="mobile" placeholder="Mobile" class="form-control form-control-sm"></div>
+                                <div class="col-4"><input type="number" required value="<?=$per["mobile"]?>" name="mobile" placeholder="Mobile" class="form-control form-control-sm"></div>
                             </div>
 
                             <div class="form-row">
                                 <div class="col-2"><label for="">Email:</label></div>
-                                <div class="col-4"><input type="email" value="<?=$per["email"]?>" name="email" placeholder="Email" class="form-control form-control-sm"></div>
+                                <div class="col-4"><input type="email" required value="<?=$per["email"]?>" name="email" placeholder="Email" class="form-control form-control-sm"></div>
                             </div>
 
                             <div class="row">
@@ -222,9 +222,9 @@ $object = $user->check_objective($user_id, 'objective');
 
                             <div class="form-row">
                                  <div class="col offset-2">
-                                    <input type="radio" name='expel_flag' value="1" <?php if($per['expel_flag']=='1') {echo 'checked';} ?>>
+                                    <input type="radio" name='expel_flag' value="1" required <?php if($per['expel_flag']=='1') {echo 'checked';} ?>>
                                     <label for="">Yes</label>
-                                    <input type="radio" name='expel_flag' value="0" <?php if($per['expel_flag']=='0') {echo 'checked';} ?>>
+                                    <input type="radio" name='expel_flag' value="0" required <?php if($per['expel_flag']=='0') {echo 'checked';} ?>>
                                     <label for="">No</label>
                                 </div>
                             </div>
@@ -243,16 +243,16 @@ $object = $user->check_objective($user_id, 'objective');
                             <h4>Permanent Address:</h4>
                             <hr>
                             <div class="row form-group">
-                                <div class="col"><input type="text" value="<?=$padd["ward"]?>" name="ward" placeholder="Ward" class="form-control form-control-sm"></div>
-                                <div class="col"><input type="text" value="<?=$padd["place"]?>" name="place" placeholder="Place" class="form-control form-control-sm"></div>
-                                <div class="col"><input type="text" value="<?=$padd["city"]?>" name="city" placeholder="City" class="form-control form-control-sm"></div>
-                                <div class="col"><input type="text" value="<?=$padd["vdc"]?>" name="vdc" placeholder="VDC/Municipality" class="form-control form-control-sm"></div>
+                                <div class="col"><input type="text" required value="<?=$padd["ward"]?>" name="ward" placeholder="Ward" class="form-control form-control-sm"></div>
+                                <div class="col"><input type="text" required value="<?=$padd["place"]?>" name="place" placeholder="Place" class="form-control form-control-sm"></div>
+                                <div class="col"><input type="text" required value="<?=$padd["city"]?>" name="city" placeholder="City" class="form-control form-control-sm"></div>
+                                <div class="col"><input type="text" required value="<?=$padd["vdc"]?>" name="vdc" placeholder="VDC/Municipality" class="form-control form-control-sm"></div>
                             </div>
                             <div class="row form-group">
-                                <div class="col"><input type="text" value="<?=$padd["district"]?>" name="district" placeholder="District" class="form-control form-control-sm"></div>
-                                <div class="col"><input type="text" value="<?=$padd["phone"]?>" name="phone" placeholder="Phone" class="form-control form-control-sm"></div>
-                                <div class="col"><input type="text" value="<?=$padd["cell"]?>" name="cell" placeholder="Cell" class="form-control form-control-sm"></div>
-                                <div class="col"><input type="text" value="<?=$padd["fax"]?>" name="fax" placeholder="Fax" class="form-control form-control-sm"></div>
+                                <div class="col"><input type="text" required value="<?=$padd["district"]?>" name="district" placeholder="District" class="form-control form-control-sm"></div>
+                                <div class="col"><input type="text" required value="<?=$padd["phone"]?>" name="phone" placeholder="Phone" class="form-control form-control-sm"></div>
+                                <div class="col"><input type="text" required value="<?=$padd["cell"]?>" name="cell" placeholder="Cell" class="form-control form-control-sm"></div>
+                                <div class="col"><input type="text" required value="<?=$padd["fax"]?>" name="fax" placeholder="Fax" class="form-control form-control-sm"></div>
                             </div>
                             <p><input type="checkbox" name="mycheckaddress" value="mycheckaddress"> Check here, If you want to include Local Address</p>
 
@@ -280,36 +280,36 @@ $object = $user->check_objective($user_id, 'objective');
                             <hr>
                             <h4>Father's Information</h4><br>
                             <div class="row form-group">
-                                <div class="col-4"><input class="form-control form-control-sm" value="<?=$f["name"]?>" type="text" name="fname" placeholder="Father's Name"></div>
+                                <div class="col-4"><input class="form-control form-control-sm" required value="<?=$f["name"]?>" type="text" name="fname" placeholder="Father's Name"></div>
                             </div>
 
                             <div class="row form-group">
-                                <div class="col"><input class="form-control form-control-sm" value="<?=$f["profession"]?>" type="text" name="fprofession" placeholder="Profession"></div>
-                                <div class="col"><input class="form-control form-control-sm" value="<?=$f["employer"]?>" type="text" name="femployer" placeholder="Employer"></div>
-                                <div class="col"><input class="form-control form-control-sm" value="<?=$f["email"]?>" type="email" name="femail" placeholder="Email"></div>
+                                <div class="col"><input class="form-control form-control-sm" required value="<?=$f["profession"]?>" type="text" name="fprofession" placeholder="Profession"></div>
+                                <div class="col"><input class="form-control form-control-sm" required value="<?=$f["employer"]?>" type="text" name="femployer" placeholder="Employer"></div>
+                                <div class="col"><input class="form-control form-control-sm" required value="<?=$f["email"]?>" type="email" name="femail" placeholder="Email"></div>
                             </div>
 
                             <div class="row form-group">
-                                <div class="col"><input class="form-control form-control-sm" value="<?=$f["phone"]?>" type="number" name='fphone' placeholder="Phone"></div>
-                                <div class="col"><input class="form-control form-control-sm" value="<?=$f["cell"]?>" type="number" name='fcell' placeholder="Cell"></div>
-                                <div class="col"><input class="form-control form-control-sm" value="<?=$f["fax"]?>" type="text" name='ffax' placeholder="Fax"></div>
+                                <div class="col"><input class="form-control form-control-sm" required value="<?=$f["phone"]?>" type="number" name='fphone' placeholder="Phone"></div>
+                                <div class="col"><input class="form-control form-control-sm" required value="<?=$f["cell"]?>" type="number" name='fcell' placeholder="Cell"></div>
+                                <div class="col"><input class="form-control form-control-sm" required value="<?=$f["fax"]?>" type="text" name='ffax' placeholder="Fax"></div>
                             </div>
 
                             <h4>Mother's Information</h4><br>
                             <div class="row form-group">
-                                <div class="col-4"><input class="form-control form-control-sm" value="<?=$m["name"]?>" type="text" name="mname" placeholder="Mother's Name"></div>
+                                <div class="col-4"><input class="form-control form-control-sm" required value="<?=$m["name"]?>" type="text" name="mname" placeholder="Mother's Name"></div>
                             </div>
 
                             <div class="row form-group">
-                                <div class="col"><input class="form-control form-control-sm" value="<?=$m["profession"]?>" type="text" name="mprofession" placeholder="Profession"></div>
-                                <div class="col"><input class="form-control form-control-sm" value="<?=$m["employer"]?>" type="text" name="memployer" placeholder="Employer"></div>
-                                <div class="col"><input class="form-control form-control-sm" value="<?=$m["email"]?>" type="email" name="memail" placeholder="Email"></div>
+                                <div class="col"><input class="form-control form-control-sm" required value="<?=$m["profession"]?>" type="text" name="mprofession" placeholder="Profession"></div>
+                                <div class="col"><input class="form-control form-control-sm" required value="<?=$m["employer"]?>" type="text" name="memployer" placeholder="Employer"></div>
+                                <div class="col"><input class="form-control form-control-sm" required value="<?=$m["email"]?>" type="email" name="memail" placeholder="Email"></div>
                             </div>
 
                             <div class="row form-group">
-                                <div class="col"><input class="form-control form-control-sm" value="<?=$m["phone"]?>" type="number" name='mphone' placeholder="Phone"></div>
-                                <div class="col"><input class="form-control form-control-sm" value="<?=$m["cell"]?>" type="number" name='mcell' placeholder="Cell"></div>
-                                <div class="col"><input class="form-control form-control-sm" value="<?=$m["fax"]?>" type="text" name='mfax' placeholder="Fax"></div>
+                                <div class="col"><input class="form-control form-control-sm" required value="<?=$m["phone"]?>" type="number" name='mphone' placeholder="Phone"></div>
+                                <div class="col"><input class="form-control form-control-sm" required value="<?=$m["cell"]?>" type="number" name='mcell' placeholder="Cell"></div>
+                                <div class="col"><input class="form-control form-control-sm" required value="<?=$m["fax"]?>" type="text" name='mfax' placeholder="Fax"></div>
                             </div>
                             <p><input type="checkbox" name="checkfamily" value="checkfamily"> Check here if you want to include Local Guardian information</p>
 
@@ -342,29 +342,29 @@ $object = $user->check_objective($user_id, 'objective');
                             <table>
                                 <tr>
                                     <td>Degree/Diploma Awarded</td>
-                                    <td><input type="text" value="<?=$ug["degree"]?>" name="degree1" class="form-control form-control-sm"></td>
+                                    <td><input type="text" value="<?=$ug["degree"]?>" name="degree1" required class="form-control form-control-sm"></td>
                                 </tr>
                                 <tr>
                                     <td>Percentage/CGPA Obtained</td>
-                                    <td><input type="text" value="<?=$ug["percentage"]?>" name="percentage1" class="form-control form-control-sm"></td>
+                                    <td><input type="text" value="<?=$ug["percentage"]?>" name="percentage1" required class="form-control form-control-sm"></td>
                                 </tr>
                                 <tr>
                                     <td>Area of Specialization</br>(Concentration)</td>
-                                    <td><input type="text" value="<?=$ug["specialization"]?>" name="specialization1" class="form-control form-control-sm"></td>
+                                    <td><input type="text" value="<?=$ug["specialization"]?>" name="specialization1" required class="form-control form-control-sm"></td>
                                 </tr>
                                 <tr>
                                     <td>Name of College</td>
-                                    <td><input type="text" value="<?=$ug["college"]?>" name="college1" class="form-control form-control-sm"></td>
+                                    <td><input type="text" value="<?=$ug["college"]?>" name="college1" required class="form-control form-control-sm"></td>
                                 </tr>
                                 <tr>
                                     <td>Name of Board/University</td>
-                                    <td><input type="text" value="<?=$ug["board"]?>" name="board1" class="form-control form-control-sm"></td>
+                                    <td><input type="text" value="<?=$ug["board"]?>" name="board1" required class="form-control form-control-sm"></td>
                                 </tr>
                                 <tr>
                                     <td>Year of Enrollment</td>
-                                    <td><input type="text" value="<?=$ug["start_year"]?>" name="start_year1" class="form-control form-control-sm"></td>
+                                    <td><input type="text" value="<?=$ug["start_year"]?>" name="start_year1" required class="form-control form-control-sm"></td>
                                     <td>Year of Completion</td>
-                                    <td><input type="text" value="<?=$ug["end_year"]?>" name="end_year1" class="form-control form-control-sm"></td>
+                                    <td><input type="text" value="<?=$ug["end_year"]?>" name="end_year1" required class="form-control form-control-sm"></td>
                                 </tr>
                             </table>
 
@@ -373,29 +373,29 @@ $object = $user->check_objective($user_id, 'objective');
                             <table>
                                 <tr>
                                     <td>Degree/Diploma Awarded</td>
-                                    <td><input type="text" value="<?=$p2["degree"]?>" name="degree2" class="form-control form-control-sm"></td>
+                                    <td><input type="text" value="<?=$p2["degree"]?>" name="degree2" required class="form-control form-control-sm"></td>
                                 </tr>
                                 <tr>
                                     <td>Percentage/CGPA Obtained</td>
-                                    <td><input type="text" value="<?=$p2["percentage"]?>" name="percentage2" class="form-control form-control-sm"></td>
+                                    <td><input type="text" value="<?=$p2["percentage"]?>" name="percentage2" required class="form-control form-control-sm"></td>
                                 </tr>
                                 <tr>
                                     <td>Stream</td>
-                                    <td><input type="text" value="<?=$p2["specialization"]?>" name="specialization2" class="form-control form-control-sm"></td>
+                                    <td><input type="text" value="<?=$p2["specialization"]?>" name="specialization2" required class="form-control form-control-sm"></td>
                                 </tr>
                                 <tr>
                                     <td>Name of School/College</td>
-                                    <td><input type="text" value="<?=$p2["college"]?>" name="college2" class="form-control form-control-sm"></td>
+                                    <td><input type="text" value="<?=$p2["college"]?>" name="college2" required class="form-control form-control-sm"></td>
                                 </tr>
                                 <tr>
                                     <td>Name of Board/University</td>
-                                    <td><input type="text" value="<?=$p2["board"]?>" name="board2" class="form-control form-control-sm"></td>
+                                    <td><input type="text" value="<?=$p2["board"]?>" name="board2" required class="form-control form-control-sm"></td>
                                 </tr>
                                 <tr>
                                     <td>Year of Enrollment</td>
-                                    <td><input type="text" value="<?=$p2["start_year"]?>" name="start_year2" class="form-control form-control-sm"></td>
+                                    <td><input type="text" value="<?=$p2["start_year"]?>" name="start_year2" required class="form-control form-control-sm"></td>
                                     <td>Year of Completion</td>
-                                    <td><input type="text" value="<?=$p2["end_year"]?>" name="end_year2" class="form-control form-control-sm"></td>
+                                    <td><input type="text" value="<?=$p2["end_year"]?>" name="end_year2" required class="form-control form-control-sm"></td>
                                 </tr>
                             </table>
 
@@ -404,25 +404,25 @@ $object = $user->check_objective($user_id, 'objective');
                             <table>
                                 <tr>
                                     <td>Degree/Diploma Awarded</td>
-                                    <td><input type="text" value="<?=$slc["degree"]?>" name="degree3" class="form-control form-control-sm"></td>
+                                    <td><input type="text" value="<?=$slc["degree"]?>" name="degree3" required class="form-control form-control-sm"></td>
                                 </tr>
                                 <tr>
                                     <td>Percentage/CGPA Obtained</td>
-                                    <td><input type="text" value="<?=$slc["percentage"]?>" name="percentage3" class="form-control form-control-sm"></td>
+                                    <td><input type="text" value="<?=$slc["percentage"]?>" name="percentage3" required class="form-control form-control-sm"></td>
                                 </tr>
                                 <tr>
                                     <td>Name of School</td>
-                                    <td><input type="text" value="<?=$slc["college"]?>" name="college3" class="form-control form-control-sm"></td>
+                                    <td><input type="text" value="<?=$slc["college"]?>" name="college3" required class="form-control form-control-sm"></td>
                                 </tr>
                                 <tr>
                                     <td>Name of Board</td>
-                                    <td><input type="text" value="<?=$slc["board"]?>" name="board3" class="form-control form-control-sm"></td>
+                                    <td><input type="text" value="<?=$slc["board"]?>" name="board3" required class="form-control form-control-sm"></td>
                                 </tr>
                                 <tr>
                                     <td>Year of Enrollment</td>
-                                    <td><input type="text" value="<?=$slc["start_year"]?>" name="start_year3" class="form-control form-control-sm"></td>
+                                    <td><input type="text" value="<?=$slc["start_year"]?>" name="start_year3" required class="form-control form-control-sm"></td>
                                     <td>Year of Completion</td>
-                                    <td><input type="text" value="<?=$slc["end_year"]?>" name="end_year3" class="form-control form-control-sm"></td>
+                                    <td><input type="text" value="<?=$slc["end_year"]?>" name="end_year3" required class="form-control form-control-sm"></td>
                                 </tr>
                             </table>
                             <br>
@@ -551,20 +551,27 @@ $object = $user->check_objective($user_id, 'objective');
 
                             <p>How do you know about Apex College and its Programs?</p>
                             <p>
-                                <input type="checkbox" name="check_list[]" value="1"> Apex Student &nbsp
-                                <input type="checkbox" name="check_list[]" value="2"> Apex Faculty  &nbsp
-                                <input type="checkbox" name="check_list[]" value="3"> Apex Staff &nbsp
-                                <input type="checkbox" name="check_list[]" value="4"> Apex Alumni &nbsp
-                                <input type="checkbox" name="check_list[]" value="5"> Advertisement
+                                <input type="checkbox"  name="check_list[]" value="1"> Apex Student &nbsp
+                                <input type="checkbox"  name="check_list[]" value="2"> Apex Faculty  &nbsp
+                                <input type="checkbox"  name="check_list[]" value="3"> Apex Staff &nbsp
+                                <input type="checkbox"  name="check_list[]" value="4"> Apex Alumni &nbsp
+                                <input type="checkbox"  name="check_list[]" value="5"> Advertisement
                             </p>
                             <p>
-                                <input type="checkbox" name="check_list[]" value="6"> Apex Website 
-                                <input type="checkbox" name="check_list[]" value="7"  class="mb-4"> Others (Please Specify)
-                                <input type="text" name='specify' disabled>
+                                <input type="checkbox"  name="check_list[]" value="6"> Apex Website 
+                                <input type="checkbox"  name="check_list[]" value="7" id="other" class="mb-4"> Others (Please Specify)
+                                <input type="text" name='specify' id="spec" style="display:none">
+                                <script>
+                                    $(document).ready(function(){
+                                        $('#other').click(function () {
+                                          $('#spec').toggle(); 
+                                        });
+                                    });
+                                </script>
                             </p>
 
                             <p>Why do you want to pursue MBA/MBA Evening Program?</p>
-                            <textarea id="whyMBA" name="pursue" class="form-control"><?=$arr["pursue"]?></textarea>
+                            <textarea id="whyMBA" name="pursue" required class="form-control"><?=$arr["pursue"]?></textarea>
 
                             <input type="submit" name="submitwork" value="Save" class="btn btn-bg text-white mt-4 mb-4" style="background-color:rgb(115, 15, 14);"> 
                         </form>
@@ -582,10 +589,10 @@ $object = $user->check_objective($user_id, 'objective');
                                     <th>Responsibility</th>
                                 </tr>
                                 <tr>
-                                    <td><textarea  name="act1" class="form-control"> <?=$ach1["activity"]?> </textarea></td>
-                                    <td><textarea name="role1" class="form-control"> <?=$ach1["role"]?> </textarea></td>
-                                    <td><input    value="<?=$ach1["date"]?>" name="date1" type="date" class="form-control form-control-sm"></td>
-                                    <td><textarea  name="respon1" class="form-control"> <?=$ach1["responsibility"]?> </textarea></td>
+                                    <td><textarea required  name="act1" class="form-control"> <?=$ach1["activity"]?> </textarea></td>
+                                    <td><textarea required name="role1" class="form-control"> <?=$ach1["role"]?> </textarea></td>
+                                    <td><input    required value="<?=$ach1["date"]?>" name="date1" type="date" class="form-control form-control-sm"></td>
+                                    <td><textarea required  name="respon1" class="form-control"> <?=$ach1["responsibility"]?> </textarea></td>
                                 </tr>
                             </table>
 
@@ -628,7 +635,7 @@ $object = $user->check_objective($user_id, 'objective');
                         <p>Write a brief summary about your statement of purpose in your own words in about 200 words. 
                         Also mention how your education at APEX would help you achieve your statement of purpose.</p>
                         <form action="" method="post" id="form_obj">
-                            <textarea name="careerobj" class="form-control" rows="13"><?=$object["data"]?></textarea>
+                            <textarea name="careerobj" class="form-control" required rows="13"><?=$object["data"]?></textarea>
                             <input type="submit" name="submitobj" value="Save" class="btn btn-bg text-white mt-4 mb-4" style="background-color:rgb(115, 15, 14);">
                         </form>
                     </div>
@@ -646,8 +653,8 @@ $object = $user->check_objective($user_id, 'objective');
                         </ul>
 
                         <form action="" method="post" id="form_declaration">
-                            <input type="radio" name="declaration" value="1" <?php if($dec["declaration"]=="1"){echo "checked";} ?>> I agree &nbsp
-                            <input type="radio" name="declaration" value="0" <?php if($dec["declaration"]=="0"){echo "checked";} ?>> I disagree
+                            <input type="radio" name="declaration" value="1" required <?php if($dec["declaration"]=="1"){echo "checked";} ?>> I agree &nbsp
+                            <input type="radio" name="declaration" value="0" required <?php if($dec["declaration"]=="0"){echo "checked";} ?>> I disagree
                             <br>
                             <input type="submit"  name="declaration1" value="Submit" class="btn btn-bg text-white mt-4 mb-4" style="background-color:rgb(115, 15, 14);">
                         </form>
