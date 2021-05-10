@@ -61,6 +61,13 @@ $ach1 = $user->check_ach1($user_id, 'ach_data');
 $ach2 = $user->check_ach2($user_id, 'ach_data');
 $ach3 = $user->check_ach3($user_id, 'ach_data');
 $object = $user->check_objective($user_id, 'objective');
+
+if(!empty($arr) && $arr['options'] != '' )
+{
+  $imp = explode(",", $arr['options']);
+  $imp0 = $imp[1];
+  $imp1 = str_split($imp[0]);
+}
 ?>
 
 <body>
@@ -165,9 +172,9 @@ $object = $user->check_objective($user_id, 'objective');
                             </div>
                             <div class="form-row">
                                 <div class="col-2"><label for="">Name:</label></div>
-                                <div class="col"><input type="text" name="st_lname" required value="<?=$per["st_lname"]?>" placeholder="Last" class="form-control form-control-sm"></div>
-                                <div class="col"><input type="text" name="st_fname" required value="<?=$per["st_fname"]?>" placeholder="First" class="form-control form-control-sm"></div>
-                                <div class="col"><input type="text" name="st_mname" value="<?=$per["st_mname"]?>" placeholder="Middle" class="form-control form-control-sm"></div>
+                                <div class="col"><input type="text" name="st_lname" pattern="[a-zA-Z]{2,}" title="Name must contain more than one character" required value="<?=$per["st_lname"]?>" placeholder="Last" class="form-control form-control-sm"></div>
+                                <div class="col"><input type="text" name="st_fname" pattern="[a-zA-Z]{2,}" title="Name must contain more than one character" required value="<?=$per["st_fname"]?>" placeholder="First" class="form-control form-control-sm"></div>
+                                <div class="col"><input type="text" name="st_mname" pattern="[a-zA-Z]{2,}" title="Name must contain more than one character" value="<?=$per["st_mname"]?>" placeholder="Middle" class="form-control form-control-sm"></div>
                             </div>
 
                             <div class="form-row">
@@ -198,17 +205,17 @@ $object = $user->check_objective($user_id, 'objective');
                                 <div class="col-2"><label for="">Citizenship:</label></div>
                                 <div class="col"><input type="text" required value="<?=$per["citizenship"]?>" name="citizenship" placeholder="Citizenship" class="form-control form-control-sm"></div>
                                 <div class="col"><input type="text" required value="<?=$per["issuing_district"]?>" name="issuing_district" placeholder="Issuing District" class="form-control form-control-sm"></div>
-                                <div class="col"><input type="text" required value="<?=$per["citizenship_no"]?>" name="citizenship_no" placeholder="Citizenship No." class="form-control form-control-sm"></div>
+                                <div class="col"><input type="text" required pattern="[0-9]{11}" value="<?=$per["citizenship_no"]?>" name="citizenship_no" placeholder="Citizenship No." class="form-control form-control-sm"></div>
                             </div>
 
                             <div class="form-row">
                                 <div class="col-2"><label for="">Telephone No:</label></div>
-                                <div class="col-4"><input type="number" required value="<?=$per["telephone"]?>" name="telephone" placeholder="Telephone" class="form-control form-control-sm"></div>
+                                <div class="col-4"><input type="tel" pattern="[0-9]{7}" title="Telephone no should have 7 digits" required value="<?=$per["telephone"]?>" name="telephone" placeholder="Telephone" class="form-control form-control-sm" > </div>
                             </div>
 
                             <div class="form-row">
                                 <div class="col-2"><label for="">Cell No:</label></div>
-                                <div class="col-4"><input type="number" required value="<?=$per["mobile"]?>" name="mobile" placeholder="Mobile" class="form-control form-control-sm"></div>
+                                <div class="col-4"><input type="tel" pattern="[0-9]{10}" title="Phone no should have 10 digits" required value="<?=$per["mobile"]?>" name="mobile" placeholder="Mobile" class="form-control form-control-sm"></div>
                             </div>
 
                             <div class="form-row">
@@ -243,15 +250,15 @@ $object = $user->check_objective($user_id, 'objective');
                             <h4>Permanent Address:</h4>
                             <hr>
                             <div class="row form-group">
-                                <div class="col"><input type="text" required value="<?=$padd["ward"]?>" name="ward" placeholder="Ward" class="form-control form-control-sm"></div>
+                                <div class="col"><input type="text" required value="<?=$padd["ward"]?>" pattern="[0-9]{2}" title="Ward of is 2 digits" name="ward" placeholder="Ward" class="form-control form-control-sm"></div>
                                 <div class="col"><input type="text" required value="<?=$padd["place"]?>" name="place" placeholder="Place" class="form-control form-control-sm"></div>
                                 <div class="col"><input type="text" required value="<?=$padd["city"]?>" name="city" placeholder="City" class="form-control form-control-sm"></div>
                                 <div class="col"><input type="text" required value="<?=$padd["vdc"]?>" name="vdc" placeholder="VDC/Municipality" class="form-control form-control-sm"></div>
                             </div>
                             <div class="row form-group">
                                 <div class="col"><input type="text" required value="<?=$padd["district"]?>" name="district" placeholder="District" class="form-control form-control-sm"></div>
-                                <div class="col"><input type="text" required value="<?=$padd["phone"]?>" name="phone" placeholder="Phone" class="form-control form-control-sm"></div>
-                                <div class="col"><input type="text" required value="<?=$padd["cell"]?>" name="cell" placeholder="Cell" class="form-control form-control-sm"></div>
+                                <div class="col"><input type="text" required value="<?=$padd["phone"]?>" name="phone" pattern="[0-9]{7}" title="Telephone no should have 7 digits" placeholder="Phone" class="form-control form-control-sm"></div>
+                                <div class="col"><input type="text" required value="<?=$padd["cell"]?>" name="cell" pattern="[0-9]{10}" title="Phone no should have 10 digits" placeholder="Cell" class="form-control form-control-sm"></div>
                                 <div class="col"><input type="text" required value="<?=$padd["fax"]?>" name="fax" placeholder="Fax" class="form-control form-control-sm"></div>
                             </div>
                             <p><input type="checkbox" name="mycheckaddress" value="mycheckaddress"> Check here, If you want to include Local Address</p>
@@ -266,8 +273,8 @@ $object = $user->check_objective($user_id, 'objective');
                             </div>
                             <div class="row form-group">
                                 <div class="col"><input type="text" value="<?=$tadd["district"]?>" name="ldistrict" placeholder="District" class="form-control form-control-sm"></div>
-                                <div class="col"><input type="text" value="<?=$tadd["phone"]?>" name="lphone" placeholder="Phone" class="form-control form-control-sm"></div>
-                                <div class="col"><input type="text" value="<?=$tadd["cell"]?>" name="lcell" placeholder="Cell" class="form-control form-control-sm"></div>
+                                <div class="col"><input type="text" value="<?=$tadd["phone"]?>" name="lphone" pattern="[0-9]{7}" title="Telephone no should have 7 digits" placeholder="Phone" class="form-control form-control-sm"></div>
+                                <div class="col"><input type="text" value="<?=$tadd["cell"]?>" name="lcell" pattern="[0-9]{10}" title="Phone no should have 10 digits" placeholder="Cell" class="form-control form-control-sm"></div>
                                 <div class="col"><input type="text" value="<?=$tadd["fax"]?>" name="lfax" placeholder="Fax" class="form-control form-control-sm"></div>
                             </div>
                             <input type="submit" name="submit_address" value="Save" class="btn btn-bg text-white mt-4" style="background-color:rgb(115, 15, 14);">
@@ -280,53 +287,53 @@ $object = $user->check_objective($user_id, 'objective');
                             <hr>
                             <h4>Father's Information</h4><br>
                             <div class="row form-group">
-                                <div class="col-4"><input class="form-control form-control-sm" required value="<?=$f["name"]?>" type="text" name="fname" placeholder="Father's Name"></div>
+                                <div class="col-4"><input class="form-control form-control-sm" required pattern="[a-zA-Z]{2,}" title="Name must contain more than one character" value="<?=$f["name"]?>" type="text" name="fname" placeholder="Father's Name"></div>
                             </div>
 
                             <div class="row form-group">
-                                <div class="col"><input class="form-control form-control-sm" required value="<?=$f["profession"]?>" type="text" name="fprofession" placeholder="Profession"></div>
+                                <div class="col"><input class="form-control form-control-sm" required pattern="[A-Za-z]{2,}" title="Profession must contain more than one character" value="<?=$f["profession"]?>" type="text" name="fprofession" placeholder="Profession"></div>
                                 <div class="col"><input class="form-control form-control-sm" required value="<?=$f["employer"]?>" type="text" name="femployer" placeholder="Employer"></div>
                                 <div class="col"><input class="form-control form-control-sm" required value="<?=$f["email"]?>" type="email" name="femail" placeholder="Email"></div>
                             </div>
 
                             <div class="row form-group">
-                                <div class="col"><input class="form-control form-control-sm" required value="<?=$f["phone"]?>" type="number" name='fphone' placeholder="Phone"></div>
-                                <div class="col"><input class="form-control form-control-sm" required value="<?=$f["cell"]?>" type="number" name='fcell' placeholder="Cell"></div>
+                                <div class="col"><input class="form-control form-control-sm" required value="<?=$f["phone"]?>" pattern="[0-9]{7}" title="Telephone no should have 7 digits" type="tel" name='fphone' placeholder="Phone"></div>
+                                <div class="col"><input class="form-control form-control-sm" required value="<?=$f["cell"]?>" pattern="[0-9]{10}" title="Phone no should have 10 digits" type="tel" name='fcell' placeholder="Cell"></div>
                                 <div class="col"><input class="form-control form-control-sm" required value="<?=$f["fax"]?>" type="text" name='ffax' placeholder="Fax"></div>
                             </div>
 
                             <h4>Mother's Information</h4><br>
                             <div class="row form-group">
-                                <div class="col-4"><input class="form-control form-control-sm" required value="<?=$m["name"]?>" type="text" name="mname" placeholder="Mother's Name"></div>
+                                <div class="col-4"><input class="form-control form-control-sm" required pattern="[a-zA-Z]{2,}" title="Name must contain more than one character" value="<?=$m["name"]?>" type="text" name="mname" placeholder="Mother's Name"></div>
                             </div>
 
                             <div class="row form-group">
-                                <div class="col"><input class="form-control form-control-sm" required value="<?=$m["profession"]?>" type="text" name="mprofession" placeholder="Profession"></div>
+                                <div class="col"><input class="form-control form-control-sm" required value="<?=$m["profession"]?>" pattern="[A-Za-z]{2,}" title="Profession must contain more than one character" type="text" name="mprofession" placeholder="Profession"></div>
                                 <div class="col"><input class="form-control form-control-sm" required value="<?=$m["employer"]?>" type="text" name="memployer" placeholder="Employer"></div>
                                 <div class="col"><input class="form-control form-control-sm" required value="<?=$m["email"]?>" type="email" name="memail" placeholder="Email"></div>
                             </div>
 
                             <div class="row form-group">
-                                <div class="col"><input class="form-control form-control-sm" required value="<?=$m["phone"]?>" type="number" name='mphone' placeholder="Phone"></div>
-                                <div class="col"><input class="form-control form-control-sm" required value="<?=$m["cell"]?>" type="number" name='mcell' placeholder="Cell"></div>
+                                <div class="col"><input class="form-control form-control-sm" required value="<?=$m["phone"]?>" pattern="[0-9]{7}" title="Telephone no should have 7 digits" type="tel" name='mphone' placeholder="Phone"></div>
+                                <div class="col"><input class="form-control form-control-sm" required value="<?=$m["cell"]?>" pattern="[0-9]{10}" title="Phone no should have 10 digits" type="tel" name='mcell' placeholder="Cell"></div>
                                 <div class="col"><input class="form-control form-control-sm" required value="<?=$m["fax"]?>" type="text" name='mfax' placeholder="Fax"></div>
                             </div>
                             <p><input type="checkbox" name="checkfamily" value="checkfamily"> Check here if you want to include Local Guardian information</p>
 
                             <h4>Local Guardian Information</h4><br>
                             <div class="row form-group">
-                                <div class="col-4"><input class="form-control form-control-sm" value="<?=$lg["name"]?>" type="text" name="lname" placeholder="Name"></div>
+                                <div class="col-4"><input class="form-control form-control-sm" pattern="[a-zA-Z]{2,}" title="Name must contain more than one character" value="<?=$lg["name"]?>" type="text" name="lname" placeholder="Name"></div>
                             </div>
 
                             <div class="row form-group">
-                                <div class="col"><input class="form-control form-control-sm" value="<?=$lg["profession"]?>" type="text" name="lprofession" placeholder="Profession"></div>
+                                <div class="col"><input class="form-control form-control-sm" value="<?=$lg["profession"]?>" pattern="[A-Za-z]{2,}" title="Profession must contain more than one character" type="text" name="lprofession" placeholder="Profession"></div>
                                 <div class="col"><input class="form-control form-control-sm" value="<?=$lg["employer"]?>" type="text" name="lemployer" placeholder="Employer"></div>
                                 <div class="col"><input class="form-control form-control-sm" value="<?=$lg["email"]?>" type="email" name="lemail" placeholder="Email"></div>
                             </div>
 
                             <div class="row form-group">
-                                <div class="col"><input class="form-control form-control-sm" value="<?=$lg["phone"]?>" type="number" name='lphone' placeholder="Phone"></div>
-                                <div class="col"><input class="form-control form-control-sm" value="<?=$lg["cell"]?>" type="number" name='lcell' placeholder="Cell"></div>
+                                <div class="col"><input class="form-control form-control-sm" value="<?=$lg["phone"]?>" pattern="[0-9]{7}" title="Telephone no should have 7 digits" type="tel" name='lphone' placeholder="Phone"></div>
+                                <div class="col"><input class="form-control form-control-sm" value="<?=$lg["cell"]?>" pattern="[0-9]{10}" title="Phone no should have 10 digits" type="tel" name='lcell' placeholder="Cell"></div>
                                 <div class="col"><input class="form-control form-control-sm" value="<?=$lg["fax"]?>" type="text" name='lfax' placeholder="Fax"></div>
                             </div>
 
@@ -346,7 +353,7 @@ $object = $user->check_objective($user_id, 'objective');
                                 </tr>
                                 <tr>
                                     <td>Percentage/CGPA Obtained</td>
-                                    <td><input type="text" value="<?=$ug["percentage"]?>" name="percentage1" required class="form-control form-control-sm"></td>
+                                    <td><input type="text" value="<?=$ug["percentage"]?>" name="percentage1" required class="form-control form-control-sm" pattern="[0-9]+(\.[0-9]{1,2})" title="This must be a number with up to 2 decimal places"></td>
                                 </tr>
                                 <tr>
                                     <td>Area of Specialization</br>(Concentration)</td>
@@ -362,9 +369,9 @@ $object = $user->check_objective($user_id, 'objective');
                                 </tr>
                                 <tr>
                                     <td>Year of Enrollment</td>
-                                    <td><input type="text" value="<?=$ug["start_year"]?>" name="start_year1" required class="form-control form-control-sm"></td>
+                                    <td><input type="date" value="<?=$ug["start_year"]?>" name="start_year1" required class="form-control form-control-sm"></td>
                                     <td>Year of Completion</td>
-                                    <td><input type="text" value="<?=$ug["end_year"]?>" name="end_year1" required class="form-control form-control-sm"></td>
+                                    <td><input type="date" value="<?=$ug["end_year"]?>" name="end_year1" required class="form-control form-control-sm"></td>
                                 </tr>
                             </table>
 
@@ -377,7 +384,7 @@ $object = $user->check_objective($user_id, 'objective');
                                 </tr>
                                 <tr>
                                     <td>Percentage/CGPA Obtained</td>
-                                    <td><input type="text" value="<?=$p2["percentage"]?>" name="percentage2" required class="form-control form-control-sm"></td>
+                                    <td><input type="text" value="<?=$p2["percentage"]?>" name="percentage2" required class="form-control form-control-sm" pattern="[0-9]+(\.[0-9]{1,2})" title="This must be a number with up to 2 decimal places"></td>
                                 </tr>
                                 <tr>
                                     <td>Stream</td>
@@ -393,9 +400,9 @@ $object = $user->check_objective($user_id, 'objective');
                                 </tr>
                                 <tr>
                                     <td>Year of Enrollment</td>
-                                    <td><input type="text" value="<?=$p2["start_year"]?>" name="start_year2" required class="form-control form-control-sm"></td>
+                                    <td><input type="date" value="<?=$p2["start_year"]?>" name="start_year2" required class="form-control form-control-sm"></td>
                                     <td>Year of Completion</td>
-                                    <td><input type="text" value="<?=$p2["end_year"]?>" name="end_year2" required class="form-control form-control-sm"></td>
+                                    <td><input type="date" value="<?=$p2["end_year"]?>" name="end_year2" required class="form-control form-control-sm"></td>
                                 </tr>
                             </table>
 
@@ -408,7 +415,7 @@ $object = $user->check_objective($user_id, 'objective');
                                 </tr>
                                 <tr>
                                     <td>Percentage/CGPA Obtained</td>
-                                    <td><input type="text" value="<?=$slc["percentage"]?>" name="percentage3" required class="form-control form-control-sm"></td>
+                                    <td><input type="text" value="<?=$slc["percentage"]?>" name="percentage3" required class="form-control form-control-sm" pattern="[0-9]+(\.[0-9]{1,2})" title="This must be a number with up to 2 decimal places"></td>
                                 </tr>
                                 <tr>
                                     <td>Name of School</td>
@@ -420,9 +427,9 @@ $object = $user->check_objective($user_id, 'objective');
                                 </tr>
                                 <tr>
                                     <td>Year of Enrollment</td>
-                                    <td><input type="text" value="<?=$slc["start_year"]?>" name="start_year3" required class="form-control form-control-sm"></td>
+                                    <td><input type="date" value="<?=$slc["start_year"]?>" name="start_year3" required class="form-control form-control-sm"></td>
                                     <td>Year of Completion</td>
-                                    <td><input type="text" value="<?=$slc["end_year"]?>" name="end_year3" required class="form-control form-control-sm"></td>
+                                    <td><input type="date" value="<?=$slc["end_year"]?>" name="end_year3" required class="form-control form-control-sm"></td>
                                 </tr>
                             </table>
                             <br>
@@ -437,7 +444,7 @@ $object = $user->check_objective($user_id, 'objective');
                                 </tr>
                                 <tr>
                                     <td>Percentage/CGPA Obtained</td>
-                                    <td><input type="text" value="<?=$opt["percentage"]?>" name="percentage4" class="form-control form-control-sm"></td>
+                                    <td><input type="text" value="<?=$opt["percentage"]?>" name="percentage4" class="form-control form-control-sm" pattern="[0-9]+(\.[0-9]{1,2})" title="This must be a number with up to 2 decimal places"></td>
                                 </tr>
                                 <tr>
                                     <td>Stream</td>
@@ -453,9 +460,9 @@ $object = $user->check_objective($user_id, 'objective');
                                 </tr>
                                 <tr>
                                     <td>Year of Enrollment</td>
-                                    <td><input type="text" value="<?=$opt["start_year"]?>" name="start_year4" class="form-control form-control-sm"></td>
+                                    <td><input type="date" value="<?=$opt["start_year"]?>" name="start_year4" class="form-control form-control-sm"></td>
                                     <td>Year of Completion</td>
-                                    <td><input type="text" value="<?=$opt["end_year"]?>" name="end_year4" class="form-control form-control-sm"></td>
+                                    <td><input type="date" value="<?=$opt["end_year"]?>" name="end_year4" class="form-control form-control-sm"></td>
                                 </tr>
                             </table>
                             <input type="submit" name="submitacademics" value="Save" class="btn btn-bg text-white mt-4 mb-4" style="background-color:rgb(115, 15, 14);">
@@ -551,22 +558,28 @@ $object = $user->check_objective($user_id, 'objective');
 
                             <p>How do you know about Apex College and its Programs?</p>
                             <p>
-                                <input type="checkbox"  name="check_list[]" value="1"> Apex Student &nbsp
-                                <input type="checkbox"  name="check_list[]" value="2"> Apex Faculty  &nbsp
-                                <input type="checkbox"  name="check_list[]" value="3"> Apex Staff &nbsp
-                                <input type="checkbox"  name="check_list[]" value="4"> Apex Alumni &nbsp
-                                <input type="checkbox"  name="check_list[]" value="5"> Advertisement
+                                <input type="checkbox"  name="check_list[]" <?php if(isset($imp1) && in_array(1,$imp1)) echo 'checked';?> value="1"> Apex Student &nbsp
+                                <input type="checkbox"  name="check_list[]" <?php if(isset($imp1) && in_array(2,$imp1)) echo 'checked';?> value="2"> Apex Faculty  &nbsp
+                                <input type="checkbox"  name="check_list[]" <?php if(isset($imp1) && in_array(3,$imp1)) echo 'checked';?> value="3"> Apex Staff &nbsp
+                                <input type="checkbox"  name="check_list[]" <?php if(isset($imp1) && in_array(4,$imp1)) echo 'checked';?> value="4"> Apex Alumni &nbsp
+                                <input type="checkbox"  name="check_list[]" <?php if(isset($imp1) && in_array(5,$imp1)) echo 'checked';?> value="5"> Advertisement
                             </p>
                             <p>
-                                <input type="checkbox"  name="check_list[]" value="6"> Apex Website 
-                                <input type="checkbox"  name="check_list[]" value="7" id="other" class="mb-4"> Others (Please Specify)
-                                <input type="text" name='specify' id="spec" style="display:none">
+                                <input type="checkbox"  name="check_list[]" <?php if(isset($imp1) && in_array(6,$imp1)) echo 'checked';?> value="6"> Apex Website 
+                                <input type="checkbox"  name="check_list[]" <?php if(isset($imp1) && in_array(7,$imp1)) echo 'checked';?> value="7" id="other" class="mb-4"> Others (Please Specify)
+                                <input type="text" name='specify' id="spec" <?php if(isset($imp1) && in_array(7,$imp1)) echo ''; else echo "disabled";?> value='<?php if(!isset($imp0))echo ""; else echo $imp0;?>' >
                                 <script>
-                                    $(document).ready(function(){
-                                        $('#other').click(function () {
-                                          $('#spec').toggle(); 
-                                        });
+                                $(document).ready(function(){
+                                    $("#other").click(function(){
+                                        if($(this).prop("checked") == true){
+                                            $("#spec").prop('disabled', false);
+                                            $("#spec").attr("required","required");
+                                        }
+                                        else if($(this).prop("checked") == false){
+                                            $("#spec").prop('disabled', true);
+                                        }
                                     });
+                                });
                                 </script>
                             </p>
 
@@ -589,7 +602,7 @@ $object = $user->check_objective($user_id, 'objective');
                                     <th>Responsibility</th>
                                 </tr>
                                 <tr>
-                                    <td><textarea required  name="act1" class="form-control"> <?=$ach1["activity"]?> </textarea></td>
+                                    <td><textarea   name="act1" class="form-control" required> <?=$ach1["activity"]?> </textarea></td>
                                     <td><textarea required name="role1" class="form-control"> <?=$ach1["role"]?> </textarea></td>
                                     <td><input    required value="<?=$ach1["date"]?>" name="date1" type="date" class="form-control form-control-sm"></td>
                                     <td><textarea required  name="respon1" class="form-control"> <?=$ach1["responsibility"]?> </textarea></td>
