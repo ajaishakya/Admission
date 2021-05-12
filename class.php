@@ -35,20 +35,36 @@ class User
         $gender = $postarr["gender"];
         $dob = $postarr["dob"];
         $session_id = $postarr["session_id"];
-        // Generates Unique password
+          // Generates Unique password
         $password_plain = uniqid();
         $password = md5($password_plain);
 
-        $sql="INSERT INTO users(first_name,last_name,mobile,email,gender,dob,session_id,password)
-        VALUE('$first_name','$last_name','$mobile','$email','$gender','$dob','$session_id','$password')";
+        $sql1 = "INSERT INTO users SET first_name='$first_name', last_name='$last_name', verify='0', email='$email',mobile='$mobile',
+        password='$password', session_id = '$session_id', gender = '$gender', dob = '$dob'";
 
-        $result = mysqli_query($this->conn, $sql);
-        $token=md5($email.$first_name);
-
-        if($result)
+        if(mysqli_query($this->conn, $sql1))
         {
-            $stat = $this->send_mail($postarr,$token,$password_plain);
+            return 1;
         }
+
+        // $token=md5($email.$first_name);
+
+        // if($result)
+        // {
+        //     $stat = $this->send_mail($postarr,$token,$password_plain);
+
+        //     if($stat == 1)
+        //     {
+        //         $sql = "UPDATE users SET verify_token='$token' WHERE email='$email'";
+        //         $check = mysqli_query($this->conn, $sql);
+        //         return $check;
+        //     }
+        //     else
+        //     {
+        //         return $stat;
+        //     }
+        // }
+        // return 0;
     }
 
     private function send_mail($info,$token,$pass){
@@ -58,7 +74,7 @@ class User
 
         //Instantiation and passing `true` enables exceptions
         $mail = new PHPMailer();
-        $link = 'http://mba.apexcollege.edu.np/index.php?activate_account=user&token_outh='.$token;
+        $link = 'http://localhost/Admission/iindex.php?activate_account=user&token_outh='.$token;
 
         //Server settings
         // Write 1 on SMTPDebug to find error
@@ -90,6 +106,13 @@ class User
         }
     }
 
+    function verify_login($token)
+    {
+        $sql = "UPDATE users SET verify = '1' WHERE verify_token='$token'";
+        $check = mysqli_query($this->conn, $sql);
+        return $check;
+    }
+
     function check_login($post)
     {
         $email = $post["email"];
@@ -99,15 +122,27 @@ class User
         // $password=md5($password);
 
         $sql = "SELECT * FROM users WHERE email='$email' AND password='$password'";
-        $result = $this->conn->query($sql);
-        if($result->num_rows > 0)
+        $result = mysqli_query($this->conn,$sql);
+        $count_row = mysqli_num_rows($result) ;
+        $user_data = $result->fetch_assoc();
+
+        if($count_row)
         {
-            while($row = $result->fetch_assoc())
+            if($user_data['verify'])
             {
-                $_SESSION["user_id"] = $row["email"];
-                $_SESSION['email'] = $row['email'];
+                $_SESSION['login'] = true;
+                $_SESSION['user_id'] = $user_data['email'];
+                $_SESSION['email'] = $user_data['email'];
                 return 1;
             }
+            else
+            {
+                return 2;
+            }
+        }
+        else
+        {
+            return 0;
         }
     }
 

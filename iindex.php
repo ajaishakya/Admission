@@ -9,11 +9,11 @@
         $register = $user->reg_user($_POST);
         if($register==1)
         {
-            echo "<p>Please check your mail for the password and to verify your Account(IF not also check in SPAM mail).</p>";
+            echo "<script> alert('Please check your mail for the password and to verify your Account(IF not also check in SPAM mail).'); </script>";
         }
         else
         {
-            echo"<p>Database Error, Please Contact Administration.</p>";
+            echo "<script> alert('Database Error, Please Contact Administration.'); </script>";
         }
     }
 
@@ -24,9 +24,27 @@
         {
             header('Location: student.php');
         }
+        else if($login == 2)
+        {
+            echo "<script> alert('Please Check your mail to verify your Account.'); </script>";
+        }
         else
         {
            echo "<script> alert('Wrong username or password'); </script>";
+        }
+    }
+    
+    else if(isset($_GET['token_outh']) && $_GET['token_outh'] != NULL)
+    {
+        $verify_outh = $user->verify_login($_GET['token_outh']);
+
+        if($verify_outh)
+        {
+            echo "<script> alert('Account Successfully Activated, Now login with given password'); </script>";
+        }
+        else
+        {
+            echo "<script> alert('Invalid Token'); </script>";
         }
     }
 ?>
@@ -62,10 +80,10 @@
                     <div style="width:280px;">
                         <form action="" method="POST" id="register">
                             <div class="form-group">
-                                <input type="text" class="form-control form-control-sm" name="first_name" autocomplete="on" placeholder="First Name" required >
+                                <input type="text" class="form-control form-control-sm" name="first_name" autocomplete="on" placeholder="First Name" required pattern="[a-z A-Z]{2,}" title="First Name should be greater than 2 character">
                             </div>
                             <div class="form-group">
-                                <input type="text" class="form-control form-control-sm" name="last_name" autocomplete="on" placeholder="Last Name" required>
+                                <input type="text" class="form-control form-control-sm" name="last_name" autocomplete="on" placeholder="Last Name" required pattern="[a-z A-Z]{2,}" title="Last Name should be greater than 2 character">
                             </div>
                             <div class="form-group">
                                 <input type="tel" class="form-control form-control-sm" name="mobile" autocomplete="on" placeholder="Mobile Number" required pattern="[0-9]{10}" title="Mobile Number should be 10 digits">
@@ -77,7 +95,7 @@
                                 <input type="email" class="form-control form-control-sm" name="uremail" autocomplete="on" placeholder="Re-type Email" required>
                             </div>
                             <div class="form-group">
-                                <select name="gender"class="form-control form-control-sm">
+                                <select name="gender"class="form-control form-control-sm" required>
                                     <option value="" disabled selected>Gender</option>
                                     <option value="male">Male</option>
                                     <option value="female">Female</option>
