@@ -42,29 +42,25 @@ class User
         $sql1 = "INSERT INTO users SET first_name='$first_name', last_name='$last_name', verify='0', email='$email',mobile='$mobile',
         password='$password', session_id = '$session_id', gender = '$gender', dob = '$dob'";
 
-        if(mysqli_query($this->conn, $sql1))
+        $result = mysqli_query($this->conn, $sql1);
+        $token=md5($email.$first_name);
+
+        if($result)
         {
-            return 1;
+            $stat = $this->send_mail($postarr,$token,$password_plain);
+
+            if($stat == 1)
+            {
+                $sql = "UPDATE users SET verify_token='$token' WHERE email='$email'";
+                $check = mysqli_query($this->conn, $sql);
+                return $check;
+            }
+            else
+            {
+                return $stat;
+            }
         }
-
-        // $token=md5($email.$first_name);
-
-        // if($result)
-        // {
-        //     $stat = $this->send_mail($postarr,$token,$password_plain);
-
-        //     if($stat == 1)
-        //     {
-        //         $sql = "UPDATE users SET verify_token='$token' WHERE email='$email'";
-        //         $check = mysqli_query($this->conn, $sql);
-        //         return $check;
-        //     }
-        //     else
-        //     {
-        //         return $stat;
-        //     }
-        // }
-        // return 0;
+        return 0;
     }
 
     private function send_mail($info,$token,$pass){

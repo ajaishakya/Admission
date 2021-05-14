@@ -7,6 +7,7 @@
     if(isset($_POST["submit1"]))
     {
         $register = $user->reg_user($_POST);
+
         if($register==1)
         {
             echo "<script> alert('Please check your mail for the password and to verify your Account(IF not also check in SPAM mail).'); </script>";
@@ -20,6 +21,7 @@
     if(isset($_POST["submit2"]))
     {
         $login = $user->check_login($_POST);
+
         if($login == 1)
         {
             header('Location: student.php');
